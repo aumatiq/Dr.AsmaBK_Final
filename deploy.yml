@@ -1,0 +1,33 @@
+name: Deploy to Apps Script
+
+# main branch-এ push হলেই এই automation চলবে —
+# GitHub Desktop থেকে commit + push করলেই যথেষ্ট, আর কিছু করা লাগবে না।
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install clasp
+        run: npm install -g @google/clasp
+
+      - name: Restore clasp login credentials
+        run: echo "${{ secrets.CLASPRC_JSON }}" > ~/.clasprc.json
+
+      - name: Push code to Apps Script project
+        run: clasp push --force
+
+      - name: Publish new version to the LIVE /exec URL
+        run: |
+          clasp deploy --deploymentId "${{ secrets.DEPLOYMENT_ID }}" \
+            --description "Auto-deploy via GitHub Actions — $(date -u +'%Y-%m-%d %H:%M UTC')"

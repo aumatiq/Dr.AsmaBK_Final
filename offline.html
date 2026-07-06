@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Offline — SkyBlue Clinic</title>
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    background:#0A0A0F; color:#F8F9FF;
+    font-family:'Inter',sans-serif;
+    min-height:100vh; display:flex; align-items:center; justify-content:center;
+    text-align:center; padding:24px;
+  }
+  .box { max-width:360px; }
+  .icon {
+    width:64px; height:64px; margin:0 auto 24px;
+    background:rgba(79,70,229,0.12); border:1px solid rgba(79,70,229,0.3);
+    border-radius:16px; display:flex; align-items:center; justify-content:center;
+  }
+  .icon svg { width:28px; height:28px; stroke:#6366F1; fill:none; stroke-width:1.75; }
+  h1 { font-family:'Syne',sans-serif; font-size:22px; font-weight:700; margin-bottom:12px; }
+  p { font-size:14px; color:#A0A0B0; line-height:1.7; margin-bottom:24px; }
+  button {
+    background:#4F46E5; color:#F8F9FF; border:none; border-radius:8px;
+    padding:13px 28px; font-size:14px; font-weight:600; cursor:pointer;
+  }
+</style>
+</head>
+<body>
+  <div class="box">
+    <div class="icon">
+      <svg viewBox="0 0 24 24"><path d="M1 1l22 22M16.72 11.06A10.94 10.94 0 0 1 19 12.55M5 12.55a10.94 10.94 0 0 1 5.17-2.39M10.71 5.05A16 16 0 0 1 22.58 9M1.42 9a15.91 15.91 0 0 1 4.7-2.88M8.53 16.11a6 6 0 0 1 6.95 0M12 20h.01"/></svg>
+    </div>
+    <h1>You're Offline</h1>
+    <p>ইন্টারনেট কানেকশন নেই। কানেকশন ফিরে এলে app আবার আগের মতো কাজ করবে। কিছু data লোকাল cache থেকে দেখা যেতে পারে।</p>
+    <button onclick="window.location.reload()">আবার চেষ্টা করুন</button>
+  </div>
+</body>
+</html>
