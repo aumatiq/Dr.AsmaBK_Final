@@ -1,6 +1,6 @@
 {
-  "name": "SkyBlue Clinic Management System",
-  "short_name": "SkyBlue Clinic",
+  "name": "Dr. Asma's Clinic Management System",
+  "short_name": "Dr. Asma's Clinic",
   "description": "Clinic and doctor management system by AUMATIQ — patients, appointments, prescriptions, and follow-ups in one place.",
   "start_url": "/index.html",
   "scope": "/",

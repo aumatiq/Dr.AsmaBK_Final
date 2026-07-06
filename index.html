@@ -1,540 +1,143 @@
 <!DOCTYPE html>
-<html lang="bn">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ডা. আসমা — Patient Portal &amp; Doctor Dashboard | AUMATIQ</title>
-<meta name="description" content="ডা. আসমা ক্লিনিকের অনলাইন অ্যাপয়েন্টমেন্ট ও ডক্টর ড্যাশবোর্ড। AUMATIQ দ্বারা তৈরি।">
-<meta name="robots" content="noindex, nofollow">
-
+<title>Dr. Asma's Clinic — Powered by AUMATIQ</title>
+<meta name="description" content="Dr. Asma's Clinic — online appointment booking and clinic portal.">
+<meta name="theme-color" content="#0A0A0F">
+<link rel="manifest" href="manifest.json">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --blk:#0A0A0F; --blk2:#0D1117; --ind:#4F46E5; --ind2:#6366F1;
+    --gold:#F5A623; --gold2:#F8C85D; --wht:#F8F9FF; --sil:#A0A0B0;
+    --bd:rgba(79,70,229,0.25);
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{
+    background:var(--blk); color:var(--wht); font-family:'Inter',sans-serif;
+    min-height:100vh; display:flex; flex-direction:column; align-items:center;
+    padding:48px 20px; line-height:1.6;
+  }
+  .aumatiq-tag{
+    font-family:'Inter',sans-serif; font-size:11px; font-weight:700;
+    letter-spacing:2.5px; text-transform:uppercase; color:var(--ind2);
+    margin-bottom:10px;
+  }
+  h1{
+    font-family:'Syne',sans-serif; font-weight:800; font-size:clamp(26px,7vw,40px);
+    text-align:center; letter-spacing:-0.5px; margin-bottom:10px; max-width:520px;
+  }
+  .sub{ color:var(--sil); text-align:center; font-size:15px; max-width:440px; margin-bottom:40px;}
+  .cards{ width:100%; max-width:440px; display:flex; flex-direction:column; gap:18px; }
+  .card{
+    background:var(--blk2); border:1px solid var(--bd); border-radius:16px;
+    padding:26px 24px; text-decoration:none; color:var(--wht);
+    display:flex; flex-direction:column; gap:10px; transition:all .25s ease;
+  }
+  .card:active{ transform:scale(0.98); }
+  .card .badge{
+    font-size:11px; font-weight:700; letter-spacing:1px; text-transform:uppercase;
+    width:fit-content; padding:4px 10px; border-radius:6px;
+  }
+  .card.patient .badge{ background:rgba(79,70,229,0.15); color:var(--ind2); }
+  .card.doctor .badge{ background:rgba(245,166,35,0.15); color:var(--gold); }
+  .card h2{ font-family:'Syne',sans-serif; font-size:20px; font-weight:700; }
+  .card p{ font-size:13px; color:var(--sil); }
+  .card .cta{
+    margin-top:8px; font-size:14px; font-weight:600; display:flex;
+    align-items:center; gap:6px;
+  }
+  .card.patient .cta{ color:var(--ind2); }
+  .card.doctor .cta{ color:var(--gold); }
+  .install{
+    width:100%; max-width:440px; margin-top:36px; background:var(--blk2);
+    border:1px solid var(--bd); border-radius:16px; padding:22px 24px;
+  }
+  .install h3{ font-family:'Syne',sans-serif; font-size:15px; margin-bottom:12px; }
+  .install ol{ padding-left:18px; font-size:13px; color:var(--sil); }
+  .install li{ margin-bottom:6px; }
+  .install strong{ color:var(--wht); }
+  footer{ margin-top:44px; text-align:center; color:#606070; font-size:12px; }
+  footer a{ color:var(--ind2); text-decoration:none; }
+</style>
 
+<!-- ═══════════════════════════════════════════════════════════
+     PWA SNIPPET 
+════════════════════════════════════════════════════════════ -->
+
+<!-- PWA: manifest link -->
+<link rel="manifest" href="/manifest.json">
+
+<!-- PWA: theme color (address bar color, Android) -->
 <meta name="theme-color" content="#0A0A0F">
 
-<style>
-  :root {
-    --blk: #0A0A0F;
-    --blk2: #0D1117;
-    --ind: #4F46E5;
-    --ind2: #6366F1;
-    --gold: #F5A623;
-    --gold2: #F8C85D;
-    --wht: #F8F9FF;
-    --sil: #A0A0B0;
-    --bd: rgba(79,70,229,0.25);
-    --bd2: rgba(79,70,229,0.45);
+<!-- PWA: iOS home screen support -->
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="SkyBlue Clinic">
+<link rel="apple-touch-icon" href="/icons/apple-touch-icon.png">
+
+<!-- Favicons -->
+<link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16x16.png">
+
+<!-- PWA: Service Worker registration -->
+<script>
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', function () {
+      navigator.serviceWorker.register('/sw.js')
+        .then(function (reg) {
+          console.log('[PWA] Service Worker registered:', reg.scope);
+        })
+        .catch(function (err) {
+          console.warn('[PWA] Service Worker registration failed:', err);
+        });
+    });
   }
+</script>
 
-  * { margin: 0; padding: 0; box-sizing: border-box; }
+<!-- ═══ END PWA SNIPPET ═══ -->
 
-  html, body {
-    overflow-x: hidden;
-    max-width: 100vw;
-  }
-
-  body {
-    background: var(--blk);
-    color: var(--wht);
-    font-family: 'Inter', sans-serif;
-    line-height: 1.7;
-    min-height: 100vh;
-    min-height: 100svh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 32px 20px;
-    position: relative;
-    -webkit-font-smoothing: antialiased;
-  }
-
-  /* Ambient background glow */
-  body::before {
-    content: '';
-    position: fixed;
-    width: 600px;
-    height: 400px;
-    background: radial-gradient(ellipse, rgba(79,70,229,0.14) 0%, transparent 70%);
-    top: -80px;
-    left: 50%;
-    transform: translateX(-50%);
-    pointer-events: none;
-    z-index: 0;
-  }
-
-  body::after {
-    content: '';
-    position: fixed;
-    width: 400px;
-    height: 300px;
-    background: radial-gradient(ellipse, rgba(245,166,35,0.08) 0%, transparent 70%);
-    bottom: -60px;
-    right: -60px;
-    pointer-events: none;
-    z-index: 0;
-  }
-
-  .aq-wrap {
-    max-width: 480px;
-    width: 100%;
-    position: relative;
-    z-index: 1;
-  }
-
-  /* ─── LOGO ─── */
-  .aq-logo-block {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 14px;
-    margin-bottom: 36px;
-  }
-
-  .aq-logo-icon svg { display: block; }
-
-  .aq-logo-word {
-    font-family: 'Syne', sans-serif;
-    font-size: 22px;
-    font-weight: 800;
-    letter-spacing: 2px;
-    color: var(--wht);
-  }
-
-  .aq-logo-word .dot { color: var(--gold); }
-
-  /* ─── CLINIC HEADER ─── */
-  .clinic-header {
-    text-align: center;
-    margin-bottom: 36px;
-  }
-
-  .clinic-badge {
-    display: inline-block;
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: var(--ind2);
-    border: 1px solid rgba(99,102,241,0.35);
-    border-radius: 20px;
-    padding: 5px 16px;
-    margin-bottom: 16px;
-  }
-
-  .clinic-header h1 {
-    font-family: 'Syne', sans-serif;
-    font-size: 32px;
-    font-weight: 800;
-    letter-spacing: -0.5px;
-    line-height: 1.25;
-    margin-bottom: 10px;
-  }
-
-  .clinic-header h1 .gold { color: var(--gold); }
-
-  .clinic-header p {
-    font-size: 15px;
-    color: var(--sil);
-    max-width: 360px;
-    margin: 0 auto;
-  }
-
-  /* ─── PORTAL CARDS ─── */
-  .portal-cards {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-    margin-bottom: 40px;
-  }
-
-  .portal-card {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    background: var(--blk2);
-    border: 1px solid var(--bd);
-    border-radius: 16px;
-    padding: 22px 22px;
-    text-decoration: none;
-    color: var(--wht);
-    transition: all 0.3s ease;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .portal-card::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 2px;
-    background: linear-gradient(90deg, var(--ind), var(--ind2));
-    opacity: 0;
-    transition: opacity 0.3s ease;
-  }
-
-  .portal-card:hover {
-    border-color: var(--bd2);
-    transform: translateY(-3px);
-    box-shadow: 0 16px 40px rgba(79,70,229,0.15);
-  }
-
-  .portal-card:hover::before { opacity: 1; }
-
-  .portal-card.doctor {
-    border-color: rgba(245,166,35,0.35);
-    background: linear-gradient(160deg, rgba(245,166,35,0.06) 0%, var(--blk2) 55%);
-  }
-
-  .portal-card.doctor::before {
-    background: linear-gradient(90deg, var(--gold), var(--gold2));
-    opacity: 1;
-  }
-
-  .portal-card.doctor:hover {
-    border-color: rgba(245,166,35,0.6);
-    box-shadow: 0 16px 40px rgba(245,166,35,0.12);
-  }
-
-  .portal-icon {
-    width: 48px;
-    height: 48px;
-    flex-shrink: 0;
-    border-radius: 12px;
-    background: rgba(79,70,229,0.14);
-    border: 1px solid rgba(79,70,229,0.3);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .portal-card.doctor .portal-icon {
-    background: rgba(245,166,35,0.14);
-    border-color: rgba(245,166,35,0.35);
-  }
-
-  .portal-icon svg {
-    width: 22px;
-    height: 22px;
-    stroke: var(--ind2);
-    fill: none;
-    stroke-width: 1.75;
-    stroke-linecap: round;
-    stroke-linejoin: round;
-  }
-
-  .portal-card.doctor .portal-icon svg { stroke: var(--gold); }
-
-  .portal-text { flex-grow: 1; }
-
-  .portal-text h3 {
-    font-family: 'Syne', sans-serif;
-    font-size: 17px;
-    font-weight: 700;
-    margin-bottom: 3px;
-  }
-
-  .portal-text p {
-    font-size: 13px;
-    color: var(--sil);
-  }
-
-  .portal-arrow {
-    flex-shrink: 0;
-    width: 18px;
-    height: 18px;
-    stroke: var(--sil);
-    fill: none;
-    stroke-width: 2;
-    stroke-linecap: round;
-    stroke-linejoin: round;
-    transition: transform 0.25s ease, stroke 0.25s ease;
-  }
-
-  .portal-card:hover .portal-arrow {
-    transform: translateX(4px);
-    stroke: var(--ind2);
-  }
-
-  .portal-card.doctor:hover .portal-arrow {
-    stroke: var(--gold);
-  }
-
-  /* ─── INSTALL GUIDE ─── */
-  .install-section {
-    background: var(--blk2);
-    border: 1px solid var(--bd);
-    border-radius: 16px;
-    padding: 24px 22px;
-    margin-bottom: 28px;
-  }
-
-  .install-section h4 {
-    font-family: 'Syne', sans-serif;
-    font-size: 15px;
-    font-weight: 700;
-    margin-bottom: 14px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-
-  .install-section h4 svg {
-    width: 18px;
-    height: 18px;
-    stroke: var(--ind2);
-    fill: none;
-    stroke-width: 1.75;
-  }
-
-  .install-tabs {
-    display: flex;
-    gap: 6px;
-    margin-bottom: 16px;
-    background: var(--blk);
-    border-radius: 10px;
-    padding: 4px;
-  }
-
-  .install-tab-btn {
-    flex: 1;
-    background: transparent;
-    border: none;
-    color: var(--sil);
-    font-family: 'Inter', sans-serif;
-    font-size: 13px;
-    font-weight: 600;
-    padding: 9px 4px;
-    border-radius: 7px;
-    cursor: pointer;
-    transition: all 0.2s ease;
-  }
-
-  .install-tab-btn.active {
-    background: var(--ind);
-    color: var(--wht);
-  }
-
-  .install-steps {
-    display: none;
-    flex-direction: column;
-    gap: 10px;
-  }
-
-  .install-steps.active { display: flex; }
-
-  .install-step {
-    display: flex;
-    align-items: flex-start;
-    gap: 10px;
-    font-size: 13px;
-    color: var(--sil);
-    line-height: 1.6;
-  }
-
-  .install-step-num {
-    flex-shrink: 0;
-    width: 20px;
-    height: 20px;
-    border-radius: 6px;
-    background: rgba(79,70,229,0.15);
-    color: var(--ind2);
-    font-family: 'Inter', sans-serif;
-    font-size: 11px;
-    font-weight: 700;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-top: 1px;
-  }
-
-  .install-step strong {
-    color: var(--wht);
-    font-weight: 600;
-  }
-
-  /* ─── FOOTER ─── */
-  .aq-footer-note {
-    text-align: center;
-  }
-
-  .aq-footer-note p {
-    font-size: 12px;
-    color: #606070;
-    margin-bottom: 6px;
-  }
-
-  .aq-footer-note a {
-    color: var(--ind2);
-    text-decoration: none;
-    font-weight: 600;
-  }
-
-  .aq-footer-note a:hover { color: var(--gold); }
-
-  /* ─── MOBILE (375px baseline) ─── */
-  @media (max-width: 480px) {
-    body { padding: 24px 16px; }
-    .clinic-header h1 { font-size: 27px; }
-    .clinic-header p { font-size: 14px; }
-    .portal-card { padding: 18px 16px; gap: 12px; }
-    .portal-icon { width: 42px; height: 42px; }
-    .portal-text h3 { font-size: 15px; }
-    .portal-text p { font-size: 12px; }
-    .install-section { padding: 20px 16px; }
-  }
-
-  @media (max-width: 360px) {
-    .clinic-header h1 { font-size: 24px; }
-  }
-</style>
 </head>
 <body>
 
-<div class="aq-wrap">
+  <p class="aumatiq-tag">Powered by AUMATIQ</p>
+  <h1>Dr. Asma's Clinic</h1>
+  <p class="sub">Choose the app you need below. Both work like a normal app on your phone — no App Store download required.</p>
 
-  <!-- ═══ LOGO ═══ -->
-  <div class="aq-logo-block">
-    <div class="aq-logo-icon">
-      <svg width="64" height="35" viewBox="0 0 80 44" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M20 22C20 14.268 26.268 8 34 8C41.732 8 46 14 50 22C54 30 58.268 36 66 36C73.732 36 80 29.732 80 22C80 14.268 73.732 8 66 8C58.268 8 54 14 50 22C46 30 41.732 36 34 36C26.268 36 20 29.732 20 22Z"
-          stroke="#4F46E5" stroke-width="3.5" stroke-linecap="round" fill="none"/>
-        <circle cx="20" cy="22" r="3" fill="#4F46E5"/>
-        <polygon points="78,19 82,22 78,25" fill="#4F46E5"/>
-        <circle cx="50" cy="22" r="2.5" fill="#4F46E5" opacity="0.6"/>
-      </svg>
-    </div>
-    <div class="aq-logo-word">AUMATIQ<span class="dot">.</span></div>
-  </div>
-
-  <!-- ═══ CLINIC HEADER ═══ -->
-  <div class="clinic-header">
-    <span class="clinic-badge">Clinic Automation System</span>
-    <h1>ডা. আসমা <span class="gold"></span></h1>
-    <p>অ্যাপয়েন্টমেন্ট বুক করুন অথবা ডক্টর ড্যাশবোর্ডে প্রবেশ করুন — নিচে থেকে বেছে নিন।</p>
-  </div>
-
-  <!-- ═══ PORTAL CARDS ═══ -->
-  <div class="portal-cards">
-
-    <!-- PATIENT PORTAL -->
-    <a href="https://script.google.com/macros/s/AKfycbzkMBKWDavE2ZKIIsufc_N5Kwi6X-eow-Erz9lj9fgOjTuZPeRdkLFRjIOaqYZyT25Q1g/exec" class="portal-card patient" target="_blank" rel="noopener">
-      <div class="portal-icon">
-        <svg viewBox="0 0 24 24">
-          <path d="M4.5 6.375a4.125 4.125 0 1 0 8.25 0 4.125 4.125 0 0 0-8.25 0"/>
-          <path d="M3 20.25a8.25 8.25 0 0 1 13.5-6.364M16.5 19.5h6m-3-3v6"/>
-        </svg>
-      </div>
-      <div class="portal-text">
-        <h3>Patient Portal</h3>
-        <p>অ্যাপয়েন্টমেন্ট বুক ও দেখুন</p>
-      </div>
-      <svg class="portal-arrow" viewBox="0 0 24 24">
-        <line x1="5" y1="12" x2="19" y2="12"/>
-        <polyline points="12 5 19 12 12 19"/>
-      </svg>
+  <div class="cards">
+    <a class="card patient" href="https://script.google.com/macros/s/AKfycbzkMBKWDavE2ZKIIsufc_N5Kwi6X-eow-Erz9lj9fgOjTuZPeRdkLFRjIOaqYZyT25Q1g/exec" target="_blank" rel="noopener">
+      <span class="badge">Patients</span>
+      <h2>Patient Portal</h2>
+      <p>Book appointments, view test results, and manage your visits.</p>
+      <span class="cta">Open Patient Portal →</span>
     </a>
 
-    <!-- DOCTOR DASHBOARD -->
-    <a href="https://script.google.com/macros/s/AKfycbzkMBKWDavE2ZKIIsufc_N5Kwi6X-eow-Erz9lj9fgOjTuZPeRdkLFRjIOaqYZyT25Q1g/exec?page=dashboard" class="portal-card doctor" target="_blank" rel="noopener">
-      <div class="portal-icon">
-        <svg viewBox="0 0 24 24">
-          <path d="M4.5 6.375a4.125 4.125 0 1 0 8.25 0 4.125 4.125 0 0 0-8.25 0"/>
-          <circle cx="16" cy="17" r="3"/>
-          <path d="M8.625 10.5v5.25a4.125 4.125 0 0 0 7.784 1.874"/>
-          <path d="M4.5 6.375v4.125"/>
-        </svg>
-      </div>
-      <div class="portal-text">
-        <h3>Doctor Dashboard</h3>
-        <p>রোগী, অ্যাপয়েন্টমেন্ট ও ফিন্যান্স ব্যবস্থাপনা</p>
-      </div>
-      <svg class="portal-arrow" viewBox="0 0 24 24">
-        <line x1="5" y1="12" x2="19" y2="12"/>
-        <polyline points="12 5 19 12 12 19"/>
-      </svg>
+    <a class="card doctor" href="https://script.google.com/macros/s/AKfycbzkMBKWDavE2ZKIIsufc_N5Kwi6X-eow-Erz9lj9fgOjTuZPeRdkLFRjIOaqYZyT25Q1g/exec?page=dashboard" target="_blank" rel="noopener">
+      <span class="badge">Staff Only</span>
+      <h2>Doctor Dashboard</h2>
+      <p>Internal system for the clinic team. Login required.</p>
+      <span class="cta">Open Doctor Dashboard →</span>
     </a>
-
   </div>
 
-  <!-- ═══ INSTALL AS APP GUIDE ═══ -->
-  <div class="install-section">
-    <h4>
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
-        <rect x="5" y="2" width="14" height="20" rx="2"/>
-        <line x1="12" y1="18" x2="12.01" y2="18"/>
-      </svg>
-      মোবাইলে অ্যাপ হিসেবে ইনস্টল করুন
-    </h4>
-
-    <div class="install-tabs">
-      <button class="install-tab-btn active" data-target="android">🤖 Android</button>
-      <button class="install-tab-btn" data-target="ios">🍎 iPhone</button>
-    </div>
-
-    <div class="install-steps active" id="android-steps">
-      <div class="install-step">
-        <span class="install-step-num">1</span>
-        <span>Chrome ব্রাউজারে পোর্টাল লিংকটি খুলুন</span>
-      </div>
-      <div class="install-step">
-        <span class="install-step-num">2</span>
-        <span>উপরে ডান পাশে <strong>⋮ (তিন ডট মেনু)</strong>-তে ট্যাপ করুন</span>
-      </div>
-      <div class="install-step">
-        <span class="install-step-num">3</span>
-        <span><strong>"Add to Home screen"</strong> সিলেক্ট করুন</span>
-      </div>
-      <div class="install-step">
-        <span class="install-step-num">4</span>
-        <span><strong>"Add"</strong> চাপুন — এখন হোম স্ক্রিনে অ্যাপ আইকন দেখাবে</span>
-      </div>
-    </div>
-
-    <div class="install-steps" id="ios-steps">
-      <div class="install-step">
-        <span class="install-step-num">1</span>
-        <span>Safari ব্রাউজারে পোর্টাল লিংকটি খুলুন (Chrome-এ কাজ করবে না)</span>
-      </div>
-      <div class="install-step">
-        <span class="install-step-num">2</span>
-        <span>নিচে <strong>Share আইকন</strong> (□ উপরে তীর) ট্যাপ করুন</span>
-      </div>
-      <div class="install-step">
-        <span class="install-step-num">3</span>
-        <span><strong>"Add to Home Screen"</strong> খুঁজে ট্যাপ করুন</span>
-      </div>
-      <div class="install-step">
-        <span class="install-step-num">4</span>
-        <span>উপরে ডান পাশে <strong>"Add"</strong> চাপুন — হোম স্ক্রিনে অ্যাপ আইকন যোগ হবে</span>
-      </div>
-    </div>
+  <div class="install">
+    <h3>📲 Install as an app (30 seconds)</h3>
+    <ol>
+      <li><strong>Android (Chrome):</strong> tap the ⋮ menu → "Add to Home screen"</li>
+      <li><strong>iPhone (Safari):</strong> tap the Share icon → "Add to Home Screen"</li>
+      <li>An app icon will appear on your home screen — no app store needed.</li>
+    </ol>
   </div>
 
-  <!-- ═══ FOOTER ═══ -->
-  <div class="aq-footer-note">
-    <p>Powered by <a href="https://www.aumatiq.com" target="_blank" rel="noopener">AUMATIQ</a> — Automate. Scale. Dominate.</p>
-    <p>সমস্যা হলে যোগাযোগ করুন: <a href="mailto:support@aumatiq.com">support@aumatiq.com</a></p>
-  </div>
-
-</div>
-
-<script>
-  // ─── Install Guide Tab Switcher ───
-  document.querySelectorAll('.install-tab-btn').forEach(function(btn) {
-    btn.addEventListener('click', function() {
-      document.querySelectorAll('.install-tab-btn').forEach(function(b) {
-        b.classList.remove('active');
-      });
-      document.querySelectorAll('.install-steps').forEach(function(s) {
-        s.classList.remove('active');
-      });
-      btn.classList.add('active');
-      document.getElementById(btn.dataset.target + '-steps').classList.add('active');
-    });
-  });
-</script>
+  <footer>
+    AUMATIQ — Automate. Scale. Dominate.<br>
+    <a href="https://www.aumatiq.com" target="_blank">www.aumatiq.com</a> · <a href="mailto:contact@aumatiq.com">contact@aumatiq.com</a>
+  </footer>
 
 </body>
 </html>
