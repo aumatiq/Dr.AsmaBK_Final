@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Clinic Dashboard — Staff Sign In</title>
+<meta name="description" content="Internal doctor/assistant dashboard — appointments, patients, finance.">
+<meta name="robots" content="noindex, nofollow">
+
+<!-- ═══════════════════════════════════════════════════════════
+  PWA MANIFEST — top-level document. Same reasoning as index.html:
+  install prompt reads THIS page's manifest, not the iframed one.
+
+  ⚠️ REPLACE "YOUR_APPS_SCRIPT_EXEC_URL_HERE" everywhere in this
+  file (2 places: this manifest link + the iframe src near the
+  bottom) with the real exec URL after Apps Script deployment.
+═══════════════════════════════════════════════════════════ -->
+<link rel="manifest" href="YOUR_APPS_SCRIPT_EXEC_URL_HERE?file=manifest-dashboard">
+
+<!-- Real, same-origin STAFF icon files (note the /staff subfolder) -->
+<link rel="icon" type="image/png" sizes="32x32" href="/icons/staff/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/icons/staff/favicon-16.png">
+<link rel="shortcut icon" href="/icons/staff/favicon.ico">
+<link rel="apple-touch-icon" sizes="180x180" href="/icons/staff/apple-touch-icon-180.png">
+
+<meta name="theme-color" content="#1C1230">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Clinic Dashboard">
+
+<style>
+  :root{
+    --blk:#0F0A1A; --card:#1C1230; --ind:#4F46E5; --ind2:#6366F1;
+    --gold:#F5A623; --wht:#F8F9FF; --sil:#A0A0B0;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html,body{
+    height:100%; width:100%; overflow:hidden;
+    background:var(--card); font-family:'Segoe UI',system-ui,sans-serif;
+  }
+
+  #appFrame{
+    position:fixed; inset:0; width:100%; height:100%;
+    border:none; background:var(--card);
+    opacity:0; transition:opacity .4s ease;
+  }
+  #appFrame.loaded{ opacity:1; }
+
+  #loadingScreen{
+    position:fixed; inset:0; z-index:10;
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    gap:20px; background:var(--card);
+    transition:opacity .35s ease, visibility .35s ease;
+  }
+  #loadingScreen.hidden{ opacity:0; visibility:hidden; pointer-events:none; }
+
+  .aq-mark{
+    width:56px; height:56px; border-radius:16px;
+    background:linear-gradient(135deg,#5B21B6,var(--ind));
+    display:flex; align-items:center; justify-content:center;
+    font-weight:800; font-size:22px; color:#fff; letter-spacing:1px;
+    box-shadow:0 8px 32px rgba(79,70,229,.35);
+  }
+  .clinic-name{ font-size:15px; font-weight:600; color:var(--wht); letter-spacing:.3px; }
+  .badge{
+    font-size:11px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase;
+    color:var(--gold); border:1px solid rgba(245,166,35,.35);
+    padding:4px 12px; border-radius:20px;
+  }
+  .spinner{
+    width:26px; height:26px; border-radius:50%;
+    border:2.5px solid rgba(245,166,35,.25); border-top-color:var(--gold);
+    animation:spin .8s linear infinite;
+  }
+  @keyframes spin{ to{ transform:rotate(360deg); } }
+  .loading-sub{ font-size:12px; color:var(--sil); }
+
+  #fallback{
+    position:fixed; inset:0; z-index:20; display:none;
+    flex-direction:column; align-items:center; justify-content:center;
+    gap:14px; background:var(--card); padding:24px; text-align:center;
+  }
+  #fallback.show{ display:flex; }
+  #fallback p{ color:var(--sil); font-size:14px; max-width:320px; line-height:1.6; }
+  #fallback a{
+    display:inline-flex; align-items:center; gap:8px;
+    background:var(--gold); color:#0A0A0F; font-weight:700;
+    font-size:14px; padding:12px 24px; border-radius:8px; text-decoration:none;
+  }
+</style>
+</head>
+<body>
+
+  <div id="loadingScreen">
+    <div class="badge">Staff Only</div>
+    <div class="aq-mark">A</div>
+    <div class="clinic-name">Clinic Dashboard</div>
+    <div class="spinner"></div>
+    <div class="loading-sub">লোড হচ্ছে…</div>
+  </div>
+
+  <div id="fallback">
+    <div class="aq-mark">A</div>
+    <p>অ্যাপ লোড হতে সময় নিচ্ছে। ইন্টারনেট কানেকশন চেক করুন, অথবা সরাসরি লিংকে যান।</p>
+    <a id="directLink" href="#" target="_blank" rel="noopener">সরাসরি খুলুন →</a>
+  </div>
+
+  <!-- Staff dashboard, routed via ?page=dashboard (Code.gs doGet()) -->
+  <iframe
+    id="appFrame"
+    title="Clinic Dashboard — Staff"
+    src="YOUR_APPS_SCRIPT_EXEC_URL_HERE?page=dashboard"
+    allow="clipboard-write"
+  ></iframe>
+
+<script>
+(function () {
+  var EXEC_URL = "YOUR_APPS_SCRIPT_EXEC_URL_HERE"; // ধাপ ১ (Apps Script deploy) থেকে exec URL এখানে বসাও
+
+  var frame     = document.getElementById('appFrame');
+  var loading   = document.getElementById('loadingScreen');
+  var fallback  = document.getElementById('fallback');
+  var directLink= document.getElementById('directLink');
+
+  directLink.href = EXEC_URL + "?page=dashboard";
+
+  var loaded = false;
+
+  frame.addEventListener('load', function () {
+    loaded = true;
+    frame.classList.add('loaded');
+    loading.classList.add('hidden');
+  });
+
+  setTimeout(function () {
+    if (!loaded) {
+      loading.classList.add('hidden');
+      fallback.classList.add('show');
+    }
+  }, 12000);
+})();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,41 @@
+{
+  "_deprecated_note": "এই ফাইলটা dead/unused — আসল manifest দুটো PWASetup.gs থেকে dynamically generate হয় (getPublicManifestJson_ / getDashboardManifestJson_), doGet() routing দিয়ে (?file=manifest / ?file=manifest-dashboard)। এই static ফাইলটা কোনো HTML-এ reference হয় না। Part 20 audit-এ পাওয়া গেছে, রেফারেন্সের জন্য রাখা হলো, ব্যবহার হয় না।",
+  "name": "Dr. Asma's Clinic Management System",
+  "short_name": "Dr. Asma's Clinic",
+  "description": "Clinic and doctor management system by AUMATIQ — patients, appointments, prescriptions, and follow-ups in one place.",
+  "start_url": "/index.html",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#0A0A0F",
+  "theme_color": "#0A0A0F",
+  "lang": "en",
+  "dir": "ltr",
+  "categories": ["medical", "productivity", "business"],
+  "icons": [
+    {
+      "src": "/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}
