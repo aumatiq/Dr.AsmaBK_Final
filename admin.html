@@ -15,7 +15,7 @@
   file (2 places: this manifest link + the iframe src near the
   bottom) with the real exec URL after Apps Script deployment.
 ═══════════════════════════════════════════════════════════ -->
-<link rel="manifest" href="YOUR_APPS_SCRIPT_EXEC_URL_HERE?file=manifest-dashboard">
+<link rel="manifest" href="https://script.google.com/macros/s/AKfycbyeB7-bvniICjoB2Y5yosCwurBjMTK-FA2WArKbJ3U3PF_O1qBXDCO1hmQA0QIg0BPj8Q/exec?file=manifest-dashboard">
 
 <!-- Real, same-origin STAFF icon files (note the /staff subfolder) -->
 <link rel="icon" type="image/png" sizes="32x32" href="/icons/staff/favicon-32.png">
@@ -109,13 +109,13 @@
   <iframe
     id="appFrame"
     title="Clinic Dashboard — Staff"
-    src="YOUR_APPS_SCRIPT_EXEC_URL_HERE?page=dashboard"
+    src="https://script.google.com/macros/s/AKfycbyeB7-bvniICjoB2Y5yosCwurBjMTK-FA2WArKbJ3U3PF_O1qBXDCO1hmQA0QIg0BPj8Q/exec?page=dashboard"
     allow="clipboard-write"
   ></iframe>
 
 <script>
 (function () {
-  var EXEC_URL = "YOUR_APPS_SCRIPT_EXEC_URL_HERE"; // ধাপ ১ (Apps Script deploy) থেকে exec URL এখানে বসাও
+  var EXEC_URL = "https://script.google.com/macros/s/AKfycbyeB7-bvniICjoB2Y5yosCwurBjMTK-FA2WArKbJ3U3PF_O1qBXDCO1hmQA0QIg0BPj8Q/exec"; // ধাপ ১ (Apps Script deploy) থেকে exec URL এখানে বসাও
 
   var frame     = document.getElementById('appFrame');
   var loading   = document.getElementById('loadingScreen');

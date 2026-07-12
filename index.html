@@ -17,7 +17,7 @@
   bottom) with the real exec URL after Apps Script deployment
   (Go-Live guide ধাপ ১).
 ═══════════════════════════════════════════════════════════ -->
-<link rel="manifest" href="YOUR_APPS_SCRIPT_EXEC_URL_HERE?file=manifest">
+<link rel="manifest" href="https://script.google.com/macros/s/AKfycbyeB7-bvniICjoB2Y5yosCwurBjMTK-FA2WArKbJ3U3PF_O1qBXDCO1hmQA0QIg0BPj8Q/exec?file=manifest">
 
 <!-- Real, same-origin icon files (GitHub Pages hosts these under /icons/)
      — required for iOS "Add to Home Screen" regardless of manifest support,
@@ -115,13 +115,13 @@
   <iframe
     id="appFrame"
     title="Dr. Asma's Clinic — Patient Portal"
-    src="YOUR_APPS_SCRIPT_EXEC_URL_HERE"
+    src="https://script.google.com/macros/s/AKfycbyeB7-bvniICjoB2Y5yosCwurBjMTK-FA2WArKbJ3U3PF_O1qBXDCO1hmQA0QIg0BPj8Q/exec"
     allow="clipboard-write"
   ></iframe>
 
 <script>
 (function () {
-  var EXEC_URL = "YOUR_APPS_SCRIPT_EXEC_URL_HERE"; // ধাপ ১ (Apps Script deploy) থেকে exec URL এখানে বসাও
+  var EXEC_URL = "https://script.google.com/macros/s/AKfycbyeB7-bvniICjoB2Y5yosCwurBjMTK-FA2WArKbJ3U3PF_O1qBXDCO1hmQA0QIg0BPj8Q/exec"; // ধাপ ১ (Apps Script deploy) থেকে exec URL এখানে বসাও
 
   var frame     = document.getElementById('appFrame');
   var loading   = document.getElementById('loadingScreen');
