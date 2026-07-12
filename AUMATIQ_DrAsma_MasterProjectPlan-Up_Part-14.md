@@ -6,12 +6,8 @@ synced with Part 13 delivery + cross-cutting rebrand/theme work)
 **Client:** Dr. Asma Binte Khair (Gynaecologist & Obstetrician, Laparoscopic Surgeon)
 
 **Repo:**
-- Historical anchor: `https://github.com/aumatiq/DA-P3WD-Pink-SkyBlue`
-- **Working repo used for Part 13 session (per user instruction, use this
-  instead of the anchor unless told otherwise):**
   `https://github.com/aumatiq/Dr.AsmaBK_Final`
-- ⚠️ Confirm with the client which repo is canonical going forward — the two
-  may have diverged. Always `git clone` and read the actual file contents
+- ⚠️ Always `git clone` and read the actual file contents
   before trusting any status table (including this one).
 
 ---
