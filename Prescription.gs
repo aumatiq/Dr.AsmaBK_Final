@@ -134,7 +134,9 @@ function generatePrescriptionPdf_(data, profile, prescriptionId, doctorName, dat
   }).join("");
 
   const html =
-    '<html><head><meta charset="UTF-8"></head><body style="font-family:Arial,sans-serif;padding:0;margin:0;color:#1A1A2E;">' +
+    '<html><head><meta charset="UTF-8">' +
+    '<style>@page{size:A4;margin:12mm;}</style>' +
+    '</head><body style="font-family:Arial,sans-serif;padding:0;margin:0;color:#1A1A2E;">' +
     '<div style="padding:36px 44px;">' +
       '<table width="100%" style="border-bottom:3px solid #E8608A;padding-bottom:16px;margin-bottom:24px;">' +
         '<tr>' +

@@ -1,0 +1,43 @@
+
+AUMATIQ_DoctorAutomation_Dr. Asma Clinic System
+
+[✅ CLEAN URLs — Part 11 থেকে এগুলোই ব্যবহার/শেয়ার করো]
+📌 PATIENT (public, শেয়ার করার জন্য): https://drasma.aumatiq.com
+📌 STAFF/DOCTOR (private, শেয়ার করবে না): https://drasma.aumatiq.com/admin.html
+   (⚠️ FIXED 2026-07-13: আগে এখানে "admin.drasma.aumatiq.com" লেখা ছিল, যেটা ভুল —
+   আর্কিটেকচার Option A অনুযায়ী (CNAME ফাইল কনফার্ম করে) একটাই ডোমেইন ব্যবহার হচ্ছে,
+   staff app একই ডোমেইনের /admin.html পাথে। "admin.drasma.aumatiq.com" সাবডোমেইনের
+   কোনো DNS রেকর্ড নেই এবং লাগবেও না — ওই লিংক ক্লায়েন্টকে দিলে কাজ করবে না।)
+(নিচের raw script.google.com লিংকগুলো এখন শুধু ভেতরের redirect target
+ — সরাসরি ক্লায়েন্টকে দেওয়ার দরকার নেই)
+
+[SPREADSHEET_ID]
+1JW5Y8ONmh5NjPzbKpmxKrbLVA67xxA-BRZR8Yb8CEYw
+
+[SCRIPT ID]
+1Zog4-dT0h96cJelSmLHHboNv965cXXxdHZopWzHpKqqltguIASXjj77B
+
+[Web App URL]
+📌 PATIENT WEBSITE (share করুন — সবার জন্য):
+https://script.google.com/macros/s/AKfycbzkMBKWDavE2ZKIIsufc_N5Kwi6X-eow-Erz9lj9fgOjTuZPeRdkLFRjIOaqYZyT25Q1g/exec
+
+📌 DOCTOR DASHBOARD (secret — শুধু আপনার জন্য):
+https://script.google.com/macros/s/AKfycbzkMBKWDavE2ZKIIsufc_N5Kwi6X-eow-Erz9lj9fgOjTuZPeRdkLFRjIOaqYZyT25Q1g/exec?page=dashboard
+
+📌 APPS SCRIPT EDITOR (code edit):
+https://script.google.com/home
+
+📌 GOOGLE DRIVE (test files):
+https://drive.google.com → ClinicPatientFiles folder
+
+
+
+
+Admin Dashboard URL:
+https://script.google.com/macros/s/AKfycbzkMBKWDavE2ZKIIsufc_N5Kwi6X-eow-Erz9lj9fgOjTuZPeRdkLFRjIOaqYZyT25Q1g/exec?page=dashboard
+
+Public Website URL:
+https://script.google.com/macros/s/AKfycbzkMBKWDavE2ZKIIsufc_N5Kwi6X-eow-Erz9lj9fgOjTuZPeRdkLFRjIOaqYZyT25Q1g/exec
+
+
+
