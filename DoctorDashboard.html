@@ -4,9 +4,11 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Dr. Asma — Doctor Dashboard | AUMATIQ</title>
+<!-- v3.3 (Part 17 — Security Hardening): Staff dashboard কখনোই সার্চ ইঞ্জিনে index হওয়া উচিত না -->
+<meta name="robots" content="noindex, nofollow, noarchive">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Inter:wght@400;500;600&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
 <meta name="theme-color" content="#0F0A1A">
 
 <meta name="theme-color" content="#F5A623">
@@ -112,6 +114,35 @@
   .modal-close:hover{background:rgba(225,29,72,0.08);color:#9F1239;}
   #filePreviewFrame{background:#fff;}
 }
+/* ── Part 14: manual override (device default থেকে independent) ── */
+body.theme-light-force {
+  --bg:#FBF7FA;--bg2:#FFFFFF;--bg3:#F6EEF4;--bg4:#F0E4EE;
+  --wht:#241428;--sil:#6B5578;--sil2:#948098;
+  --bd:rgba(232,96,138,0.22);--bd2:rgba(232,96,138,0.4);
+  --bd-r:rgba(232,96,138,0.28);--bd-teal:rgba(13,148,136,0.3);--bd-ind:rgba(109,40,217,0.28);
+  --rose:#D6467A;--rose2:#C23D6C;--teal:#0D9488;--teal2:#0F766E;--ind:#6D28D9;--ind2:#7C3AED;
+  --ok:#059669;--warn:#B45309;--err:#E11D48;
+}
+body.theme-light-force .topbar{background:rgba(251,247,250,0.92);}
+body.theme-light-force .login-card,body.theme-light-force .modal,body.theme-light-force .notif-dropdown{box-shadow:0 16px 44px rgba(90,30,60,0.10);}
+body.theme-light-force .fi::placeholder,body.theme-light-force .fta::placeholder,body.theme-light-force ::placeholder{color:#A594AA;}
+body.theme-light-force #filePreviewFrame{background:#fff;}
+body.theme-dark-force {
+  --bg:#0F0A1A;--bg2:#160D24;--bg3:#1C1230;--bg4:#221640;
+  --rose:#E8608A;--rose2:#F0899F;--rose3:#FBCFE8;--teal:#14B8A6;--teal2:#2DD4BF;
+  --gold:#F5A623;--gold2:#F8C85D;--ind:#7C3AED;--ind2:#A855F7;
+  --wht:#FDF8FF;--sil:#C4B5D8;--sil2:#7A6892;
+  --ok:#10B981;--warn:#F59E0B;--err:#F43F5E;--info:#A855F7;
+  --bd:rgba(232,96,138,0.20);--bd2:rgba(232,96,138,0.42);--bd-r:rgba(232,96,138,0.25);
+  --bd-teal:rgba(20,184,166,0.25);--bd-ind:rgba(124,58,237,0.25);
+}
+.theme-toggle-btn{
+  width:36px;height:36px;border-radius:9px;flex-shrink:0;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;font-size:15px;
+  background:rgba(232,96,138,0.1);border:1px solid var(--bd2);color:var(--wht);
+  transition:all .25s ease;
+}
+.theme-toggle-btn:hover{background:rgba(232,96,138,0.2);transform:translateY(-1px);}
 *{margin:0;padding:0;box-sizing:border-box;}
 html{scroll-behavior:smooth;}
 body{
@@ -151,10 +182,10 @@ body{
 .tb-logo-txt em{color:var(--rose);font-style:normal;}
 .tb-divider{width:1px;height:28px;background:var(--bd);}
 .tb-clinic{
-  font-family:'Syne',sans-serif;
-  font-size:15px;color:var(--wht);font-weight:700;
+  font-family:'Playfair Display','Georgia',serif;font-style:italic;
+  font-size:16px;color:var(--wht);font-weight:700;
   white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
-  min-width:0;letter-spacing:0.3px;
+  min-width:0;letter-spacing:0.2px;
   text-shadow:0 0 14px rgba(232,96,138,0.35);
 }
 .tb-right{display:flex;align-items:center;gap:12px;}
@@ -383,6 +414,8 @@ tbody tr:hover td{background:rgba(124,58,237,0.04);}
 .bdg-canc{background:rgba(244,63,94,0.1);color:#FDA4AF;border:1px solid rgba(244,63,94,0.2);}
 .bdg-appr{background:rgba(124,58,237,0.12);color:var(--ind2);border:1px solid var(--bd);}
 .bdg-rose{background:rgba(232,96,138,0.12);color:var(--rose2);border:1px solid var(--bd-r);}
+.bdg-ok{background:rgba(16,185,129,0.12);color:#6EE7B7;border:1px solid rgba(16,185,129,0.25);}
+.bdg-err{background:rgba(244,63,94,0.1);color:#FDA4AF;border:1px solid rgba(244,63,94,0.2);}
 
 /* ── SEARCH / FILTER BAR ── */
 .sf-bar{
@@ -416,6 +449,8 @@ tbody tr:hover td{background:rgba(124,58,237,0.04);}
 .form-grid.g3{grid-template-columns:1fr 1fr 1fr;}
 @media(max-width:640px){.form-grid.g2,.form-grid.g3{grid-template-columns:1fr;}}
 .fg{display:flex;flex-direction:column;gap:6px;}
+.grid2{display:grid;grid-template-columns:1fr;gap:14px;}
+@media(min-width:640px){ .grid2{grid-template-columns:1fr 1fr;} }
 .fl{font-size:11px;font-weight:600;color:var(--sil);text-transform:uppercase;letter-spacing:0.5px;}
 .fi,.fs,.fta{
   padding:10px 13px;background:var(--bg3);
@@ -582,11 +617,7 @@ tbody tr:hover td{background:rgba(124,58,237,0.04);}
 }
 .mob-nav-items{
   display:flex;justify-content:space-around;align-items:center;
-  /* PART 9: registry থেকে ভবিষ্যতে বাটন বাড়লে overflow না হয়ে swipe-scroll করবে */
-  flex-wrap:nowrap;overflow-x:auto;-webkit-overflow-scrolling:touch;
-  scrollbar-width:none;
 }
-.mob-nav-items::-webkit-scrollbar{display:none;}
 .mob-nav-item{
   display:flex;flex-direction:column;align-items:center;gap:3px;
   color:var(--sil2);font-size:10px;font-weight:600;
@@ -812,56 +843,43 @@ tbody tr:hover td{background:rgba(124,58,237,0.04);}
 .rx-history-item:last-child { border-bottom: none; }
 }
 
-/* ═══════════════════════════════════════
-   v2.2 — PART 4 ADDITIONS
-   Time-slot click-grid + Patient 360° quick actions
-   ═══════════════════════════════════════ */
-.slot-grid {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  max-height: 160px;
-  overflow-y: auto;
-  padding: 4px 2px;
+</style>
+<style id="PART18_19_STYLES">
+/* মোবাইল bottom nav-এ ৭টা আইটেম ধরার জন্য horizontal scroll */
+@media(max-width:768px){
+  .mob-nav-items{
+    justify-content:flex-start;
+    overflow-x:auto;
+    -webkit-overflow-scrolling:touch;
+    scrollbar-width:none;
+  }
+  .mob-nav-items::-webkit-scrollbar{ display:none; }
+  .mob-nav-item{ flex-shrink:0; }
 }
-.slot-btn {
-  background: var(--card2, rgba(255,255,255,0.03));
-  border: 1px solid var(--bd);
-  color: var(--sil);
-  border-radius: 8px;
-  padding: 8px 12px;
-  font-size: 13px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  white-space: nowrap;
+/* Article list card */
+.art-row{
+  display:flex;align-items:center;gap:14px;padding:14px 16px;
+  border:1px solid var(--bd);border-radius:12px;margin-bottom:10px;
+  background:var(--bg3);
 }
-.slot-btn:hover {
-  border-color: var(--rose2);
-  color: #fff;
+.art-row-cover{ width:56px;height:56px;border-radius:8px;object-fit:cover;background:var(--bg4);flex-shrink:0; }
+.art-row-body{ flex:1;min-width:0; }
+.art-row-title{ font-family:'Syne',sans-serif;font-weight:700;font-size:15px;color:var(--wht);margin-bottom:4px; }
+.art-row-meta{ font-size:12px;color:var(--sil2); }
+.art-status-badge{ font-size:11px;font-weight:700;padding:3px 10px;border-radius:20px;text-transform:uppercase;letter-spacing:0.4px; }
+.art-status-published{ background:rgba(20,184,166,0.14);color:var(--teal2);border:1px solid rgba(20,184,166,0.3); }
+.art-status-draft{ background:rgba(245,166,35,0.14);color:var(--gold);border:1px solid rgba(245,166,35,0.3); }
+/* Recommended doctor card */
+.rd-card{
+  background:var(--bg3);border:1px solid var(--bd);border-radius:14px;padding:18px;
+  display:flex;flex-direction:column;gap:10px;
 }
-.slot-btn.selected {
-  background: var(--rose);
-  border-color: var(--rose);
-  color: #fff;
-}
-.pt360-actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-bottom: 18px;
-  padding-bottom: 16px;
-  border-bottom: 1px solid var(--bd);
-}
-.pt360-hd {
-  font-family: 'Syne', sans-serif;
-  font-size: 14px;
-  margin: 16px 0 10px;
-  color: var(--sil);
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
+.rd-card-top{ display:flex;gap:12px;align-items:center; }
+.rd-photo{ width:52px;height:52px;border-radius:50%;object-fit:cover;background:var(--bg4);flex-shrink:0; }
+.rd-name{ font-family:'Syne',sans-serif;font-weight:700;font-size:15px;color:var(--wht); }
+.rd-spec{ font-size:12px;color:var(--rose2); }
+.rd-meta{ font-size:12px;color:var(--sil);line-height:1.6; }
+.rd-actions{ display:flex;gap:8px;margin-top:4px;flex-wrap:wrap; }
 </style>
 </head>
 <body>
@@ -915,6 +933,7 @@ tbody tr:hover td{background:rgba(124,58,237,0.04);}
     <span class="tb-clinic" id="tbClinic">Doctor Dashboard</span>
   </div>
   <div class="tb-right">
+    <button class="theme-toggle-btn" id="themeToggleBtn" onclick="cycleTheme()" title="Theme পরিবর্তন করুন (Auto/Light/Dark)" aria-label="Toggle dark/light theme">🌓</button>
     <div class="sync-status synced" id="syncStatus" onclick="refreshAll()" title="ক্লিক করে সাথে সাথে Sync করো">
       <div class="sync-dot"></div>
       <span class="sync-label-full" id="syncLabel">Synced</span>
@@ -954,12 +973,7 @@ tbody tr:hover td{background:rgba(124,58,237,0.04);}
       <span class="sb-icon">📊</span> Dashboard
     </button>
 
-    <div class="sb-section">Patients</div>
-    <button class="sb-item" onclick="navTo('patients',this)">
-      <span class="sb-icon">👩‍⚕️</span> Patients
-    </button>
-
-    <div class="sb-section">Appointments</div>
+    <div class="sb-section">Clinic</div>
     <button class="sb-item" onclick="navTo('today',this)">
       <span class="sb-icon">📅</span> Today's Schedule
       <span class="sb-badge rose" id="sb-today-count">0</span>
@@ -967,22 +981,37 @@ tbody tr:hover td{background:rgba(124,58,237,0.04);}
     <button class="sb-item" onclick="navTo('appointments',this)">
       <span class="sb-icon">🗓️</span> All Appointments
     </button>
+    <button class="sb-item" onclick="navTo('patients',this)">
+      <span class="sb-icon">👩‍⚕️</span> Patients
+    </button>
     <button class="sb-item" onclick="navTo('pending',this)">
       <span class="sb-icon">🧪</span> Test Approvals
       <span class="sb-badge warn" id="sb-pending-count">0</span>
     </button>
 
-    <div class="sb-section">Follow-ups</div>
+    <div class="sb-section">Communication</div>
     <button class="sb-item" onclick="navTo('followups',this)">
       <span class="sb-icon">💌</span> Follow-ups
     </button>
-
-    <div class="sb-section">Communications</div>
     <button class="sb-item" onclick="navTo('comms',this)">
       <span class="sb-icon">📨</span> Email Log
     </button>
 
+    <div class="sb-section">Content</div>
+    <button class="sb-item doctor-only" onclick="navTo('blog',this)">
+      <span class="sb-icon">📝</span> Blog / Articles
+    </button>
+    <button class="sb-item doctor-only" onclick="navTo('recdocs',this)">
+      <span class="sb-icon">🤝</span> Recommended Doctors
+    </button>
+
     <div class="sb-section">Settings</div>
+    <button class="sb-item doctor-only" onclick="navTo('finance',this)">
+      <span class="sb-icon">💰</span> Finance
+    </button>
+    <button class="sb-item doctor-only" onclick="navTo('auditlog',this)">
+      <span class="sb-icon">🛡️</span> Audit Log
+    </button>
     <button class="sb-item doctor-only" onclick="navTo('settings',this)">
       <span class="sb-icon">⚙️</span> Settings
     </button>
@@ -1044,13 +1073,6 @@ tbody tr:hover td{background:rgba(124,58,237,0.04);}
           <div class="stat-num" id="ovCompleted">—</div>
           <div class="stat-lbl">Completed</div>
           <div class="stat-sub">all time visits</div>
-        </div>
-        <!-- v2.2 Part 4: Today's Income — doctor-only (Assistant/Receptionist দেখতে পাবে না, কার্ড সম্পূর্ণ hide থাকবে) -->
-        <div class="stat-card c-gold doctor-only" id="ovIncomeCard">
-          <div class="stat-icon">💰</div>
-          <div class="stat-num" id="ovTodayIncome">—</div>
-          <div class="stat-lbl">Today's Income</div>
-          <div class="stat-sub">from Finance log</div>
         </div>
       </div>
 
@@ -1139,6 +1161,7 @@ tbody tr:hover td{background:rgba(124,58,237,0.04);}
           <p>Search, filter, update status, and manage all patient visits.</p>
         </div>
         <div class="page-hd-right">
+          <button class="btn btn-out btn-sm" id="apArchiveToggleBtn" onclick="toggleApptArchiveView()">🗄️ Archived</button>
           <button class="btn btn-ind" onclick="openAddAppt()">+ New Appointment</button>
         </div>
       </div>
@@ -1180,6 +1203,7 @@ tbody tr:hover td{background:rgba(124,58,237,0.04);}
           <p>Complete patient database — search, view history, add notes.</p>
         </div>
         <div class="page-hd-right">
+          <button class="btn btn-out btn-sm" id="ptArchiveToggleBtn" onclick="togglePatientArchiveView()">🗄️ Archived</button>
           <button class="btn btn-rose" onclick="openAddPatient()">+ Register Patient</button>
         </div>
       </div>
@@ -1191,12 +1215,6 @@ tbody tr:hover td{background:rgba(124,58,237,0.04);}
             <option>Female</option>
             <option>Male</option>
             <option>Other</option>
-          </select>
-          <!-- v2.2 Part 4: Sort order control — default = Last Visit (most recent first) -->
-          <select class="sf-sel" id="ptSortOrder" onchange="renderPatients()">
-            <option value="lastVisit" selected>Sort: Recent Visit First</option>
-            <option value="nameAsc">Sort: Name A→Z</option>
-            <option value="idDesc">Sort: Newest Registered First</option>
           </select>
         </div>
         <div class="sec-body np">
@@ -1304,6 +1322,117 @@ tbody tr:hover td{background:rgba(124,58,237,0.04);}
 
 
     <!-- ════════════════════════════
+      PAGE: AUDIT LOG (v3.3 — Part 17 Security Hardening, Doctor-only)
+    ════════════════════════════ -->
+    <div class="tab-page" id="pg-auditlog">
+      <div class="page-hd">
+        <div class="page-hd-left">
+          <div class="page-lbl">Security</div>
+          <h1>Audit Log</h1>
+          <p>সিস্টেমে কে, কখন, কী এডিট/ডিলিট/অ্যাপ্রুভ করেছে — সাম্প্রতিক ৩০০টা এন্ট্রি (Doctor-only)।</p>
+        </div>
+        <div class="page-hd-right">
+          <button class="btn btn-out" onclick="loadAuditLog()">🔄 Refresh</button>
+        </div>
+      </div>
+      <div class="sec-card">
+        <div class="sec-body np">
+          <div class="tbl-wrap">
+            <table>
+              <thead><tr>
+                <th>Time</th><th>Role</th><th>Who</th><th>Action</th><th>Details</th>
+              </tr></thead>
+              <tbody id="auditLogTable"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ════════════════════════════
+      PAGE: FINANCE / PAYMENTS (Doctor-only) — Part 14
+    ════════════════════════════ -->
+    <div class="tab-page" id="pg-finance">
+      <div class="page-hd">
+        <div class="page-hd-left">
+          <div class="page-lbl">Clinic Finance</div>
+          <h1>💰 Finance &amp; Payments</h1>
+          <p>আয়/ব্যয় এন্ট্রি, মাসিক সামারি এবং হিসাবের বিস্তারিত রেকর্ড — শুধু Doctor দেখতে পারবেন।</p>
+        </div>
+        <div class="page-hd-right">
+          <button class="btn btn-rose" onclick="toggleFinanceForm()">+ Add Entry</button>
+        </div>
+      </div>
+
+      <div class="sec-card" id="finAddCard" style="display:none;margin-bottom:20px;">
+        <div class="sec-card-hd"><h3>নতুন Finance Entry</h3></div>
+        <div class="sec-body">
+          <div id="finFormMsg"></div>
+          <div class="grid2">
+            <div class="fg"><label class="fl">Type</label>
+              <select class="fi" id="finType" onchange="populateFinanceCategories()">
+                <option value="Income">Income</option>
+                <option value="Expense">Expense</option>
+              </select>
+            </div>
+            <div class="fg"><label class="fl">Category</label>
+              <select class="fi" id="finCategory"></select>
+            </div>
+            <div class="fg"><label class="fl">Amount (৳)</label><input class="fi" type="number" id="finAmount" placeholder="0"></div>
+            <div class="fg"><label class="fl">Date</label><input class="fi" type="date" id="finDate"></div>
+            <div class="fg"><label class="fl">Patient ID (optional)</label><input class="fi" id="finPatientId" placeholder="PT-2026-0001"></div>
+            <div class="fg" style="grid-column:1/-1;"><label class="fl">Notes</label><input class="fi" id="finNotes" placeholder="বিস্তারিত..."></div>
+          </div>
+          <div style="display:flex;gap:10px;margin-top:16px;">
+            <button class="btn btn-rose" onclick="saveFinanceEntry()">💾 Save Entry</button>
+            <button class="btn btn-out" onclick="toggleFinanceForm()">Cancel</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="stat-row" id="finSummaryCards" style="margin-bottom:22px;">
+        <div class="stat-card c-ok">
+          <div class="stat-icon">💵</div>
+          <div class="stat-num" id="finIncomeNum">৳0</div>
+          <div class="stat-lbl">এই মাসের আয় (Income)</div>
+        </div>
+        <div class="stat-card c-rose">
+          <div class="stat-icon">💸</div>
+          <div class="stat-num" id="finExpenseNum">৳0</div>
+          <div class="stat-lbl">এই মাসের ব্যয় (Expense)</div>
+        </div>
+        <div class="stat-card c-ind">
+          <div class="stat-icon">📊</div>
+          <div class="stat-num" id="finNetNum">৳0</div>
+          <div class="stat-lbl">নেট লাভ (Net Profit)</div>
+        </div>
+      </div>
+
+      <div class="sec-card">
+        <div class="sf-bar">
+          <input type="date" class="sf-sel" id="finStartDate" onchange="loadFinanceEntries()" title="From date">
+          <input type="date" class="sf-sel" id="finEndDate" onchange="loadFinanceEntries()" title="To date">
+          <select class="sf-sel" id="finTypeFilter" onchange="renderFinanceEntries()">
+            <option value="">All Types</option>
+            <option>Income</option>
+            <option>Expense</option>
+          </select>
+        </div>
+        <div class="sec-body np">
+          <div class="tbl-wrap">
+            <table>
+              <thead><tr>
+                <th>Entry ID</th><th>Date</th><th>Type</th><th>Category</th>
+                <th>Patient ID</th><th>Amount</th><th>Notes</th>
+              </tr></thead>
+              <tbody id="finTable"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ════════════════════════════
       PAGE: SETTINGS
     ════════════════════════════ -->
     <div class="tab-page" id="pg-settings">
@@ -1333,6 +1462,18 @@ tbody tr:hover td{background:rgba(124,58,237,0.04);}
               <div class="fg"><label class="fl">Email</label><input class="fi" id="sEmail" placeholder="clinic.drasma@gmail.com"></div>
               <div class="fg" style="grid-column:1/-1;"><label class="fl">Clinic Address</label><input class="fi" id="sAddress" placeholder="House, Road, Area, Dhaka"></div>
               <div class="fg" style="grid-column:1/-1;"><label class="fl">Bio (shown on public website)</label><textarea class="fta" id="sBio" rows="3" placeholder="Dr. Asma is a dedicated physician..."></textarea></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="sec-card">
+          <div class="sec-card-hd"><h3>🎨 Appearance</h3></div>
+          <div class="sec-body">
+            <p style="font-size:13px;color:var(--sil);margin-bottom:14px;">ডিফল্ট হিসেবে ড্যাশবোর্ড আপনার ডিভাইস/ব্রাউজারের সিস্টেম থিম (Dark/Light) অনুসরণ করে। চাইলে এখান থেকে ম্যানুয়ালি ঠিক করে দিতে পারেন।</p>
+            <div style="display:flex;gap:10px;flex-wrap:wrap;" id="settingsThemeGroup">
+              <button type="button" class="btn-sec-theme" data-mode="auto" onclick="setThemeMode('auto')" style="flex:1;min-width:100px;padding:12px;border-radius:10px;border:1px solid var(--bd2);background:rgba(232,96,138,0.06);color:var(--wht);cursor:pointer;font-family:'Inter',sans-serif;font-size:13px;font-weight:600;">🌓 Auto (Device Default)</button>
+              <button type="button" class="btn-sec-theme" data-mode="light" onclick="setThemeMode('light')" style="flex:1;min-width:100px;padding:12px;border-radius:10px;border:1px solid var(--bd2);background:rgba(232,96,138,0.06);color:var(--wht);cursor:pointer;font-family:'Inter',sans-serif;font-size:13px;font-weight:600;">☀️ Light</button>
+              <button type="button" class="btn-sec-theme" data-mode="dark" onclick="setThemeMode('dark')" style="flex:1;min-width:100px;padding:12px;border-radius:10px;border:1px solid var(--bd2);background:rgba(232,96,138,0.06);color:var(--wht);cursor:pointer;font-family:'Inter',sans-serif;font-size:13px;font-weight:600;">🌙 Dark</button>
             </div>
           </div>
         </div>
@@ -1378,6 +1519,149 @@ tbody tr:hover td{background:rgba(124,58,237,0.04);}
     </div>
     <!-- END SETTINGS -->
 
+    <!-- ══ PART 18: BLOG / ARTICLES ══ -->
+    <div class="tab-page" id="pg-blog">
+      <div id="blogListView">
+        <div class="page-hd">
+          <div class="page-hd-left">
+            <div class="page-lbl">Content Management</div>
+            <h1>Blog / Articles</h1>
+            <p>Write and publish health articles for the public website. Only you (Doctor) can write and publish.</p>
+          </div>
+          <div class="page-hd-right">
+            <button class="btn btn-rose" onclick="openArticleComposer()">✍️ New Article</button>
+          </div>
+        </div>
+        <div id="articleListWrap" class="sec-card">
+          <div class="sec-body" id="articleListBody">
+            <p style="color:var(--sil2);font-size:13px;">Loading articles...</p>
+          </div>
+        </div>
+      </div>
+
+      <div id="blogComposeView" style="display:none;">
+        <div class="page-hd">
+          <div class="page-hd-left">
+            <div class="page-lbl" id="composerModeLbl">New Article</div>
+            <h1 id="composerTitleHd">Write Article</h1>
+            <p>Format with the toolbar below. Images upload directly into the article.</p>
+          </div>
+          <div class="page-hd-right" style="gap:10px;display:flex;">
+            <button class="btn btn-out" onclick="closeArticleComposer()">← Back to List</button>
+          </div>
+        </div>
+
+        <input type="hidden" id="artId" value="">
+
+        <div class="sec-card">
+          <div class="sec-body">
+            <div class="form-grid">
+              <div class="fg" style="grid-column:1/-1;">
+                <label class="fl">Title</label>
+                <input class="fi" id="artTitle" placeholder="e.g. 5 Early Signs of PCOS Every Woman Should Know">
+              </div>
+              <div class="fg">
+                <label class="fl">Tags (comma separated)</label>
+                <input class="fi" id="artTags" placeholder="Pregnancy Tips, PCOS, Women's Health">
+              </div>
+              <div class="fg">
+                <label class="fl">Cover Image</label>
+                <input type="file" class="fi" id="artCoverFile" accept="image/*" onchange="handleCoverImageUpload(event)">
+                <div id="artCoverPreviewWrap" style="margin-top:8px;"></div>
+                <input type="hidden" id="artCoverURL" value="">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="sec-card">
+          <div class="sec-card-hd">
+            <h3>📥 Import Content (optional)</h3>
+          </div>
+          <div class="sec-body">
+            <p style="font-size:13px;color:var(--sil);margin-bottom:14px;">
+              Upload an already-typed document, or scan a handwritten page. Extracted text will be inserted
+              into the editor below — you can then format it with the toolbar.
+            </p>
+            <div style="display:flex;flex-wrap:wrap;gap:24px;">
+              <div>
+                <label class="fl" style="display:block;margin-bottom:6px;">📄 Upload Document (.docx / .pdf)</label>
+                <input type="file" class="fi" id="artDocFile" accept=".doc,.docx,.pdf" onchange="handleDocumentImport(event)">
+              </div>
+              <div>
+                <label class="fl" style="display:block;margin-bottom:6px;">✍️ Scan Handwritten Page (photo)</label>
+                <input type="file" class="fi" id="artOcrFile" accept="image/*" capture="environment" onchange="handleOcrImport(event)">
+                <p style="font-size:11px;color:var(--warn);margin-top:6px;max-width:320px;">
+                  ⚠️ Bangla handwriting OCR accuracy is limited — always review the extracted text
+                  below before inserting it into the article.
+                </p>
+              </div>
+            </div>
+            <div id="importStatus" style="margin-top:12px;font-size:13px;color:var(--sil);"></div>
+
+            <!-- Review step — শুধু OCR/Doc import এর পর দেখা যাবে -->
+            <div id="importReviewWrap" style="display:none;margin-top:16px;padding:16px;background:var(--bg3);border:1px solid var(--bd);border-radius:12px;">
+              <label class="fl" style="display:block;margin-bottom:8px;">Review extracted text before inserting:</label>
+              <textarea class="fta" id="importReviewText" rows="8" style="width:100%;"></textarea>
+              <div style="display:flex;gap:10px;margin-top:10px;">
+                <button class="btn btn-teal btn-sm" onclick="insertImportedText()">✓ Insert into Article</button>
+                <button class="btn btn-out btn-sm" onclick="discardImportedText()">✕ Discard</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="sec-card">
+          <div class="sec-card-hd"><h3>📝 Article Body</h3></div>
+          <div class="sec-body">
+            <div id="editorToolbar" style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px;padding:8px;background:var(--bg3);border:1px solid var(--bd);border-radius:10px;">
+              <button type="button" class="btn btn-out btn-sm" onclick="execFmt('bold')"><b>B</b></button>
+              <button type="button" class="btn btn-out btn-sm" onclick="execFmt('italic')"><i>I</i></button>
+              <button type="button" class="btn btn-out btn-sm" onclick="execFmt('underline')"><u>U</u></button>
+              <button type="button" class="btn btn-out btn-sm" onclick="execFmtBlock('h2')">H2</button>
+              <button type="button" class="btn btn-out btn-sm" onclick="execFmtBlock('h3')">H3</button>
+              <button type="button" class="btn btn-out btn-sm" onclick="execFmtBlock('p')">¶</button>
+              <button type="button" class="btn btn-out btn-sm" onclick="execFmt('insertUnorderedList')">• List</button>
+              <button type="button" class="btn btn-out btn-sm" onclick="execFmt('insertOrderedList')">1. List</button>
+              <button type="button" class="btn btn-out btn-sm" onclick="execFmtBlock('blockquote')">❝ Quote</button>
+              <button type="button" class="btn btn-teal btn-sm" onclick="insertInlineImage()">🖼️ Insert Image</button>
+              <input type="file" id="artInlineImgFile" accept="image/*" style="display:none;" onchange="handleInlineImageUpload(event)">
+            </div>
+            <div id="articleEditor" contenteditable="true"
+                 style="min-height:280px;padding:16px;background:var(--bg3);border:1px solid var(--bd);border-radius:12px;color:var(--wht);font-size:15px;line-height:1.8;outline:none;">
+            </div>
+          </div>
+        </div>
+
+        <div id="composerMsg"></div>
+
+        <div style="display:flex;gap:12px;justify-content:flex-end;margin-top:8px;">
+          <button class="btn btn-out" onclick="saveArticleDraft()">💾 Save as Draft</button>
+          <button class="btn btn-rose" onclick="publishArticleFromComposer()">🚀 Publish</button>
+        </div>
+      </div>
+    </div>
+    <!-- END BLOG -->
+
+    <!-- ══ PART 19: RECOMMENDED DOCTORS ══ -->
+    <div class="tab-page" id="pg-recdocs">
+      <div class="page-hd">
+        <div class="page-hd-left">
+          <div class="page-lbl">Network</div>
+          <h1>Recommended Doctors</h1>
+          <p>Doctors you personally refer patients to — shown on the public website with clickable call/WhatsApp.</p>
+        </div>
+        <div class="page-hd-right">
+          <button class="btn btn-rose" onclick="openAddRecDoc()">+ Add Doctor</button>
+        </div>
+      </div>
+      <div id="recDocMsg"></div>
+      <div id="recDocGrid" class="g2" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:18px;">
+        <p style="color:var(--sil2);font-size:13px;">Loading...</p>
+      </div>
+    </div>
+    <!-- END RECOMMENDED DOCTORS -->
+
   </main>
 </div>
 
@@ -1387,14 +1671,20 @@ tbody tr:hover td{background:rgba(124,58,237,0.04);}
     <button class="mob-nav-item active" onclick="navTo('overview',this)" data-tab="overview">
       <span class="mi">📊</span>Overview
     </button>
-    <button class="mob-nav-item" onclick="navTo('patients',this)" data-tab="patients">
-      <span class="mi">👩‍⚕️</span>Patients
-    </button>
     <button class="mob-nav-item" onclick="navTo('today',this)" data-tab="today">
       <span class="mi">📅</span>Today
     </button>
+    <button class="mob-nav-item" onclick="navTo('patients',this)" data-tab="patients">
+      <span class="mi">👩‍⚕️</span>Patients
+    </button>
     <button class="mob-nav-item" onclick="navTo('pending',this)" data-tab="pending">
       <span class="mi">🧪</span>Tests
+    </button>
+    <button class="mob-nav-item doctor-only" onclick="navTo('blog',this)" data-tab="blog">
+      <span class="mi">📝</span>Blog
+    </button>
+    <button class="mob-nav-item doctor-only" onclick="navTo('recdocs',this)" data-tab="recdocs">
+      <span class="mi">🤝</span>Doctors
     </button>
     <button class="mob-nav-item doctor-only" onclick="navTo('settings',this)" data-tab="settings">
       <span class="mi">⚙️</span>Settings
@@ -1418,20 +1708,13 @@ tbody tr:hover td{background:rgba(124,58,237,0.04);}
         <div class="fg"><label class="fl">Patient ID *</label><input class="fi" id="mApptPid" placeholder="PT-2026-0001 or leave blank for new"></div>
         <div class="fg"><label class="fl">Patient Name *</label><input class="fi" id="mApptName" placeholder="Full name"></div>
         <div class="fg"><label class="fl">Phone *</label><input class="fi" id="mApptPhone" placeholder="01XXXXXXXXX"></div>
-        <div class="fg"><label class="fl">Date *</label><input class="fi" type="date" id="mApptDate" onchange="loadSlotGridForDate(this.value)"></div>
+        <div class="fg"><label class="fl">Date *</label><input class="fi" type="date" id="mApptDate"></div>
+        <div class="fg"><label class="fl">Time Slot *</label><input class="fi" id="mApptTime" placeholder="10:00 AM"></div>
         <div class="fg"><label class="fl">Status</label>
           <select class="fs" id="mApptStatus">
             <option>Pending</option><option>Confirmed</option>
             <option>Completed</option><option>Cancelled</option>
           </select>
-        </div>
-      </div>
-      <!-- v2.2 Part 4: Time-slot click-grid (basic version — getAvailableSlotsForDashboard দিয়ে; Part 16-এ পলিশ হবে) -->
-      <div class="fg" style="margin-top:4px;">
-        <label class="fl">Time Slot *</label>
-        <input type="hidden" id="mApptTime">
-        <div id="apptSlotGrid" class="slot-grid">
-          <p style="color:var(--sil2);font-size:12px;">তারিখ সিলেক্ট করুন প্রথমে...</p>
         </div>
       </div>
       <div class="fg" style="margin-top:14px;">
@@ -1678,7 +1961,7 @@ tbody tr:hover td{background:rgba(124,58,237,0.04);}
   MODAL: PATIENT DETAIL VIEW
 ══════════════════════════════ -->
 <div class="modal-overlay" id="ptDetailModal">
-  <div class="modal" style="max-width:760px;">
+  <div class="modal" style="max-width:620px;">
     <div class="modal-hd">
       <h3 id="ptDetailName">Patient Details</h3>
       <button class="modal-close" onclick="closeModal('ptDetailModal')">✕</button>
@@ -1692,12 +1975,104 @@ tbody tr:hover td{background:rgba(124,58,237,0.04);}
   </div>
 </div>
 
+<!-- ══ RECOMMENDED DOCTOR MODAL ══ -->
+<div class="modal-overlay" id="recDocModal">
+  <div class="modal">
+    <div class="modal-hd">
+      <h3 id="recDocModalTitle">Add Recommended Doctor</h3>
+      <button class="modal-close" onclick="closeModal('recDocModal')">✕</button>
+    </div>
+    <div class="modal-body">
+      <input type="hidden" id="rdId" value="">
+      <div class="form-grid">
+        <div class="fg" style="grid-column:1/-1;">
+          <label class="fl">Name</label>
+          <input class="fi" id="rdName" placeholder="Dr. Rahim Uddin">
+        </div>
+        <div class="fg">
+          <label class="fl">Specialty</label>
+          <input class="fi" id="rdSpecialty" placeholder="Cardiologist">
+        </div>
+        <div class="fg">
+          <label class="fl">Display Order</label>
+          <input class="fi" type="number" id="rdOrder" placeholder="1">
+        </div>
+        <div class="fg" style="grid-column:1/-1;">
+          <label class="fl">Chamber / Address</label>
+          <input class="fi" id="rdChamber" placeholder="Square Hospital, Panthapath, Dhaka">
+        </div>
+        <div class="fg" style="grid-column:1/-1;">
+          <label class="fl">Phone Number (used for both Call &amp; WhatsApp)</label>
+          <input class="fi" id="rdContact" placeholder="+8801XXXXXXXXX">
+        </div>
+        <div class="fg" style="grid-column:1/-1;">
+          <label class="fl">Note / Reason for Recommendation</label>
+          <textarea class="fta" id="rdNote" rows="2" placeholder="Best for pediatric cardiac cases..."></textarea>
+        </div>
+        <div class="fg" style="grid-column:1/-1;">
+          <label class="fl">Photo</label>
+          <input type="file" class="fi" id="rdPhotoFile" accept="image/*" onchange="handleRecDocPhotoUpload(event)">
+          <div id="rdPhotoPreviewWrap" style="margin-top:8px;"></div>
+          <input type="hidden" id="rdPhotoURL" value="">
+        </div>
+        <div class="fg" style="grid-column:1/-1;display:flex;align-items:center;gap:8px;">
+          <input type="checkbox" id="rdActive" checked style="width:16px;height:16px;">
+          <label class="fl" style="margin:0;">Show on public website</label>
+        </div>
+      </div>
+    </div>
+    <div class="modal-foot">
+      <button class="btn btn-out" onclick="closeModal('recDocModal')">Cancel</button>
+      <button class="btn btn-rose" onclick="saveRecDoc()">💾 Save</button>
+    </div>
+  </div>
+</div>
+
 </div><!-- end #main-app -->
 
 <!-- ══════════════════════════════
   JAVASCRIPT
 ══════════════════════════════ -->
 <script>
+// ── Part 14: Manual Light/Dark Theme Toggle (Auto → Light → Dark → Auto) ──
+// Default follows device/system theme via CSS prefers-color-scheme.
+// sessionStorage used (not localStorage — unreliable in Apps Script sandbox).
+(function(){
+  var KEY = 'aumatiq-drasma-dash-theme';
+  function highlightSettingsBtns(mode){
+    document.querySelectorAll('.btn-sec-theme').forEach(function(b){
+      if (b.getAttribute('data-mode') === mode) {
+        b.style.background = 'linear-gradient(135deg, var(--rose), var(--ind))';
+        b.style.color = '#fff'; b.style.borderColor = 'transparent';
+      } else {
+        b.style.background = 'rgba(232,96,138,0.06)';
+        b.style.color = 'var(--wht)'; b.style.borderColor = 'var(--bd2)';
+      }
+    });
+  }
+  function apply(mode){
+    document.body.classList.remove('theme-light-force','theme-dark-force');
+    var btn = document.getElementById('themeToggleBtn');
+    if (mode === 'light') { document.body.classList.add('theme-light-force'); if(btn) btn.textContent = '☀️'; }
+    else if (mode === 'dark') { document.body.classList.add('theme-dark-force'); if(btn) btn.textContent = '🌙'; }
+    else { if(btn) btn.textContent = '🌓'; }
+    highlightSettingsBtns(mode);
+  }
+  var saved = sessionStorage.getItem(KEY) || 'auto';
+  apply(saved);
+  window.cycleTheme = function(){
+    var cur = sessionStorage.getItem(KEY) || 'auto';
+    var next = cur === 'auto' ? 'light' : (cur === 'light' ? 'dark' : 'auto');
+    sessionStorage.setItem(KEY, next);
+    apply(next);
+  };
+  window.setThemeMode = function(mode){
+    sessionStorage.setItem(KEY, mode);
+    apply(mode);
+  };
+  document.addEventListener('DOMContentLoaded', function(){ highlightSettingsBtns(sessionStorage.getItem(KEY) || 'auto'); });
+})();
+
 // ═══════════════════════════════════════
 // DATA LAYER — Google Apps Script calls
 // ═══════════════════════════════════════
@@ -1709,53 +2084,12 @@ var D = {
   prescriptions: [],   // ← নতুন
   settings:     {},
   categories:   [],
-  commsLog:     []
+  commsLog:     [],
+  articles:     [],    // ← Part 18
+  recommendedDoctors: [] // ← Part 19
 };
+var _importedText = ''; // OCR/Doc import-এর সাময়িক buffer
 var LOADED = { profile:false, patients:false, appts:false, tests:false };
-
-// ═══════════════════════════════════════════════════════════════
-// PART 9: MODULE REGISTRY — ভবিষ্যতের নতুন Doctor Dashboard app-tab
-// ═══════════════════════════════════════════════════════════════
-// Articles/Recommended Doctors-এর মতো সবসময়-দৃশ্যমান core ফিচার এখানে
-// রাখা হয় না — সেগুলো সরাসরি sidebar/mobile-nav-এ হার্ডকোড থাকে (নিজস্ব
-// PATCH ফাইলে বসে, যেমন Part 18/19)। এই Registry শুধু সত্যিকারের
-// future/optional মডিউলের জন্য (Lab Reports, Inventory, ইত্যাদি) —
-// enabled:true করলেই sidebar বাটন + (চাইলে) mobile-nav বাটন + পেজ
-// কন্টেইনার অটোমেটিক তৈরি হয়ে যাবে, কোনো HTML হাতে বসাতে হবে না।
-//
-// entry ফিল্ডসমূহ:
-//   key        (required) — lowercase unique id, pg-<tabId||key>
-//   tabId      (optional) — না দিলে key-ই ব্যবহার হবে (navTo() এ যেটা যাবে)
-//   label      (required) — sidebar/mobile বাটনের টেক্সট
-//   icon       (required) — ইমোজি আইকন
-//   navSection (required) — sidebar-এ কোন section header-এর নিচে বসবে
-//                            (আগের entry-র navSection থেকে আলাদা হলে
-//                            নতুন header অটো তৈরি হয়)
-//   doctorOnly (optional, default false) — শুধু Doctor role দেখবে
-//   mobileNav  (optional, default false) — মোবাইল bottom nav-এও বাটন দেখাবে
-//   badge      (optional) — { type:'warn'|'rose', id:'dom-id', text:'0' }
-//   enabled    (required) — false রাখলে কিছুই তৈরি হবে না (safe placeholder)
-//   render     (required) — function(containerEl) { ...পেজ কন্টেন্ট বসাও... }
-// ─────────────────────────────────────────────────────────────────
-var MODULE_REGISTRY = [
-  // ── উদাহরণ (disabled) — নতুন মডিউল বানাতে এটা কপি করে enabled:true করো ──
-  // {
-  //   key: 'labreports',
-  //   label: 'Lab Reports',
-  //   icon: '🧬',
-  //   navSection: 'Content',
-  //   doctorOnly: true,
-  //   mobileNav: false,
-  //   enabled: false,
-  //   render: function(container) {
-  //     container.innerHTML =
-  //       '<div class="page-hd"><div class="page-hd-left">' +
-  //       '<div class="page-lbl">New Module</div><h1>Lab Reports</h1>' +
-  //       '</div></div>' +
-  //       '<p style="color:var(--sil);">এই মডিউলের UI এখানে বসবে।</p>';
-  //   }
-  // }
-];
 
 // ═══════════════════════════════════════
 // v3.0 — SESSION + LOGIN (Password-only: Doctor/Assistant)
@@ -1870,6 +2204,23 @@ document.getElementById('login-pass').addEventListener('keydown', function(e) {
 
 // ── CALL BACKEND (v3.0: session token স্বয়ংক্রিয়ভাবে প্রথম argument হিসেবে যোগ হয়) ──
 // v2.1: প্রতিটা call-এ sync status auto আপডেট হয়
+// ── v3.3 (Part 17 — Security Hardening): XSS Escape Helper ──
+// Patient-supplied টেক্সট (fullName, reason, notes, address ইত্যাদি) কখনোই
+// escapeHtml() ছাড়া সরাসরি innerHTML-এ বসানো উচিত না — কারণ এই ডেটার একটা
+// অংশ পাবলিক বুকিং ফর্ম থেকে আসে (লগইন ছাড়াই), তাই কেউ ইচ্ছাকৃতভাবে
+// <script> ট্যাগ ঢুকিয়ে দিতে পারতো। PatientModule.gs/AppointmentFinance.gs-এ
+// ইনপুট sanitize করা হয়েছে (১ম স্তর), আর এখানে output escape করা হচ্ছে (২য়,
+// মূল স্তর — "escape on output" সবসময় প্রাইমারি ডিফেন্স)।
+function escapeHtml(str) {
+  if (str === null || str === undefined) return '';
+  return String(str)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#039;');
+}
+
 function call(fn, args, cb, errCb) {
   setSyncStatus('syncing');
   var runner = google.script.run
@@ -1878,84 +2229,10 @@ function call(fn, args, cb, errCb) {
   runner[fn].apply(runner, [_session.token].concat(args || []));
 }
 
-// ═══════════════════════════════════════════════════════════════
-// PART 9: MODULE REGISTRY রেন্ডারার (definition উপরে, Part 4 stub-এর
-// জায়গায় — দেখো "v2.2 Part 4: MODULE_REGISTRY" কমেন্ট)
-// ═══════════════════════════════════════════════════════════════
-function renderModuleRegistry() {
-  var sidebar         = document.querySelector('.sidebar');
-  var mobNav          = document.querySelector('.mob-nav-items');
-  var mainEl          = document.getElementById('mainContent');
-  var settingsBtn      = sidebar ? sidebar.querySelector('.sb-item[onclick*="\'settings\'"]') : null;
-  var settingsSection  = settingsBtn ? settingsBtn.previousElementSibling : null;
-  var pgSettings       = document.getElementById('pg-settings');
-  var mobSettingsBtn   = mobNav ? mobNav.querySelector('.mob-nav-item[data-tab="settings"]') : null;
-  var lastSection      = null;
-
-  if (!sidebar || !settingsSection || !mainEl || !pgSettings) {
-    console.warn('[MODULE_REGISTRY] anchor elements not found — sidebar/settings structure changed?');
-    return;
-  }
-
-  MODULE_REGISTRY.forEach(function(mod) {
-    if (!mod || !mod.enabled) return;
-    var tabId = mod.tabId || mod.key;
-    if (!mod.key || !tabId || !mod.render || !mod.label || !mod.icon || !mod.navSection) {
-      console.warn('[MODULE_REGISTRY] invalid entry, skipped:', mod);
-      return;
-    }
-    if (document.getElementById('pg-' + tabId)) return; // duplicate guard
-
-    // ── Sidebar section header (আগেরটার থেকে ভিন্ন হলেই নতুন header) ──
-    if (mod.navSection !== lastSection) {
-      var secDiv = document.createElement('div');
-      secDiv.className = 'sb-section';
-      secDiv.textContent = mod.navSection;
-      sidebar.insertBefore(secDiv, settingsSection);
-      lastSection = mod.navSection;
-    }
-
-    // ── Sidebar বাটন ──
-    var btn = document.createElement('button');
-    btn.className = 'sb-item' + (mod.doctorOnly ? ' doctor-only' : '');
-    btn.setAttribute('onclick', "navTo('" + tabId + "',this)");
-    btn.innerHTML = '<span class="sb-icon">' + mod.icon + '</span> ' + mod.label +
-      (mod.badge ? ' <span class="sb-badge ' + mod.badge.type + '" id="' + mod.badge.id +
-        '" style="display:none;">' + (mod.badge.text || '0') + '</span>' : '');
-    sidebar.insertBefore(btn, settingsSection);
-
-    // ── Mobile nav বাটন (ঐচ্ছিক) ──
-    if (mod.mobileNav && mobNav && mobSettingsBtn) {
-      var mbtn = document.createElement('button');
-      mbtn.className = 'mob-nav-item' + (mod.doctorOnly ? ' doctor-only' : '');
-      mbtn.setAttribute('onclick', "navTo('" + tabId + "',this)");
-      mbtn.setAttribute('data-tab', tabId);
-      mbtn.innerHTML = '<span class="mi">' + mod.icon + '</span>' + mod.label;
-      mobNav.insertBefore(mbtn, mobSettingsBtn);
-    }
-
-    // ── পেজ কন্টেইনার + render ──
-    var pg = document.createElement('div');
-    pg.className = 'tab-page';
-    pg.id = 'pg-' + tabId;
-    mainEl.insertBefore(pg, pgSettings);
-    try {
-      mod.render(pg);
-    } catch (e) {
-      console.error('[MODULE_REGISTRY] render failed for "' + mod.key + '":', e);
-      pg.innerHTML = '<p style="color:var(--warn,#e0a030);">Module load error — console দেখো।</p>';
-    }
-  });
-}
-
 // ═══════════════════════════════════════
 // INIT
 // ═══════════════════════════════════════
 window.addEventListener('DOMContentLoaded', function() {
-  // PART 9: রেজিস্ট্রি থেকে সব enabled মডিউলের বাটন+পেজ বসানো — session
-  // restore/login-এর navTo() কল হওয়ার আগেই এটা বসতে হবে, তাই সবার প্রথমে।
-  renderModuleRegistry();
-
   // Triple date/time widget (লগইন স্ক্রিনেও দরকার নেই, শুধু dashboard-এ)
   updateDateTimeWidget();
   setInterval(updateDateTimeWidget, 1000);
@@ -2114,18 +2391,38 @@ function loadAll() {
   loadAppointments();
   loadTestRecords();
   loadSettings();
-  // v2.2 Part 4: শুধু Doctor role হলেই income লোড হবে — Assistant/Receptionist এর জন্য
-  // কার্ডটাই CSS দিয়ে hide (.doctor-only), তাই এখানে extra call করারও দরকার নেই।
-  if (_session.role === 'DOCTOR') loadTodayIncome();
+  if (_session.role === 'DOCTOR') {
+    loadAuditLog();            // ── v3.3: শুধু Doctor অডিট লগ দেখতে পাবে ──
+    loadArticles();            // ← Part 18
+    loadRecommendedDoctors();  // ← Part 19
+  }
 }
 
 // ═══════════════════════════════════════
-// LOAD: TODAY'S INCOME (Doctor-only, v2.2 Part 4)
+// LOAD + RENDER: AUDIT LOG (v3.3 — Part 17)
 // ═══════════════════════════════════════
-function loadTodayIncome() {
-  call('getTodayIncomeSummary', [], function(r) {
-    if (!r || !r.success) { setText('ovTodayIncome', '—'); return; }
-    setText('ovTodayIncome', '৳' + Number(r.totalIncome || 0).toLocaleString('en-BD'));
+function loadAuditLog() {
+  call('getAuditLog', [], function(r) {
+    var tb = document.getElementById('auditLogTable');
+    if (!tb) return;
+    if (!r || !r.success || !r.entries || !r.entries.length) {
+      tb.innerHTML = '<tr><td colspan="5"><div class="empty"><div class="ei">🛡️</div><h4>কোনো এন্ট্রি নেই</h4></div></td></tr>';
+      return;
+    }
+    tb.innerHTML = r.entries.map(function(e) {
+      var ts = '—';
+      try {
+        var d = new Date(e.timestamp);
+        ts = fmtDate(e.timestamp) + ', ' + String(d.getHours()).padStart(2,'0') + ':' + String(d.getMinutes()).padStart(2,'0');
+      } catch(err) {}
+      return '<tr>' +
+        '<td style="font-size:12px;color:var(--sil);white-space:nowrap;">' + ts + '</td>' +
+        '<td>' + (e.role === 'DOCTOR' ? '<span class="bdg bdg-rose">Doctor</span>' : '<span class="bdg bdg-warn">Assistant</span>') + '</td>' +
+        '<td style="font-size:12px;color:var(--sil);">' + escapeHtml(e.identifier||'—') + '</td>' +
+        '<td style="font-size:12px;font-weight:600;">' + escapeHtml(e.action||'—') + '</td>' +
+        '<td style="font-size:12px;color:var(--sil2);">' + escapeHtml(e.details||'—') + '</td>' +
+      '</tr>';
+    }).join('');
   });
 }
 
@@ -2341,12 +2638,48 @@ function renderTodaySchedule() {
 // ═══════════════════════════════════════
 // RENDER: ALL APPOINTMENTS TABLE
 // ═══════════════════════════════════════
+var _apArchivedView = false;
+var _apArchivedCache = null;
+
+function toggleApptArchiveView() {
+  _apArchivedView = !_apArchivedView;
+  var btn = document.getElementById('apArchiveToggleBtn');
+  if (_apArchivedView) {
+    if (btn) { btn.textContent = '← Active List'; btn.className = 'btn btn-ind btn-sm'; }
+    call('listArchivedAppointments', [], function(r) {
+      _apArchivedCache = (r && r.success) ? r.appointments : [];
+      renderAppts();
+    });
+  } else {
+    if (btn) { btn.textContent = '🗄️ Archived'; btn.className = 'btn btn-out btn-sm'; }
+    renderAppts();
+  }
+}
+
+function deleteApptConfirm(id) {
+  if (!confirm('আপনি কি নিশ্চিত এই অ্যাপয়েন্টমেন্ট (ID: ' + id + ') Archive/Delete করতে চান?\n\nএটা soft delete — Sheet-এ row মুছবে না, শুধু hidden হবে, প্রয়োজনে Restore করা যাবে।')) return;
+  call('archiveAppointment', [id], function(r) {
+    alert((r && r.message) || 'সম্পন্ন হয়েছে।');
+    loadAppointments();
+  });
+}
+
+function restoreApptConfirm(id) {
+  if (!confirm('অ্যাপয়েন্টমেন্ট (ID: ' + id + ') ফিরিয়ে আনতে চান?')) return;
+  call('restoreAppointment', [id], function(r) {
+    alert((r && r.message) || 'সম্পন্ন হয়েছে।');
+    toggleApptArchiveView();
+  });
+}
+
 function renderAppts() {
   var q      = (document.getElementById('apptSearch')?.value || '').toLowerCase();
   var status = document.getElementById('apptStatusFilter')?.value || '';
   var date   = document.getElementById('apptDateFilter')?.value || '';
 
-  var filtered = D.appointments.filter(function(a) {
+  var source = _apArchivedView ? (_apArchivedCache || []) : D.appointments;
+
+  var filtered = source.filter(function(a) {
     var matchQ = !q ||
       (a.appointmentId || '').toLowerCase().includes(q) ||
       (a.patientId     || '').toLowerCase().includes(q) ||
@@ -2363,26 +2696,29 @@ function renderAppts() {
   if (!tb) return;
 
   if (!filtered.length) {
-    tb.innerHTML = '<tr><td colspan="7"><div class="empty"><div class="ei">🗓️</div><h4>No appointments found</h4></div></td></tr>';
+    var emptyMsg = _apArchivedView ? 'No archived appointments' : 'No appointments found';
+    tb.innerHTML = '<tr><td colspan="7"><div class="empty"><div class="ei">🗓️</div><h4>' + emptyMsg + '</h4></div></td></tr>';
     return;
   }
 
   tb.innerHTML = filtered.map(function(a) {
+    var actionsHtml = _apArchivedView
+      ? '<button class="btn btn-ok btn-sm" onclick="restoreApptConfirm(\'' + a.appointmentId + '\')">♻️ Restore</button>'
+      : '<button class="btn btn-ok  btn-sm" onclick="quickStatus(\'' + a.appointmentId + '\',\'Completed\')">✓ Done</button>' +
+        '<button class="btn btn-out btn-sm" onclick="editAppt(\'' + a.appointmentId + '\')">✏️</button>' +
+        '<button class="btn btn-err btn-sm" onclick="quickStatus(\'' + a.appointmentId + '\',\'Cancelled\')">✕</button>' +
+        '<button class="btn btn-err btn-sm" onclick="deleteApptConfirm(\'' + a.appointmentId + '\')">🗑️</button>';
     return '<tr>' +
       '<td><code style="font-size:11px;color:var(--ind2);">' + (a.appointmentId||'—') + '</code></td>' +
       '<td>' +
-        '<div style="font-weight:600;">' + (a.patientName || a.patientId || '—') + '</div>' +
-        '<div style="font-size:11px;color:var(--sil2);">' + (a.patientId||'') + '</div>' +
+        '<div style="font-weight:600;">' + escapeHtml(a.patientName || a.patientId || '—') + '</div>' +
+        '<div style="font-size:11px;color:var(--sil2);">' + escapeHtml(a.patientId||'') + '</div>' +
       '</td>' +
       '<td>' + fmtDate(a.date) + '</td>' +
-      '<td style="color:var(--teal2);font-weight:600;">' + (a.timeSlot||'—') + '</td>' +
-      '<td style="color:var(--sil);max-width:140px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">' + (a.reason||'—') + '</td>' +
+      '<td style="color:var(--teal2);font-weight:600;">' + escapeHtml(a.timeSlot||'—') + '</td>' +
+      '<td style="color:var(--sil);max-width:140px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">' + escapeHtml(a.reason||'—') + '</td>' +
       '<td>' + mkBadge(a.status) + '</td>' +
-      '<td><div style="display:flex;gap:6px;">' +
-        '<button class="btn btn-ok  btn-sm" onclick="quickStatus(\'' + a.appointmentId + '\',\'Completed\')">✓ Done</button>' +
-        '<button class="btn btn-out btn-sm" onclick="editAppt(\'' + a.appointmentId + '\')">✏️</button>' +
-        '<button class="btn btn-err btn-sm" onclick="quickStatus(\'' + a.appointmentId + '\',\'Cancelled\')">✕</button>' +
-      '</div></td>' +
+      '<td><div style="display:flex;gap:6px;flex-wrap:wrap;">' + actionsHtml + '</div></td>' +
     '</tr>';
   }).join('');
 }
@@ -2390,57 +2726,208 @@ function renderAppts() {
 // ═══════════════════════════════════════
 // RENDER: PATIENTS TABLE
 // ═══════════════════════════════════════
+// ═══════════════════════════════════════
+// FINANCE / PAYMENTS (Doctor-only) — Part 14
+// ═══════════════════════════════════════
+var _financeLoaded = false;
+var _financeEntries = [];
+var _financeCategories = null;
+
+function toggleFinanceForm() {
+  var card = document.getElementById('finAddCard');
+  if (!card) return;
+  var show = card.style.display === 'none';
+  card.style.display = show ? 'block' : 'none';
+  if (show) {
+    setVal('finDate', new Date().toISOString().split('T')[0]);
+    if (!_financeCategories) populateFinanceCategories();
+  }
+}
+
+function populateFinanceCategories() {
+  var type = getVal('finType') || 'Income';
+  function fill() {
+    var sel = document.getElementById('finCategory');
+    if (!sel) return;
+    var group = (_financeCategories && _financeCategories[type]) ? _financeCategories[type].active : [];
+    if (!group || !group.length) {
+      sel.innerHTML = '<option value="General">General</option>';
+      return;
+    }
+    sel.innerHTML = group.map(function(c){
+      var v = c.Value || c.value || c.Name || '';
+      return '<option value="' + escapeHtml(v) + '">' + escapeHtml(v) + '</option>';
+    }).join('');
+  }
+  if (_financeCategories) { fill(); return; }
+  call('getAllCategories', [], function(r) {
+    _financeCategories = (r && r.success) ? r.categories : {};
+    fill();
+  });
+}
+
+function saveFinanceEntry() {
+  var entryData = {
+    type:      getVal('finType'),
+    category:  getVal('finCategory'),
+    amount:    parseFloat(getVal('finAmount')) || 0,
+    date:      getVal('finDate') || new Date().toISOString().split('T')[0],
+    patientId: getVal('finPatientId').trim(),
+    notes:     getVal('finNotes').trim(),
+  };
+  if (!entryData.category || !entryData.amount) {
+    showAl('finFormMsg', 'err', 'Category এবং Amount আবশ্যক।');
+    return;
+  }
+  call('addFinanceEntry', [entryData], function(r) {
+    if (r && r.success) {
+      showAl('finFormMsg', 'ok', r.message || 'সংরক্ষণ হয়েছে।');
+      setVal('finAmount', ''); setVal('finPatientId', ''); setVal('finNotes', '');
+      loadFinanceEntries();
+      setTimeout(function(){ toggleFinanceForm(); }, 700);
+    } else {
+      showAl('finFormMsg', 'err', (r && r.message) || 'সংরক্ষণ ব্যর্থ হয়েছে।');
+    }
+  });
+}
+
+function loadFinanceEntries() {
+  var start = getVal('finStartDate');
+  var end   = getVal('finEndDate');
+  if (!start || !end) {
+    var now = new Date();
+    var first = new Date(now.getFullYear(), now.getMonth(), 1).toISOString().split('T')[0];
+    var last  = new Date(now.getFullYear(), now.getMonth() + 1, 0).toISOString().split('T')[0];
+    if (!start) { start = first; setVal('finStartDate', start); }
+    if (!end)   { end = last;    setVal('finEndDate', end); }
+  }
+  call('getFinanceEntries', [start, end], function(r) {
+    _financeEntries = (r && r.success) ? r.entries : [];
+    renderFinanceEntries();
+  });
+  var now2 = new Date();
+  call('getMonthlyFinanceSummary', [now2.getFullYear(), now2.getMonth() + 1], function(r) {
+    if (!r || !r.success) return;
+    document.getElementById('finIncomeNum').textContent  = '৳' + Number(r.totalIncome || 0).toLocaleString('en-BD');
+    document.getElementById('finExpenseNum').textContent = '৳' + Number(r.totalExpense || 0).toLocaleString('en-BD');
+    document.getElementById('finNetNum').textContent     = '৳' + Number(r.netProfit || 0).toLocaleString('en-BD');
+  });
+}
+
+function renderFinanceEntries() {
+  var typeFilter = getVal('finTypeFilter');
+  var tb = document.getElementById('finTable');
+  if (!tb) return;
+  var rows = _financeEntries.filter(function(e){ return !typeFilter || e.Type === typeFilter; });
+  rows.sort(function(a,b){ return new Date(b.Date) - new Date(a.Date); });
+  if (!rows.length) {
+    tb.innerHTML = '<tr><td colspan="7"><div class="empty"><div class="ei">💰</div><h4>No finance entries in this range</h4></div></td></tr>';
+    return;
+  }
+  tb.innerHTML = rows.map(function(e) {
+    var isIncome = e.Type === 'Income';
+    var dateStr = e.Date ? new Date(e.Date).toLocaleDateString('en-GB',{day:'2-digit',month:'short',year:'numeric'}) : '—';
+    return '<tr>' +
+      '<td><code style="font-size:11px;color:var(--ind2);">' + escapeHtml(e.EntryID||'—') + '</code></td>' +
+      '<td>' + dateStr + '</td>' +
+      '<td>' + (isIncome ? '<span class="bdg bdg-ok">Income</span>' : '<span class="bdg bdg-err">Expense</span>') + '</td>' +
+      '<td>' + escapeHtml(e.Category||'—') + '</td>' +
+      '<td style="color:var(--sil2);font-size:12px;">' + escapeHtml(e.PatientID||'—') + '</td>' +
+      '<td style="font-weight:700;color:' + (isIncome ? 'var(--ok)' : 'var(--err)') + ';">৳' + Number(e.Amount||0).toLocaleString('en-BD') + '</td>' +
+      '<td style="color:var(--sil);max-width:180px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">' + escapeHtml(e.Notes||'—') + '</td>' +
+    '</tr>';
+  }).join('');
+}
+
+// Finance tab এ প্রথমবার ঢোকার সময় lazy-load
+var _navToOriginal = navTo;
+navTo = function(tab, btn) {
+  _navToOriginal(tab, btn);
+  if (tab === 'finance' && !_financeLoaded) {
+    _financeLoaded = true;
+    loadFinanceEntries();
+  }
+};
+
+var _ptArchivedView = false;
+var _ptArchivedCache = null;
+
+function togglePatientArchiveView() {
+  _ptArchivedView = !_ptArchivedView;
+  var btn = document.getElementById('ptArchiveToggleBtn');
+  if (_ptArchivedView) {
+    if (btn) { btn.textContent = '← Active List'; btn.className = 'btn btn-rose btn-sm'; }
+    call('listArchivedPatients', [], function(r) {
+      _ptArchivedCache = (r && r.success) ? r.patients : [];
+      renderPatients();
+    });
+  } else {
+    if (btn) { btn.textContent = '🗄️ Archived'; btn.className = 'btn btn-out btn-sm'; }
+    renderPatients();
+  }
+}
+
+function deletePatientConfirm(id, name) {
+  if (!confirm('আপনি কি নিশ্চিত "' + name + '" (Patient ID: ' + id + ') কে Archive/Delete করতে চান?\n\nএটা soft delete — Sheet-এ row মুছবে না, শুধু hidden হবে। যেকোনো সময় "Archived" থেকে ফেরত (Restore) আনা যাবে।')) return;
+  call('archivePatient', [id], function(r) {
+    alert((r && r.message) || 'সম্পন্ন হয়েছে।');
+    loadPatients();
+  });
+}
+
+function restorePatientConfirm(id, name) {
+  if (!confirm('"' + name + '" (Patient ID: ' + id + ') কে ফিরিয়ে আনতে চান?')) return;
+  call('restorePatient', [id], function(r) {
+    alert((r && r.message) || 'সম্পন্ন হয়েছে।');
+    togglePatientArchiveView(); // archived view থেকে বেরিয়ে active list refresh
+  });
+}
+
 function renderPatients() {
   var q  = (document.getElementById('ptSearch')?.value || '').toLowerCase();
   var gf = document.getElementById('ptGenderFilter')?.value || '';
-  var so = document.getElementById('ptSortOrder')?.value || 'lastVisit';
 
-  var filtered = D.patients.filter(function(p) {
+  var source = _ptArchivedView ? (_ptArchivedCache || []) : D.patients;
+
+  var filtered = source.filter(function(p) {
     var mq = !q ||
-      (p.patientId || '').toLowerCase().includes(q) ||
-      (p.fullName  || '').toLowerCase().includes(q) ||
-      (p.phone     || '').toLowerCase().includes(q);
-    var mg = !gf || p.gender === gf;
+      (p.patientId || p.PatientID || '').toLowerCase().includes(q) ||
+      (p.fullName  || p.FullName  || '').toLowerCase().includes(q) ||
+      (p.phone     || p.Phone     || '').toLowerCase().includes(q);
+    var mg = !gf || (p.gender || p.Gender) === gf;
     return mq && mg;
   });
-
-  // ── v2.2 Part 4: Sort order (ডিফল্ট = সাম্প্রতিক ভিজিট আগে) ──
-  filtered = filtered.slice(); // মূল D.patients array untouched রাখতে copy
-  if (so === 'nameAsc') {
-    filtered.sort(function(a,b){ return (a.fullName||'').localeCompare(b.fullName||''); });
-  } else if (so === 'idDesc') {
-    filtered.sort(function(a,b){ return (b.patientId||'').localeCompare(a.patientId||''); });
-  } else { // 'lastVisit' — সাম্প্রতিক ভিজিট আগে; ভিজিট নাই এমন patient নিচে
-    filtered.sort(function(a,b){
-      var da = a.lastVisit ? new Date(a.lastVisit).getTime() : 0;
-      var db = b.lastVisit ? new Date(b.lastVisit).getTime() : 0;
-      return db - da;
-    });
-  }
 
   var tb = document.getElementById('ptTable');
   if (!tb) return;
 
   if (!filtered.length) {
-    tb.innerHTML = '<tr><td colspan="8"><div class="empty"><div class="ei">👩‍⚕️</div><h4>No patients found</h4></div></td></tr>';
+    var emptyMsg = _ptArchivedView ? 'No archived patients' : 'No patients found';
+    tb.innerHTML = '<tr><td colspan="8"><div class="empty"><div class="ei">👩‍⚕️</div><h4>' + emptyMsg + '</h4></div></td></tr>';
     return;
   }
 
   tb.innerHTML = filtered.map(function(p) {
+    var pid   = p.patientId  || p.PatientID  || '';
+    var pname = p.fullName   || p.FullName   || '—';
+    var actionsHtml = _ptArchivedView
+      ? '<button class="btn btn-ok btn-sm" onclick="restorePatientConfirm(\'' + pid + '\',' + JSON.stringify(pname) + ')">♻️ Restore</button>'
+      : '<button class="btn btn-out btn-sm" onclick="viewPatient(\'' + pid + '\')">👁️ View</button> ' +
+        '<button class="btn btn-err btn-sm" onclick="deletePatientConfirm(\'' + pid + '\',' + JSON.stringify(pname) + ')">🗑️ Delete</button>';
     return '<tr>' +
-      '<td><code style="font-size:11px;color:var(--rose2);">' + (p.patientId||'—') + '</code></td>' +
+      '<td><code style="font-size:11px;color:var(--rose2);">' + (pid||'—') + '</code></td>' +
       '<td>' +
         '<div style="display:flex;align-items:center;gap:8px;">' +
-          '<div class="pt-avatar" style="width:28px;height:28px;font-size:11px;">' + (p.fullName||'?').charAt(0) + '</div>' +
-          '<span>' + (p.fullName||'—') + '</span>' +
+          '<div class="pt-avatar" style="width:28px;height:28px;font-size:11px;">' + escapeHtml((pname||'?').charAt(0)) + '</div>' +
+          '<span>' + escapeHtml(pname) + '</span>' +
         '</div>' +
       '</td>' +
-      '<td style="color:var(--teal2);">' + (p.phone||'—') + '</td>' +
-      '<td>' + (p.age||'—') + '</td>' +
-      '<td>' + (p.gender ? '<span class="bdg bdg-rose">' + p.gender + '</span>' : '—') + '</td>' +
-      '<td style="color:var(--sil);">' + (p.lastVisit||'—') + '</td>' +
-      '<td style="font-size:11px;color:var(--sil2);">' + (p.email||'—') + '</td>' +
-      '<td><button class="btn btn-out btn-sm" onclick="viewPatient(\'' + p.patientId + '\')">👁️ View</button></td>' +
+      '<td style="color:var(--teal2);">' + escapeHtml(p.phone||p.Phone||'—') + '</td>' +
+      '<td>' + escapeHtml(p.age||p.Age||'—') + '</td>' +
+      '<td>' + ((p.gender||p.Gender) ? '<span class="bdg bdg-rose">' + escapeHtml(p.gender||p.Gender) + '</span>' : '—') + '</td>' +
+      '<td style="color:var(--sil);">' + escapeHtml(p.lastVisit||p.LastVisit||'—') + '</td>' +
+      '<td style="font-size:11px;color:var(--sil2);">' + escapeHtml(p.email||p.Email||'—') + '</td>' +
+      '<td style="white-space:nowrap;">' + actionsHtml + '</td>' +
     '</tr>';
   }).join('');
 }
@@ -2460,13 +2947,13 @@ function renderRecentPatients() {
     return '<tr>' +
       '<td>' +
         '<div style="display:flex;align-items:center;gap:8px;">' +
-          '<div class="pt-avatar" style="width:28px;height:28px;font-size:11px;">' + (p.fullName||'?').charAt(0) + '</div>' +
-          (p.fullName||'—') +
+          '<div class="pt-avatar" style="width:28px;height:28px;font-size:11px;">' + escapeHtml((p.fullName||'?').charAt(0)) + '</div>' +
+          escapeHtml(p.fullName||'—') +
         '</div>' +
       '</td>' +
-      '<td><code style="font-size:11px;color:var(--rose2);">' + (p.patientId||'—') + '</code></td>' +
-      '<td style="color:var(--teal2);">' + (p.phone||'—') + '</td>' +
-      '<td style="color:var(--sil);">' + (p.lastVisit||'—') + '</td>' +
+      '<td><code style="font-size:11px;color:var(--rose2);">' + escapeHtml(p.patientId||'—') + '</code></td>' +
+      '<td style="color:var(--teal2);">' + escapeHtml(p.phone||'—') + '</td>' +
+      '<td style="color:var(--sil);">' + escapeHtml(p.lastVisit||'—') + '</td>' +
       '<td><span class="bdg bdg-conf">Active</span></td>' +
       '<td><button class="btn btn-out btn-sm" onclick="viewPatient(\'' + p.patientId + '\')">View</button></td>' +
     '</tr>';
@@ -2538,8 +3025,8 @@ function renderTestCards(filterStatus) {
         return '<div class="upload-card" style="margin-bottom:8px;">' +
           '<div class="upload-card-hd">' +
             '<div>' +
-              '<div class="upload-card-name">🧪 ' + (t.testName||'Test') + '</div>' +
-              '<div class="upload-card-meta"><code style="font-size:11px;color:var(--rose2);">' + (t.patientId||'—') + '</code> · ' + fmtDate(t.testDate) + '</div>' +
+              '<div class="upload-card-name">🧪 ' + escapeHtml(t.testName||'Test') + '</div>' +
+              '<div class="upload-card-meta"><code style="font-size:11px;color:var(--rose2);">' + escapeHtml(t.patientId||'—') + '</code> · ' + fmtDate(t.testDate) + '</div>' +
             '</div>' +
             '<div class="upload-card-actions">' +
               '<button class="btn btn-ok btn-sm" onclick="approveTest(\'' + t.recordId + '\')">✓</button>' +
@@ -2586,13 +3073,13 @@ function renderFollowups() {
     return '<tr>' +
       '<td>' +
         '<div style="display:flex;align-items:center;gap:8px;">' +
-          '<div class="pt-avatar" style="width:28px;height:28px;font-size:11px;">' + (item.patient.fullName||'?').charAt(0) + '</div>' +
-          item.patient.fullName +
+          '<div class="pt-avatar" style="width:28px;height:28px;font-size:11px;">' + escapeHtml((item.patient.fullName||'?').charAt(0)) + '</div>' +
+          escapeHtml(item.patient.fullName) +
         '</div>' +
       '</td>' +
       '<td style="color:var(--sil);">' + fmtDate(item.lastVisit) + '</td>' +
       '<td><span class="bdg ' + urgency + '">' + item.days + ' days ago</span></td>' +
-      '<td style="font-size:12px;color:var(--teal2);">' + (item.patient.email||'—') + '</td>' +
+      '<td style="font-size:12px;color:var(--teal2);">' + escapeHtml(item.patient.email||'—') + '</td>' +
       '<td>' +
         '<button class="btn btn-ind btn-sm" onclick="sendFollowUp(\'' + item.patient.patientId + '\',\'' + item.lastVisit + '\')">📧 Send</button>' +
       '</td>' +
@@ -2648,7 +3135,6 @@ function openAddAppt() {
   setVal('mApptDate', today);
   setVal('mApptStatus', 'Pending');
   openModal('apptModal');
-  loadSlotGridForDate(today); // v2.2 Part 4
 }
 
 function editAppt(id) {
@@ -2664,52 +3150,6 @@ function editAppt(id) {
   setVal('mApptReason', a.reason || '');
   setVal('mApptEditId', id);
   openModal('apptModal');
-  loadSlotGridForDate(a.date || '', a.timeSlot || ''); // v2.2 Part 4 — বর্তমান স্লট preselect করা হয়
-}
-
-// ═══════════════════════════════════════
-// v2.2 Part 4: TIME-SLOT CLICK-GRID
-// (Basic version — getAvailableSlotsForDashboard ব্যবহার করে।
-//  Part 16-এ এই গ্রিডেরই UI/UX পলিশ করা হবে — লজিক এখানেই স্থাপিত।)
-// ═══════════════════════════════════════
-function loadSlotGridForDate(dateStr, preselectTime) {
-  var grid = document.getElementById('apptSlotGrid');
-  if (!grid) return;
-  setVal('mApptTime', preselectTime || '');
-
-  if (!dateStr) {
-    grid.innerHTML = '<p style="color:var(--sil2);font-size:12px;">তারিখ সিলেক্ট করুন প্রথমে...</p>';
-    return;
-  }
-  grid.innerHTML = '<span class="spin" style="width:18px;height:18px;border-width:2px;"></span>';
-
-  call('getAvailableSlotsForDashboard', [dateStr], function(r) {
-    if (!r || !r.success) {
-      grid.innerHTML = '<p style="color:var(--err);font-size:12px;">স্লট লোড করা যায়নি।</p>';
-      return;
-    }
-    var slots = r.slots || [];
-    // Edit mode-এ বর্তমান appointment-এর সময়টা "available" লিস্টে নাও থাকতে পারে
-    // (কারণ ওটা এই appointment নিজেই বুক করে রেখেছে) — তাই ম্যানুয়ালি যোগ করে দেওয়া হচ্ছে।
-    if (preselectTime && slots.indexOf(preselectTime) === -1) slots.unshift(preselectTime);
-
-    if (!slots.length) {
-      grid.innerHTML = '<p style="color:var(--sil2);font-size:12px;">' +
-        (r.message || 'এই দিনে কোনো স্লট খালি নেই।') + '</p>';
-      return;
-    }
-    grid.innerHTML = slots.map(function(s) {
-      var sel = (s === preselectTime) ? ' selected' : '';
-      return '<button type="button" class="slot-btn' + sel + '" onclick="selectSlot(this,\'' + s + '\')">' + s + '</button>';
-    }).join('');
-    if (preselectTime) setVal('mApptTime', preselectTime);
-  });
-}
-
-function selectSlot(btn, timeStr) {
-  document.querySelectorAll('#apptSlotGrid .slot-btn').forEach(function(b){ b.classList.remove('selected'); });
-  btn.classList.add('selected');
-  setVal('mApptTime', timeStr);
 }
 
 // ── v2.1: STEP 1 — ভ্যালিডেট করে Review Modal দেখানো (এখনো সেভ হয়নি) ──
@@ -2966,17 +3406,6 @@ function submitPrescription() {
   });
 }
 
-// ═══════════════════════════════════════
-// v2.2 Part 4: PATIENT 360° PROFILE VIEW
-// ═══════════════════════════════════════
-function toWaLink(phone, prefillText) {
-  var digits = String(phone || '').replace(/\D/g, '');
-  if (digits.charAt(0) === '0') digits = '880' + digits.substring(1);
-  var url = 'https://wa.me/' + digits;
-  if (prefillText) url += '?text=' + encodeURIComponent(prefillText);
-  return url;
-}
-
 function viewPatient(pid) {
   var p = D.patients.find(function(x){ return x.patientId === pid; });
   if (!p) return;
@@ -2984,45 +3413,25 @@ function viewPatient(pid) {
   var appts = D.appointments.filter(function(a){ return a.patientId === pid; });
   var tests = D.testRecords.filter(function(t){ return t.patientId === pid && t.status === 'Approved'; });
 
-  // ── Follow-up status: সর্বশেষ Completed appointment থেকে কত দিন হলো ──
-  var completedAppts = appts.filter(function(a){ return a.status === 'Completed'; })
-                             .sort(function(a,b){ return b.date > a.date ? 1 : -1; });
-  var followUpHtml = '<span style="color:var(--sil2);">এখনো কোনো completed visit নেই।</span>';
-  if (completedAppts.length) {
-    var daysDiff = Math.floor((new Date() - new Date(completedAppts[0].date)) / 86400000);
-    var urgency = daysDiff <= 2 ? 'bdg-rose' : (daysDiff <= 7 ? 'bdg-warn' : 'bdg-comp');
-    followUpHtml = 'সর্বশেষ ভিজিট ' + fmtDate(completedAppts[0].date) + ' — <span class="bdg ' + urgency + '">' + daysDiff + ' দিন আগে</span>' +
-      (daysDiff >= 1 && daysDiff <= 30 ? ' <button class="btn btn-ind btn-sm" style="margin-left:8px;" onclick="sendFollowUp(\'' + p.patientId + '\',\'' + completedAppts[0].date + '\')">📧 Send Follow-up</button>' : '');
-  }
-
   document.getElementById('ptDetailName').textContent = p.fullName || 'Patient';
   document.getElementById('ptDetailBody').innerHTML =
-    // ── Quick actions bar ──
-    '<div class="pt360-actions">' +
-      (p.phone ? '<a class="btn btn-teal btn-sm" href="tel:' + p.phone + '">📞 Call</a>' : '') +
-      (p.phone ? '<a class="btn btn-teal btn-sm" href="' + toWaLink(p.phone) + '" target="_blank">💬 WhatsApp</a>' : '') +
-      '<button class="btn btn-rose btn-sm" onclick="closeModal(\'ptDetailModal\');navTo(\'appointments\',null);openAddAppt();setVal(\'mApptPid\',\'' + p.patientId + '\');setVal(\'mApptName\',\'' + (p.fullName||'').replace(/'/g,"") + '\');setVal(\'mApptPhone\',\'' + (p.phone||'') + '\');">📅 New Appointment</button>' +
-      '<button class="btn btn-teal btn-sm" onclick="openWritePrescription(\'' + p.patientId + '\')">🖊 New Prescription</button>' +
-      '<button class="btn btn-out btn-sm" onclick="closeModal(\'ptDetailModal\');navTo(\'pending\',null);openAddTest();">🧪 New Test</button>' +
-    '</div>' +
-
     '<div class="form-grid g2" style="margin-bottom:20px;">' +
       '<div class="fg"><span class="fl">Patient ID</span><div style="color:var(--rose2);font-weight:700;font-size:15px;">' + p.patientId + '</div></div>' +
       '<div class="fg"><span class="fl">Phone</span><div style="color:var(--teal2);">' + (p.phone||'—') + '</div></div>' +
       '<div class="fg"><span class="fl">Age</span><div>' + (p.age||'—') + '</div></div>' +
       '<div class="fg"><span class="fl">Gender</span><div>' + (p.gender||'—') + '</div></div>' +
       '<div class="fg"><span class="fl">Email</span><div style="font-size:13px;color:var(--sil);">' + (p.email||'—') + '</div></div>' +
-      '<div class="fg"><span class="fl">Follow-up Status</span><div style="font-size:13px;">' + followUpHtml + '</div></div>' +
+      '<div class="fg"><span class="fl">Last Visit</span><div style="color:var(--sil);">' + (p.lastVisit||'—') + '</div></div>' +
       (p.notes ? '<div class="fg" style="grid-column:1/-1;"><span class="fl">Notes</span><div class="quick-note">' + p.notes + '</div></div>' : '') +
     '</div>' +
 
     '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;">' +
-      '<h4 class="pt360-hd" style="margin:0;">℞ PRESCRIPTIONS</h4>' +
+      '<h4 style="font-family:Syne,sans-serif;font-size:14px;margin:0;color:var(--sil);">℞ PRESCRIPTIONS</h4>' +
       '<button class="btn btn-teal" style="padding:6px 14px;font-size:12px;" onclick="openWritePrescription(\'' + p.patientId + '\')">🖊 Write New Prescription</button>' +
     '</div>' +
     '<div id="ptRxHistory" style="font-size:13px;color:var(--sil);margin-bottom:16px;"><p style="color:var(--sil2);">Loading...</p></div>' +
 
-    '<h4 class="pt360-hd">📅 RECENT APPOINTMENTS</h4>' +
+    '<h4 style="font-family:Syne,sans-serif;font-size:14px;margin-bottom:10px;color:var(--sil);">RECENT APPOINTMENTS</h4>' +
     '<div style="font-size:13px;color:var(--sil);">' +
       (!appts.length ? '<div class="empty" style="padding:20px;"><div class="ei">📅</div><p>No appointments</p></div>' :
         appts.slice(0,5).map(function(a){
@@ -3034,8 +3443,7 @@ function viewPatient(pid) {
         }).join('')
       ) +
     '</div>' +
-
-    '<h4 class="pt360-hd">🧪 APPROVED TESTS</h4>' +
+    '<h4 style="font-family:Syne,sans-serif;font-size:14px;margin:16px 0 10px;color:var(--sil);">APPROVED TESTS</h4>' +
     '<div style="font-size:13px;color:var(--sil);">' +
       (!tests.length ? '<p style="color:var(--sil2);">No approved tests.</p>' :
         tests.map(function(t){
@@ -3046,12 +3454,6 @@ function viewPatient(pid) {
           '</div>';
         }).join('')
       ) +
-    '</div>' +
-
-    // ── v2.2 Part 4: Finance history — শুধু Doctor role দেখতে পারবে ──
-    '<div class="doctor-only">' +
-      '<h4 class="pt360-hd">💰 FINANCE HISTORY</h4>' +
-      '<div id="ptFinanceHistory" style="font-size:13px;color:var(--sil);"><p style="color:var(--sil2);">Loading...</p></div>' +
     '</div>';
 
   openModal('ptDetailModal');
@@ -3071,29 +3473,6 @@ function viewPatient(pid) {
       box.innerHTML = '<p style="color:var(--sil2);">No prescriptions yet.</p>';
     }
   });
-
-  // ── v2.2 Part 4: Finance history — শুধু Doctor role হলে কল হবে (Assistant হলে সেকশনটাই CSS-এ hide) ──
-  if (_session.role === 'DOCTOR') {
-    call('getFinanceEntriesForPatient', [pid], function(r) {
-      var box = document.getElementById('ptFinanceHistory');
-      if (!box) return;
-      if (r && r.success && r.entries.length) {
-        var total = r.entries.reduce(function(sum, e){ return sum + (e.Type === 'Income' ? (parseFloat(e.Amount)||0) : 0); }, 0);
-        box.innerHTML =
-          '<div style="margin-bottom:8px;color:var(--gold);font-weight:700;">Total Income: ৳' + total.toLocaleString('en-BD') + '</div>' +
-          r.entries.map(function(e) {
-            return '<div style="display:flex;justify-content:space-between;align-items:center;padding:9px 0;border-bottom:1px solid var(--bd);">' +
-              '<span>' + fmtDate(e.Date) + ' — ' + (e.Category||'—') + '</span>' +
-              '<span style="color:' + (e.Type === 'Income' ? 'var(--ok)' : 'var(--err)') + ';font-weight:600;">' +
-                (e.Type === 'Income' ? '+' : '−') + '৳' + (parseFloat(e.Amount)||0).toLocaleString('en-BD') +
-              '</span>' +
-            '</div>';
-          }).join('');
-      } else {
-        box.innerHTML = '<p style="color:var(--sil2);">No finance entries for this patient yet.</p>';
-      }
-    });
-  }
 }
 
 // ═══════════════════════════════════════
@@ -3464,6 +3843,403 @@ function fmtDate(s) {
     var d = new Date(s);
     return d.getDate() + ' ' + ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][d.getMonth()] + ' ' + d.getFullYear();
   } catch(e) { return String(s); }
+}
+</script>
+<script>
+// ═══════════════════════════════════════════════════════════
+// PART 18 — BLOG / ARTICLES
+// ═══════════════════════════════════════════════════════════
+
+function loadArticles() {
+  call('getAllArticles', [], function(r) {
+    if (!r || !r.success) return;
+    D.articles = r.articles || [];
+    renderArticleList();
+  });
+}
+
+function renderArticleList() {
+  var el = document.getElementById('articleListBody');
+  if (!el) return;
+  if (!D.articles.length) {
+    el.innerHTML = '<p style="color:var(--sil2);font-size:13px;">No articles yet. Click "New Article" to write your first one.</p>';
+    return;
+  }
+  el.innerHTML = D.articles.map(function(a) {
+    var statusCls = a.status === 'Published' ? 'art-status-published' : 'art-status-draft';
+    var toggleBtn = a.status === 'Published'
+      ? '<button class="btn btn-out btn-sm" onclick="doUnpublish(\'' + a.articleId + '\')">Unpublish</button>'
+      : '<button class="btn btn-teal btn-sm" onclick="doPublish(\'' + a.articleId + '\')">Publish</button>';
+    return '<div class="art-row">' +
+      (a.coverImageURL ? '<img class="art-row-cover" src="' + a.coverImageURL + '">' : '<div class="art-row-cover"></div>') +
+      '<div class="art-row-body">' +
+        '<div class="art-row-title">' + esc_(a.title) + '</div>' +
+        '<div class="art-row-meta">' + esc_(a.tags || 'No tags') + ' · Edited ' + fmtDate(a.lastEditedDate) + '</div>' +
+      '</div>' +
+      '<span class="art-status-badge ' + statusCls + '">' + a.status + '</span>' +
+      '<div style="display:flex;gap:6px;">' +
+        '<button class="btn btn-out btn-sm" onclick="openArticleComposer(\'' + a.articleId + '\')">Edit</button>' +
+        toggleBtn +
+        '<button class="btn btn-out btn-sm" onclick="doDeleteArticle(\'' + a.articleId + '\')" style="color:var(--err);">Delete</button>' +
+      '</div>' +
+    '</div>';
+  }).join('');
+}
+
+function esc_(s) {
+  var d = document.createElement('div');
+  d.textContent = s || '';
+  return d.innerHTML;
+}
+
+function doPublish(id) {
+  call('publishArticle', [id], function(r) {
+    if (r && r.success) { showToast('Published!', 'ok'); loadArticles(); }
+    else showToast((r && r.error) || 'Failed', 'err');
+  });
+}
+function doUnpublish(id) {
+  call('unpublishArticle', [id], function(r) {
+    if (r && r.success) { showToast('Moved to Draft.', 'ok'); loadArticles(); }
+    else showToast((r && r.error) || 'Failed', 'err');
+  });
+}
+function doDeleteArticle(id) {
+  if (!confirm('Delete this article permanently?')) return;
+  call('deleteArticle', [id], function(r) {
+    if (r && r.success) { showToast('Deleted.', 'ok'); loadArticles(); }
+    else showToast((r && r.error) || 'Failed', 'err');
+  });
+}
+
+// ── COMPOSER ──
+function openArticleComposer(articleId) {
+  document.getElementById('blogListView').style.display = 'none';
+  document.getElementById('blogComposeView').style.display = 'block';
+  document.getElementById('composerMsg').innerHTML = '';
+  document.getElementById('importReviewWrap').style.display = 'none';
+  document.getElementById('importStatus').textContent = '';
+
+  if (articleId) {
+    document.getElementById('composerModeLbl').textContent = 'Edit Article';
+    document.getElementById('composerTitleHd').textContent = 'Edit Article';
+    call('getArticleById', [articleId], function(r) {
+      if (!r || !r.success) { showToast((r && r.error) || 'Load failed', 'err'); return; }
+      var a = r.article;
+      setVal('artId', a.articleId);
+      setVal('artTitle', a.title);
+      setVal('artTags', a.tags);
+      setVal('artCoverURL', a.coverImageURL || '');
+      document.getElementById('articleEditor').innerHTML = a.bodyHtml || '';
+      renderCoverPreview(a.coverImageURL);
+    });
+  } else {
+    document.getElementById('composerModeLbl').textContent = 'New Article';
+    document.getElementById('composerTitleHd').textContent = 'Write Article';
+    setVal('artId', '');
+    setVal('artTitle', '');
+    setVal('artTags', '');
+    setVal('artCoverURL', '');
+    document.getElementById('articleEditor').innerHTML = '';
+    document.getElementById('artCoverPreviewWrap').innerHTML = '';
+  }
+}
+
+function closeArticleComposer() {
+  document.getElementById('blogComposeView').style.display = 'none';
+  document.getElementById('blogListView').style.display = 'block';
+}
+
+// ── Rich-text toolbar (contenteditable + execCommand — Chrome/Edge admin tool, simple by design) ──
+function execFmt(cmd) {
+  document.getElementById('articleEditor').focus();
+  document.execCommand(cmd, false, null);
+}
+function execFmtBlock(tag) {
+  document.getElementById('articleEditor').focus();
+  document.execCommand('formatBlock', false, tag);
+}
+
+// ── Cover image upload ──
+function handleCoverImageUpload(evt) {
+  var file = evt.target.files[0];
+  if (!file) return;
+  fileToBase64_(file, function(base64) {
+    document.getElementById('importStatus').textContent = 'Uploading cover image...';
+    call('uploadArticleImage', [base64, file.type, file.name], function(r) {
+      document.getElementById('importStatus').textContent = '';
+      if (r && r.success) {
+        setVal('artCoverURL', r.url);
+        renderCoverPreview(r.url);
+        showToast('Cover image uploaded!', 'ok');
+      } else {
+        showToast((r && r.error) || 'Upload failed', 'err');
+      }
+    });
+  });
+}
+function renderCoverPreview(url) {
+  var wrap = document.getElementById('artCoverPreviewWrap');
+  wrap.innerHTML = url ? '<img src="' + url + '" style="max-width:180px;border-radius:8px;">' : '';
+}
+
+// ── Inline image insert (inside editor) ──
+function insertInlineImage() {
+  document.getElementById('artInlineImgFile').click();
+}
+function handleInlineImageUpload(evt) {
+  var file = evt.target.files[0];
+  if (!file) return;
+  fileToBase64_(file, function(base64) {
+    document.getElementById('importStatus').textContent = 'Uploading image...';
+    call('uploadArticleImage', [base64, file.type, file.name], function(r) {
+      document.getElementById('importStatus').textContent = '';
+      if (r && r.success) {
+        document.getElementById('articleEditor').focus();
+        document.execCommand('insertHTML', false, '<img src="' + r.url + '" style="max-width:100%;border-radius:8px;">');
+      } else {
+        showToast((r && r.error) || 'Upload failed', 'err');
+      }
+    });
+  });
+}
+
+// ── Document import (.docx/.pdf) ──
+function handleDocumentImport(evt) {
+  var file = evt.target.files[0];
+  if (!file) return;
+  fileToBase64_(file, function(base64) {
+    document.getElementById('importStatus').textContent = '⏳ Extracting text from document...';
+    call('uploadArticleDocument', [base64, file.type, file.name], function(r) {
+      document.getElementById('importStatus').textContent = '';
+      if (r && r.success) {
+        showImportReview(r.text);
+      } else {
+        showToast((r && r.error) || 'Extraction failed', 'err');
+      }
+    });
+  });
+}
+
+// ── OCR handwritten import ──
+function handleOcrImport(evt) {
+  var file = evt.target.files[0];
+  if (!file) return;
+  fileToBase64_(file, function(base64) {
+    document.getElementById('importStatus').textContent = '⏳ Scanning handwriting (OCR)... this may take a moment.';
+    call('ocrHandwrittenImage', [base64, file.type, file.name], function(r) {
+      document.getElementById('importStatus').textContent = '';
+      if (r && r.success) {
+        showImportReview(r.text);
+      } else {
+        showToast((r && r.error) || 'OCR failed', 'err');
+      }
+    });
+  });
+}
+
+function showImportReview(text) {
+  _importedText = text || '';
+  document.getElementById('importReviewText').value = _importedText;
+  document.getElementById('importReviewWrap').style.display = 'block';
+}
+function insertImportedText() {
+  var reviewed = document.getElementById('importReviewText').value.trim();
+  if (!reviewed) return;
+  var paras = reviewed.split(/\n+/).map(function(line) {
+    return line.trim() ? '<p>' + esc_(line.trim()) + '</p>' : '';
+  }).join('');
+  document.getElementById('articleEditor').innerHTML += paras;
+  document.getElementById('importReviewWrap').style.display = 'none';
+  document.getElementById('artOcrFile').value = '';
+  document.getElementById('artDocFile').value = '';
+  showToast('Inserted into article.', 'ok');
+}
+function discardImportedText() {
+  document.getElementById('importReviewWrap').style.display = 'none';
+  document.getElementById('artOcrFile').value = '';
+  document.getElementById('artDocFile').value = '';
+}
+
+// ── Save ──
+function collectArticleData_() {
+  return {
+    title:         getVal('artTitle').trim(),
+    bodyHtml:      document.getElementById('articleEditor').innerHTML,
+    coverImageURL: getVal('artCoverURL'),
+    tags:          getVal('artTags').trim()
+  };
+}
+
+function saveArticleDraft() {
+  var data = collectArticleData_();
+  if (!data.title) { showAl('composerMsg', 'err', '❌ Title is required.'); return; }
+  var id = getVal('artId');
+  if (id) {
+    call('editArticle', [id, data], function(r) {
+      if (r && r.success) { showToast('Draft saved!', 'ok'); loadArticles(); closeArticleComposer(); }
+      else showAl('composerMsg', 'err', '❌ ' + ((r && r.error) || 'Save failed.'));
+    });
+  } else {
+    data.status = 'Draft';
+    call('createArticle', [data], function(r) {
+      if (r && r.success) { showToast('Draft saved!', 'ok'); loadArticles(); closeArticleComposer(); }
+      else showAl('composerMsg', 'err', '❌ ' + ((r && r.error) || 'Save failed.'));
+    });
+  }
+}
+
+function publishArticleFromComposer() {
+  var data = collectArticleData_();
+  if (!data.title) { showAl('composerMsg', 'err', '❌ Title is required.'); return; }
+  var id = getVal('artId');
+  if (id) {
+    call('editArticle', [id, data], function(r) {
+      if (!r || !r.success) { showAl('composerMsg', 'err', '❌ ' + ((r && r.error) || 'Save failed.')); return; }
+      call('publishArticle', [id], function(r2) {
+        if (r2 && r2.success) { showToast('Published!', 'ok'); loadArticles(); closeArticleComposer(); }
+        else showAl('composerMsg', 'err', '❌ ' + ((r2 && r2.error) || 'Publish failed.'));
+      });
+    });
+  } else {
+    data.status = 'Published';
+    call('createArticle', [data], function(r) {
+      if (r && r.success) { showToast('Published!', 'ok'); loadArticles(); closeArticleComposer(); }
+      else showAl('composerMsg', 'err', '❌ ' + ((r && r.error) || 'Save failed.'));
+    });
+  }
+}
+
+// ── shared helper: File → base64 ──
+function fileToBase64_(file, cb) {
+  var reader = new FileReader();
+  reader.onload = function() { cb(reader.result); };
+  reader.readAsDataURL(file);
+}
+
+
+// ═══════════════════════════════════════════════════════════
+// PART 19 — RECOMMENDED DOCTORS
+// ═══════════════════════════════════════════════════════════
+
+function loadRecommendedDoctors() {
+  call('getAllRecommendedDoctors', [], function(r) {
+    if (!r || !r.success) return;
+    D.recommendedDoctors = r.doctors || [];
+    renderRecDocGrid();
+  });
+}
+
+function renderRecDocGrid() {
+  var el = document.getElementById('recDocGrid');
+  if (!el) return;
+  if (!D.recommendedDoctors.length) {
+    el.innerHTML = '<p style="color:var(--sil2);font-size:13px;">No recommended doctors yet. Click "Add Doctor" to add one.</p>';
+    return;
+  }
+  el.innerHTML = D.recommendedDoctors.map(function(d) {
+    var activeToggle = d.isActive
+      ? '<button class="btn btn-out btn-sm" onclick="doToggleRecDoc(\'' + d.id + '\',false)">Hide</button>'
+      : '<button class="btn btn-teal btn-sm" onclick="doToggleRecDoc(\'' + d.id + '\',true)">Show</button>';
+    return '<div class="rd-card">' +
+      '<div class="rd-card-top">' +
+        (d.photoURL ? '<img class="rd-photo" src="' + d.photoURL + '">' : '<div class="rd-photo"></div>') +
+        '<div><div class="rd-name">' + esc_(d.name) + '</div><div class="rd-spec">' + esc_(d.specialty) + '</div></div>' +
+      '</div>' +
+      '<div class="rd-meta">📍 ' + esc_(d.chamber || '—') + '<br>📞 ' + esc_(d.contactInfo || '—') + '</div>' +
+      (d.note ? '<div class="rd-meta" style="font-style:italic;">"' + esc_(d.note) + '"</div>' : '') +
+      '<div class="rd-actions">' +
+        '<button class="btn btn-out btn-sm" onclick="openAddRecDoc(\'' + d.id + '\')">Edit</button>' +
+        activeToggle +
+        '<button class="btn btn-out btn-sm" onclick="doRemoveRecDoc(\'' + d.id + '\')" style="color:var(--err);">Remove</button>' +
+      '</div>' +
+    '</div>';
+  }).join('');
+}
+
+function openAddRecDoc(id) {
+  clearRecDocForm_();
+  if (id) {
+    var d = D.recommendedDoctors.find(function(x){ return x.id === id; });
+    if (!d) return;
+    document.getElementById('recDocModalTitle').textContent = 'Edit Doctor';
+    setVal('rdId', d.id);
+    setVal('rdName', d.name);
+    setVal('rdSpecialty', d.specialty);
+    setVal('rdOrder', d.displayOrder);
+    setVal('rdChamber', d.chamber);
+    setVal('rdContact', d.contactInfo);
+    setVal('rdNote', d.note);
+    setVal('rdPhotoURL', d.photoURL);
+    document.getElementById('rdActive').checked = !!d.isActive;
+    if (d.photoURL) document.getElementById('rdPhotoPreviewWrap').innerHTML = '<img src="' + d.photoURL + '" style="width:60px;height:60px;border-radius:50%;object-fit:cover;">';
+  } else {
+    document.getElementById('recDocModalTitle').textContent = 'Add Recommended Doctor';
+  }
+  openModal('recDocModal');
+}
+
+function clearRecDocForm_() {
+  ['rdId','rdName','rdSpecialty','rdOrder','rdChamber','rdContact','rdNote','rdPhotoURL'].forEach(function(id){ setVal(id, ''); });
+  document.getElementById('rdActive').checked = true;
+  document.getElementById('rdPhotoPreviewWrap').innerHTML = '';
+}
+
+function handleRecDocPhotoUpload(evt) {
+  var file = evt.target.files[0];
+  if (!file) return;
+  fileToBase64_(file, function(base64) {
+    call('uploadRecommendedDoctorPhoto', [base64, file.type, file.name], function(r) {
+      if (r && r.success) {
+        setVal('rdPhotoURL', r.url);
+        document.getElementById('rdPhotoPreviewWrap').innerHTML = '<img src="' + r.url + '" style="width:60px;height:60px;border-radius:50%;object-fit:cover;">';
+      } else {
+        showToast((r && r.error) || 'Upload failed', 'err');
+      }
+    });
+  });
+}
+
+function saveRecDoc() {
+  var data = {
+    name:         getVal('rdName').trim(),
+    specialty:    getVal('rdSpecialty').trim(),
+    chamber:      getVal('rdChamber').trim(),
+    contactInfo:  getVal('rdContact').trim(),
+    note:         getVal('rdNote').trim(),
+    displayOrder: getVal('rdOrder') ? Number(getVal('rdOrder')) : '',
+    photoURL:     getVal('rdPhotoURL'),
+    isActive:     document.getElementById('rdActive').checked
+  };
+  if (!data.name) { showAl('recDocMsg', 'err', '❌ Name is required.'); return; }
+
+  var id = getVal('rdId');
+  if (id) {
+    call('editRecommendedDoctor', [id, data], function(r) {
+      if (r && r.success) { showToast('Updated!', 'ok'); closeModal('recDocModal'); loadRecommendedDoctors(); }
+      else showAl('recDocMsg', 'err', '❌ ' + ((r && r.error) || 'Save failed.'));
+    });
+  } else {
+    call('addRecommendedDoctor', [data], function(r) {
+      if (r && r.success) { showToast('Added!', 'ok'); closeModal('recDocModal'); loadRecommendedDoctors(); }
+      else showAl('recDocMsg', 'err', '❌ ' + ((r && r.error) || 'Save failed.'));
+    });
+  }
+}
+
+function doToggleRecDoc(id, isActive) {
+  call('toggleRecommendedDoctorActive', [id, isActive], function(r) {
+    if (r && r.success) { showToast(isActive ? 'Now visible on website.' : 'Hidden from website.', 'ok'); loadRecommendedDoctors(); }
+    else showToast((r && r.error) || 'Failed', 'err');
+  });
+}
+
+function doRemoveRecDoc(id) {
+  if (!confirm('Remove this recommended doctor permanently?')) return;
+  call('removeRecommendedDoctor', [id], function(r) {
+    if (r && r.success) { showToast('Removed.', 'ok'); loadRecommendedDoctors(); }
+    else showToast((r && r.error) || 'Failed', 'err');
+  });
 }
 </script>
 </body>

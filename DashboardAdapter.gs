@@ -11,56 +11,16 @@
  * database function-এর সাথে সংযুক্ত (bridge) করে।
  */
 
-// ═══════════════════════════════════════════════
-// PART 7 — SOFT-DELETE শেয়ার্ড হেল্পার
-// (এই ফাইলে সংজ্ঞায়িত, কিন্তু Apps Script-এ একই প্রজেক্টের সব .gs ফাইল
-//  গ্লোবাল স্কোপ শেয়ার করে — তাই PatientModule.gs ও AppointmentFinance.gs
-//  থেকেও এই দুইটা ফাংশন সরাসরি কল করা যায়, আলাদা করে import লাগে না)
-// ═══════════════════════════════════════════════
-
-/**
- * Patients/Appointments শীটে IsDeleted, DeletedAt, DeletedBy কলাম না
- * থাকলে স্বয়ংক্রিয়ভাবে (শেষে) যোগ করে দেয়। পুরনো কোনো কলাম/ডেটা
- * সরায় না বা পুনর্বিন্যাস করে না — শুধু নতুন কলাম অ্যাড করে, তাই
- * migration-safe। প্রতিটা delete/restore/list ফাংশনের শুরুতে এটা কল
- * করা হয় বলে আলাদা কোনো এক-বারের migration script চালানোর দরকার নেই।
- */
-function ensureSoftDeleteColumns_(sheet) {
-  const lastCol = sheet.getLastColumn();
-  const headers = sheet.getRange(1, 1, 1, lastCol).getValues()[0];
-  const needed = ["IsDeleted", "DeletedAt", "DeletedBy"];
-  let nextCol = lastCol;
-
-  needed.forEach(function (colName) {
-    if (headers.indexOf(colName) === -1) {
-      nextCol += 1;
-      const cell = sheet.getRange(1, nextCol);
-      cell.setValue(colName);
-      cell.setFontWeight("bold").setBackground("#7C3AED").setFontColor("#FFFFFF");
-    }
-  });
-}
-
-/**
- * একটা row soft-deleted কিনা বুলিয়ান রিটার্ন করে। কলামটা এখনো তৈরি না
- * হয়ে থাকলে (পুরনো শীট) নিরাপদে false রিটার্ন করে — কোনো এরর থ্রো করে না।
- */
-function isRowDeleted_(row, headers) {
-  const idx = headers.indexOf("IsDeleted");
-  if (idx === -1) return false;
-  return String(row[idx]).toUpperCase() === "TRUE";
-}
-
 // ───────────────────────── 1. PATIENTS ─────────────────────────
 function getPatientsData(token) {
   requireDoctorOrReceptionist(token);
 
   const sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName("Patients");
-  ensureSoftDeleteColumns_(sheet); // Part 7 — soft-delete কলাম নিশ্চিত করা (migration-safe)
   const data = sheet.getDataRange().getValues();
   const headers = data[0];
 
   const emailCol = headers.indexOf("Email"); // পুরনো sheet-এ নাও থাকতে পারে — গ্রেসফুলি হ্যান্ডেল করা হচ্ছে
+  const archivedCol = headers.indexOf("Archived"); // Part 14 soft-delete — পুরনো sheet-এ নাও থাকতে পারে
 
   const idx = {
     id: headers.indexOf("PatientID"),
@@ -78,7 +38,8 @@ function getPatientsData(token) {
   for (let i = 1; i < data.length; i++) {
     const row = data[i];
     if (!row[idx.id]) continue;
-    if (isRowDeleted_(row, headers)) continue; // Part 7 — soft-deleted patient তালিকায় দেখাবে না
+    const isArchived = archivedCol > -1 ? row[archivedCol] === true : false;
+    if (isArchived) continue; // Part 14: soft-deleted patients মূল তালিকায় দেখাবে না
     patients.push({
       patientId: row[idx.id],
       fullName: row[idx.name],
@@ -90,6 +51,7 @@ function getPatientsData(token) {
       registeredDate: row[idx.registered],
       lastVisit: row[idx.lastVisit],
       notes: row[idx.notes],
+      archived: isArchived,
     });
   }
 
@@ -102,7 +64,6 @@ function getAppointmentsData(token) {
 
   const ss = SpreadsheetApp.getActiveSpreadsheet();
   const apptSheet = ss.getSheetByName("Appointments");
-  ensureSoftDeleteColumns_(apptSheet); // Part 7 — soft-delete কলাম নিশ্চিত করা
   const apptData = apptSheet.getDataRange().getValues();
   const apptHeaders = apptData[0];
 
@@ -115,6 +76,8 @@ function getAppointmentsData(token) {
     nameByPid[pData[i][0]] = pData[i][1];
     phoneByPid[pData[i][0]] = pData[i][2];
   }
+
+  const archivedCol = apptHeaders.indexOf("Archived"); // Part 14 soft-delete
 
   const idx = {
     id: apptHeaders.indexOf("AppointmentID"),
@@ -130,7 +93,8 @@ function getAppointmentsData(token) {
   for (let i = 1; i < apptData.length; i++) {
     const row = apptData[i];
     if (!row[idx.id]) continue;
-    if (isRowDeleted_(row, apptHeaders)) continue; // Part 7 — soft-deleted appointment তালিকায় দেখাবে না
+    const isArchived = archivedCol > -1 ? row[archivedCol] === true : false;
+    if (isArchived) continue; // Part 14: soft-deleted appointments মূল তালিকায় দেখাবে না
     const pid = row[idx.pid];
     let dateStr = row[idx.date];
     try { dateStr = Utilities.formatDate(new Date(row[idx.date]), Session.getScriptTimeZone(), "yyyy-MM-dd"); } catch (e) {}
@@ -145,6 +109,7 @@ function getAppointmentsData(token) {
       reason: row[idx.reason],
       status: row[idx.status],
       createdAt: row[idx.created],
+      archived: isArchived,
     });
   }
 
@@ -157,15 +122,7 @@ function getAppointmentsData(token) {
  * editId থাকলে → বিদ্যমান appointment-এর Date/TimeSlot/Reason/Status আপডেট হবে।
  */
 function saveAppointmentData(token, data) {
-  // ── Part 7 — Gap ১ ফিক্স ──
-  // editId থাকা মানে বিদ্যমান appointment এডিট করা — এটা শুধু Doctor
-  // করতে পারবে। editId না থাকলে (নতুন appointment তৈরি) আগের মতোই
-  // Doctor + Receptionist দুজনেই পারবে।
-  if (data.editId) {
-    requireDoctor(token);
-  } else {
-    requireDoctorOrReceptionist(token);
-  }
+  const session = requireDoctorOrReceptionist(token);
 
   if (data.editId) {
     const sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName("Appointments");
@@ -181,8 +138,9 @@ function saveAppointmentData(token, data) {
       if (String(sData[i][idCol]).trim() === String(data.editId).trim()) {
         sheet.getRange(i + 1, dateCol + 1).setValue(new Date(data.date));
         sheet.getRange(i + 1, slotCol + 1).setValue(data.timeSlot);
-        sheet.getRange(i + 1, reasonCol + 1).setValue(data.reason || "");
+        sheet.getRange(i + 1, reasonCol + 1).setValue(sanitizeUserText_(data.reason)); // ── v3.3 (Part 17): sanitize ──
         sheet.getRange(i + 1, statusCol + 1).setValue(data.status || "Pending");
+        logAuditEvent_(session, "APPOINTMENT_EDITED", data.editId, "Status: " + (data.status || "Pending")); // ── v3.3 ──
         return { success: true, appointmentId: data.editId, message: "Appointment আপডেট হয়েছে।" };
       }
     }
@@ -402,16 +360,7 @@ function runFollowUpEmailBatch(token) {
  * data.patientId থাকলে → editPatient(), না থাকলে → createPatient()
  */
 function savePatientData(token, data) {
-  // ── Part 7 — Gap ২ ফিক্স ──
-  // patientId থাকা মানে বিদ্যমান patient এডিট করা — এটা শুধু Doctor
-  // করতে পারবে (editPatient()-এর ভেতরেও একই গার্ড আছে, defense-in-depth)।
-  // patientId না থাকলে (নতুন patient তৈরি) আগের মতোই Doctor +
-  // Receptionist দুজনেই পারবে।
-  if (data.patientId) {
-    requireDoctor(token);
-  } else {
-    requireDoctorOrReceptionist(token);
-  }
+  requireDoctorOrReceptionist(token);
 
   if (data.patientId) {
     const result = editPatient(token, data.patientId, {

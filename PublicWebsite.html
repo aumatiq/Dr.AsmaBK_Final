@@ -4,20 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title id="pageTitle">Dr. Asma — Women's Health & General Medicine</title>
-<meta name="description" content="Book your appointment with Dr. Asma Binte Khayer, Gynaecologist & Obstetrician, Laparoscopic Surgeon in Khulna. Two chambers, online booking, secure patient portal.">
-<link rel="canonical" href="https://drasma.aumatiq.com/">
-<!-- Open Graph -->
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://drasma.aumatiq.com/">
-<meta property="og:title" content="Dr. Asma Binte Khayer — Gynaecologist & Obstetrician, Khulna">
-<meta property="og:description" content="Book your appointment online with Dr. Asma Binte Khayer — Gynaecology, Obstetrics & Laparoscopic Surgery. Two chambers in Khulna. Secure patient portal for records & reports.">
-<meta property="og:image" content="https://drasma.aumatiq.com/og-image.jpg">
-<meta property="og:locale" content="en_US">
-<meta property="og:site_name" content="Dr. Asma Clinic">
-<!-- Twitter Card -->
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Dr. Asma Binte Khayer — Gynaecologist & Obstetrician">
-<meta name="twitter:description" content="Book online. Two chambers in Khulna. Secure patient portal for records & test reports.">
+<meta name="description" content="Book your appointment with Dr. Asma online. Professional, compassionate care for you and your family.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Inter:wght@400;500;600&family=Playfair+Display:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
@@ -78,18 +65,51 @@
   --nav-h: 68px;
 }
 
-/* ── LIGHT MODE — manual override + prefers-color-scheme ── */
-body.light-mode {
-  --bg:        #FFF8FB;
-  --bg2:       #FDF0F5;
-  --bg3:       #FBE5EE;
-  --bg4:       #F7D9E8;
-  --wht:       #2A1830;
-  --sil:       #6B5675;
-  --sil2:      #9683A0;
-  --bd:        rgba(232, 96, 138, 0.22);
-  --bd2:       rgba(232, 96, 138, 0.45);
+/* ═══════════════════════════════════════════════
+   LIGHT / DARK THEME — Part 14
+   ডিফল্ট: ডিভাইস/ব্রাউজারের system theme অনুযায়ী (prefers-color-scheme)।
+   এর পাশাপাশি ম্যানুয়াল override toggle আছে (নিচে nav-এ 🌙/☀️ বাটন) —
+   toggle চাপলে body-তে .theme-light-force / .theme-dark-force class
+   বসে যা device default-কে override করে, sessionStorage-এ মনে রাখা হয়
+   (localStorage Apps Script sandbox-এ unreliable, তাই sessionStorage)।
+   ব্র্যান্ডের rose/teal/indigo/gold identity দুই মোডেই অক্ষত থাকে।
+   ═══════════════════════════════════════════════ */
+@media (prefers-color-scheme: light) {
+  :root:not(.theme-dark-force-root) {
+    --bg: #FBF7FA; --bg2: #FFFFFF; --bg3: #F6EEF4; --bg4: #F0E4EE;
+    --wht: #241428; --sil: #6B5578; --sil2: #948098;
+    --bd: rgba(232,96,138,0.22); --bd2: rgba(232,96,138,0.4);
+    --bd-teal: rgba(13,148,136,0.3); --bd-ind: rgba(109,40,217,0.28);
+    --rose: #D6467A; --rose2: #C23D6C; --teal: #0D9488; --teal2: #0F766E;
+    --indigo: #6D28D9; --indigo2: #7C3AED;
+    --success: #059669; --warn: #B45309; --error: #E11D48;
+  }
 }
+body.theme-light-force {
+  --bg: #FBF7FA; --bg2: #FFFFFF; --bg3: #F6EEF4; --bg4: #F0E4EE;
+  --wht: #241428; --sil: #6B5578; --sil2: #948098;
+  --bd: rgba(232,96,138,0.22); --bd2: rgba(232,96,138,0.4);
+  --bd-teal: rgba(13,148,136,0.3); --bd-ind: rgba(109,40,217,0.28);
+  --rose: #D6467A; --rose2: #C23D6C; --teal: #0D9488; --teal2: #0F766E;
+  --indigo: #6D28D9; --indigo2: #7C3AED;
+  --success: #059669; --warn: #B45309; --error: #E11D48;
+}
+body.theme-dark-force {
+  --bg: #0F0A1A; --bg2: #160D24; --bg3: #1C1230; --bg4: #221640;
+  --wht: #FDF8FF; --sil: #C4B5D8; --sil2: #7A6892;
+  --bd: rgba(232,96,138,0.18); --bd2: rgba(232,96,138,0.40);
+  --bd-teal: rgba(20,184,166,0.25); --bd-ind: rgba(124,58,237,0.25);
+  --rose: #E8608A; --rose2: #F0899F; --teal: #14B8A6; --teal2: #2DD4BF;
+  --indigo: #7C3AED; --indigo2: #A855F7;
+  --success: #10B981; --warn: #F59E0B; --error: #F43F5E;
+}
+.theme-toggle-btn{
+  width:38px;height:38px;border-radius:10px;flex-shrink:0;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;font-size:16px;
+  background:rgba(232,96,138,0.1);border:1px solid var(--bd2);
+  color:var(--wht);transition:all .25s ease;
+}
+.theme-toggle-btn:hover{background:rgba(232,96,138,0.2);transform:translateY(-1px);}
 
 *  { margin: 0; padding: 0; box-sizing: border-box; }
 html { scroll-behavior: smooth; }
@@ -153,10 +173,12 @@ body {
 
 h1,h2,h3,h4 { font-family: 'Syne', sans-serif; }
 .ttl {
-  font-size: clamp(26px, 5vw, 48px); font-weight: 800;
+  font-size: 32px; font-weight: 800;
   line-height: 1.15; letter-spacing: -.5px;
   margin-bottom: 14px;
 }
+@media(min-width:768px)  { .ttl { font-size: 40px; } }
+@media(min-width:1024px) { .ttl { font-size: 48px; letter-spacing: -1px; } }
 .ttl .r { color: var(--rose); }
 .ttl .t { color: var(--teal); }
 .ttl .g { color: var(--gold); }
@@ -200,22 +222,28 @@ h1,h2,h3,h4 { font-family: 'Syne', sans-serif; }
 }
 .nav-logo {
   display: flex; align-items: center; gap: 10px;
-  text-decoration: none; flex-shrink: 0;
+  flex-shrink: 0;
 }
 .logo-mark {
-  width: 36px; height: 36px;
-  background: linear-gradient(135deg, var(--rose), var(--indigo));
+  width: 38px; height: 38px;
+  background: #14101C;
+  border: 1px solid rgba(245,166,35,0.35);
   border-radius: 10px;
   display: flex; align-items: center; justify-content: center;
-  font-size: 18px;
-  box-shadow: 0 4px 16px rgba(232,96,138,.35);
+  box-shadow: 0 4px 16px rgba(245,166,35,.25);
+  flex-shrink: 0; text-decoration: none;
+  transition: transform .25s ease, box-shadow .25s ease;
 }
+.logo-mark:hover{ transform: translateY(-1px) scale(1.04); box-shadow: 0 6px 20px rgba(245,166,35,.4); }
+.logo-mark svg{ width: 21px; height: 21px; display: block; }
+.logo-txt-link{ text-decoration:none; display:flex; align-items:center; }
 .logo-txt {
-  font-family: 'Syne', sans-serif;
-  font-size: 17px; font-weight: 800;
-  color: var(--wht); letter-spacing: .5px;
+  font-family: 'Playfair Display', 'Georgia', serif;
+  font-style: italic;
+  font-size: 20px; font-weight: 700;
+  color: var(--wht); letter-spacing: .2px;
 }
-.logo-txt em { color: var(--rose); font-style: normal; }
+.logo-txt em { color: var(--rose); font-style: italic; }
 .nav-links {
   display: none; list-style: none;
   gap: 28px; align-items: center;
@@ -270,19 +298,6 @@ h1,h2,h3,h4 { font-family: 'Syne', sans-serif; }
 .ham.o span:nth-child(2){ opacity: 0; transform: scaleX(0); }
 .ham.o span:nth-child(3){ transform: rotate(-45deg) translate(5px,-5px); }
 
-/* Nav utility buttons — theme + language toggle */
-.nav-utils { display:flex; align-items:center; gap:8px; }
-.util-btn {
-  display:flex; align-items:center; justify-content:center;
-  gap:5px; min-width:40px; height:40px; padding:0 10px;
-  background: rgba(232,96,138,.08); border:1px solid var(--bd);
-  border-radius:9px; color:var(--wht); font-size:14px;
-  font-family:'Inter',sans-serif; font-weight:700; cursor:pointer;
-  transition: all .2s;
-}
-.util-btn:hover { background:rgba(232,96,138,.2); border-color:var(--bd2); transform:translateY(-1px); }
-.util-btn .ic { font-size:15px; line-height:1; }
-
 /* Mobile menu */
 .mob {
   display: none; position: fixed;
@@ -293,7 +308,6 @@ h1,h2,h3,h4 { font-family: 'Syne', sans-serif; }
   flex-direction: column; padding: 20px; gap: 4px;
   z-index: 999;
 }
-body.light-mode .mob { background: rgba(255,248,251,.98); }
 .mob.o { display: flex; }
 .mob a {
   display: block; padding: 13px 16px;
@@ -313,8 +327,6 @@ body.light-mode .mob { background: rgba(255,248,251,.98); }
   color: var(--sil); text-align: center;
   border-radius: 10px;
 }
-.mob-utils { display:flex; gap:8px; padding:4px 16px 14px; border-bottom:1px solid var(--bd); margin-bottom:8px; }
-.mob-utils .util-btn { flex:1; }
 
 /* ═══════════════════════════════════
    HERO SECTION
@@ -376,10 +388,12 @@ body.light-mode .mob { background: rgba(255,248,251,.98); }
 
 .h1 {
   font-family: 'Syne', sans-serif;
-  font-size: clamp(34px, 8vw, 68px); font-weight: 800;
+  font-size: 44px; font-weight: 800;
   line-height: 1.1; letter-spacing: -1px;
   margin-bottom: 22px;
 }
+@media(min-width:768px)  { .h1 { font-size: 58px; } }
+@media(min-width:1024px) { .h1 { font-size: 68px; } }
 .hw {
   display: inline-block; opacity: 0;
   animation: fadeUp .7s ease forwards;
@@ -478,26 +492,36 @@ body.light-mode .mob { background: rgba(255,248,251,.98); }
   position: absolute; top:0; left:0; right:0; height:3px;
   background: linear-gradient(90deg, var(--rose), var(--teal), var(--indigo));
 }
-.doc-photo {
+.doc-photo-wrap {
   width:100%; height:340px;
+  position:relative; overflow:hidden;
+}
+@media(min-width:1024px){ .doc-photo-wrap{ height:400px; } }
+.doc-photo {
+  width:100%; height:100%;
   background: linear-gradient(160deg, var(--bg3), var(--bg4));
   display:flex; align-items:center; justify-content:center;
-  font-size:90px; position:relative; overflow:hidden;
+  font-size:76px; line-height:1; overflow:hidden;
 }
-@media(min-width:1024px){ .doc-photo{ height:400px; } }
-.doc-photo img { width:100%;height:100%;object-fit:cover; }
-/* Floating heart/health icons — decorative */
+.doc-photo img { width:100%;height:100%;object-fit:cover; display:block; }
+/* Name/spec caption — anchored to the PHOTO only (bug fix: previously
+   anchored to the whole .doc-card, so it sat on top of the credential
+   tags below the photo instead of over the photo itself). */
 .doc-deco {
   position:absolute; bottom:0; left:0; right:0;
-  padding: 20px;
-  background: linear-gradient(transparent, rgba(15,10,26,.95));
+  padding: 16px 20px 18px;
+  background: linear-gradient(transparent, rgba(15,10,26,.92) 55%);
 }
 .doc-name {
-  font-family:'Syne',sans-serif;
-  font-size:20px; font-weight:800; color:var(--wht);
+  font-family:'Playfair Display','Georgia',serif; font-style:italic;
+  font-size: clamp(15px, 4.4vw, 20px); font-weight:700; color:var(--wht);
+  line-height:1.3; word-break:break-word; overflow-wrap:break-word;
 }
 .doc-name span { color: var(--rose); }
-.doc-spec { font-size:13px; color:var(--teal); font-weight:600; margin-top:3px; }
+.doc-spec {
+  font-size:12.5px; color:var(--teal); font-weight:600; margin-top:4px;
+  line-height:1.4; word-break:break-word;
+}
 
 /* Credential tags */
 .doc-creds { padding:20px; display:flex; flex-wrap:wrap; gap:8px; }
@@ -721,130 +745,6 @@ body.light-mode .mob { background: rgba(255,248,251,.98); }
 .ci-val a:hover { color:var(--rose3); }
 
 /* ═══════════════════════════════════
-   CHAMBERS (two-location cards) — NEW
-═══════════════════════════════════ */
-.chmb-grid { display:grid; grid-template-columns:1fr; gap:22px; margin-top:8px; }
-@media(min-width:900px){ .chmb-grid { grid-template-columns:1fr 1fr; } }
-.chmb-card {
-  background: var(--bg3); border:1px solid var(--bd);
-  border-radius:20px; padding:30px; position:relative; overflow:hidden;
-  transition: all .3s;
-}
-.chmb-card::before {
-  content:''; position:absolute; top:0; left:0; right:0; height:3px;
-  background: linear-gradient(90deg, var(--rose), var(--teal));
-}
-.chmb-card.c2::before { background: linear-gradient(90deg, var(--teal), var(--indigo)); }
-.chmb-card:hover { border-color:var(--bd2); transform:translateY(-4px); box-shadow:0 20px 48px rgba(232,96,138,.1); }
-.chmb-badge {
-  display:inline-flex; align-items:center; gap:6px;
-  font-size:11px; font-weight:700; letter-spacing:.5px;
-  padding:5px 12px; border-radius:20px; margin-bottom:14px;
-  background: rgba(232,96,138,.14); color:var(--rose2);
-  border:1px solid rgba(232,96,138,.3);
-}
-.chmb-card.c2 .chmb-badge { background:rgba(20,184,166,.14); color:var(--teal2); border-color:rgba(20,184,166,.3); }
-.chmb-name { font-family:'Syne',sans-serif; font-size:20px; font-weight:700; color:var(--wht); margin-bottom:6px; }
-.chmb-addr { font-size:14px; color:var(--sil); line-height:1.7; margin-bottom:18px; }
-.chmb-row {
-  display:flex; align-items:center; gap:10px;
-  padding:11px 0; border-top:1px solid rgba(232,96,138,.08);
-  font-size:13.5px;
-}
-.chmb-row:first-of-type { border-top:none; }
-.chmb-row .ic { width:18px; text-align:center; flex-shrink:0; }
-.chmb-row .k { color:var(--sil2); min-width:64px; flex-shrink:0; }
-.chmb-row .v { color:var(--wht); font-weight:600; }
-.chmb-row .v a { color:var(--rose2); text-decoration:none; }
-.chmb-row .v a:hover { color:var(--rose3); }
-.chmb-cta {
-  display:flex; gap:10px; margin-top:20px;
-}
-.chmb-map, .chmb-call {
-  flex:1; display:flex; align-items:center; justify-content:center; gap:6px;
-  padding:11px 14px; border-radius:9px; font-size:13px; font-weight:700;
-  text-decoration:none; transition:all .2s; min-height:44px;
-}
-.chmb-map { background:linear-gradient(135deg,var(--rose),var(--indigo)); color:#fff; }
-.chmb-map:hover { transform:translateY(-2px); box-shadow:0 8px 20px rgba(232,96,138,.35); }
-.chmb-call { background:transparent; border:1px solid var(--bd2); color:var(--wht); }
-.chmb-call:hover { background:rgba(232,96,138,.1); }
-
-/* ═══════════════════════════════════
-   BLOG / ARTICLES — NEW (Part 18 fills data)
-═══════════════════════════════════ */
-.blog-sec { background: var(--bg); position:relative; overflow:hidden; }
-.blog-grid {
-  display:grid; grid-template-columns:1fr; gap:22px; margin-top:48px;
-}
-@media(min-width:640px)  { .blog-grid { grid-template-columns:repeat(2,1fr); } }
-@media(min-width:1024px) { .blog-grid { grid-template-columns:repeat(3,1fr); } }
-.blog-card {
-  background: var(--bg2); border:1px solid var(--bd); border-radius:18px;
-  overflow:hidden; cursor:pointer; transition:all .3s; display:flex; flex-direction:column;
-}
-.blog-card:hover { border-color:var(--bd2); transform:translateY(-6px); box-shadow:0 20px 48px rgba(232,96,138,.12); }
-.blog-cov {
-  height:170px; background:linear-gradient(150deg,var(--bg4),var(--bg3));
-  display:flex; align-items:center; justify-content:center; font-size:40px;
-  position:relative; overflow:hidden;
-}
-.blog-cov img { width:100%; height:100%; object-fit:cover; }
-.blog-body { padding:22px; display:flex; flex-direction:column; gap:10px; flex-grow:1; }
-.blog-tag { font-size:11px; font-weight:700; color:var(--rose2); text-transform:uppercase; letter-spacing:.5px; }
-.blog-ttl { font-family:'Syne',sans-serif; font-size:17px; font-weight:700; color:var(--wht); line-height:1.4; }
-.blog-excerpt { font-size:13px; color:var(--sil); line-height:1.65; flex-grow:1; }
-.blog-meta { display:flex; align-items:center; justify-content:space-between; font-size:12px; color:var(--sil2); margin-top:4px; }
-.blog-empty { text-align:center; padding:60px 20px; color:var(--sil); font-size:14px; }
-/* Article modal */
-.blog-modal {
-  display:none; position:fixed; inset:0; z-index:2000;
-  background:rgba(10,5,18,.85); backdrop-filter:blur(6px);
-  align-items:flex-start; justify-content:center; padding:60px 20px; overflow-y:auto;
-}
-.blog-modal.o { display:flex; }
-.blog-modal-card {
-  background:var(--bg2); border:1px solid var(--bd2); border-radius:22px;
-  max-width:720px; width:100%; padding:40px; position:relative;
-}
-.blog-modal-close {
-  position:absolute; top:18px; right:18px; width:36px; height:36px;
-  border-radius:10px; background:rgba(232,96,138,.12); border:1px solid var(--bd2);
-  color:var(--wht); font-size:18px; cursor:pointer; display:flex; align-items:center; justify-content:center;
-}
-.blog-modal-body { font-size:15px; color:var(--sil); line-height:1.85; }
-.blog-modal-body img { max-width:100%; border-radius:12px; margin:14px 0; }
-.blog-modal-body h1,.blog-modal-body h2,.blog-modal-body h3 { font-family:'Syne',sans-serif; color:var(--wht); margin:18px 0 10px; }
-
-/* ═══════════════════════════════════
-   RECOMMENDED DOCTORS — NEW (Part 19 fills data)
-═══════════════════════════════════ */
-.reco-sec { background: var(--bg2); }
-.reco-grid {
-  display:grid; grid-template-columns:1fr; gap:20px; margin-top:48px;
-}
-@media(min-width:640px)  { .reco-grid { grid-template-columns:repeat(2,1fr); } }
-@media(min-width:1024px) { .reco-grid { grid-template-columns:repeat(4,1fr); } }
-.reco-card {
-  background: var(--bg3); border:1px solid var(--bd); border-radius:18px;
-  padding:26px 22px; text-align:center; transition:all .3s;
-}
-.reco-card:hover { border-color:var(--bd2); transform:translateY(-5px); box-shadow:0 18px 40px rgba(20,184,166,.1); }
-.reco-photo {
-  width:74px; height:74px; border-radius:50%; margin:0 auto 16px;
-  background:linear-gradient(135deg,var(--teal),var(--indigo));
-  display:flex; align-items:center; justify-content:center;
-  font-family:'Syne',sans-serif; font-size:22px; font-weight:800; color:#fff;
-  overflow:hidden; border:2px solid rgba(20,184,166,.3);
-}
-.reco-photo img { width:100%; height:100%; object-fit:cover; }
-.reco-name { font-family:'Syne',sans-serif; font-size:16px; font-weight:700; color:var(--wht); }
-.reco-spec { font-size:12px; color:var(--teal2); font-weight:600; margin-top:3px; }
-.reco-note { font-size:12.5px; color:var(--sil); line-height:1.6; margin-top:10px; }
-.reco-contact { font-size:12px; color:var(--sil2); margin-top:12px; }
-.reco-empty { text-align:center; padding:50px 20px; color:var(--sil); font-size:14px; grid-column:1/-1; }
-
-/* ═══════════════════════════════════
    TESTIMONIALS
 ═══════════════════════════════════ */
 .testi { background: var(--bg); position:relative; overflow:hidden; }
@@ -1005,14 +905,6 @@ body.light-mode .mob { background: rgba(255,248,251,.98); }
   border-color:var(--rose); box-shadow:0 0 0 3px rgba(232,96,138,.15);
 }
 .fi-input::placeholder,.fi-ta::placeholder { color:var(--sil2); }
-/* Part 2 — name autocomplete dropdown */
-.name-dropdown { border:1px solid var(--bd); border-top:none; border-radius:0 0 8px 8px; max-height:250px; overflow-y:auto; box-shadow:0 4px 12px rgba(0,0,0,.15); scrollbar-width:thin; scrollbar-color:var(--ind) var(--bg); }
-.name-dropdown::-webkit-scrollbar { width:6px; }
-.name-dropdown::-webkit-scrollbar-track { background:transparent; }
-.name-dropdown::-webkit-scrollbar-thumb { background:var(--ind); border-radius:3px; }
-.name-dropdown-item { padding:10px 14px; border-bottom:1px solid var(--bd); cursor:pointer; transition:background .2s; font-size:13px; line-height:1.5; }
-.name-dropdown-item:last-child { border-bottom:none; }
-.name-dropdown-item:hover { background-color:var(--ind); }
 .fi-sel option { background:var(--bg2); color:var(--wht); }
 .fi-ta { resize:vertical; min-height:100px; }
 .fr {
@@ -1111,12 +1003,24 @@ body.light-mode .mob { background: rgba(255,248,251,.98); }
 .portal-grid {
   display:grid; grid-template-columns:1fr; gap:32px;
 }
-@media(min-width:1024px){ .portal-grid { grid-template-columns:400px 1fr; gap:48px; align-items:start; } }
+@media(min-width:1024px){ .portal-grid.two-col { grid-template-columns:400px 1fr; gap:48px; align-items:start; } }
+/* Bug fix: while logged out, only the login card is visible — the grid
+   must NOT reserve a second empty column (previously always did on
+   desktop, pushing the card to the left with a blank column beside it).
+   The "two-col" class is added by JS only after a successful login. */
+.portal-grid:not(.two-col) { max-width: 460px; margin: 0 auto; }
 
 .p-login {
   background:var(--bg3); border:1px solid rgba(20,184,166,.4);
-  border-radius:22px; padding:36px; position:relative; overflow:hidden;
+  border-radius:22px; padding:40px 36px; position:relative; overflow:hidden;
+  box-shadow: 0 24px 60px rgba(20,184,166,.08);
 }
+.p-login::before{
+  content:''; position:absolute; top:0; left:0; right:0; height:3px;
+  background:linear-gradient(90deg, var(--rose), var(--teal), var(--indigo));
+}
+.p-login h3{ font-family:'Syne',sans-serif; font-size:22px; font-weight:800; margin-bottom:6px; }
+.p-login > p{ font-size:14px; color:var(--sil); margin-bottom:22px; }
 .p-login::before {
   content:''; position:absolute; top:0; left:0; right:0; height:3px;
   background: linear-gradient(90deg, var(--teal), var(--rose), var(--indigo));
@@ -1235,13 +1139,14 @@ body.light-mode .mob { background: rgba(255,248,251,.98); }
   width:32px; height:32px;
   background: linear-gradient(135deg, var(--rose), var(--indigo));
   border-radius:8px; display:flex; align-items:center;
-  justify-content:center; font-size:16px;
+  justify-content:center;
 }
+.f-logo-ico svg{ width:18px; height:18px; display:block; }
 .f-logo-txt {
-  font-family:'Syne',sans-serif;
-  font-size:16px; font-weight:800; color:var(--wht); letter-spacing:.5px;
+  font-family:'Playfair Display','Georgia',serif; font-style:italic;
+  font-size:17px; font-weight:700; color:var(--wht); letter-spacing:.2px;
 }
-.f-logo-txt em { color:var(--rose); font-style:normal; }
+.f-logo-txt em { color:var(--rose); font-style:italic; }
 .f-tag { font-size:12px; color:var(--sil2); margin-bottom:14px; }
 .f-desc { font-size:13px; color:var(--sil2); line-height:1.75; max-width:280px; }
 .f-powered {
@@ -1300,6 +1205,86 @@ body.light-mode .mob { background: rgba(255,248,251,.98); }
   .hero { padding-top:calc(var(--nav-h) + 40px); }
 }
 </style>
+<style id="PART18_19_PUBLIC_STYLES">
+/* ── BLOG GRID ── */
+.blog-grid{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:28px;
+}
+.blog-card{
+  background:var(--bg2);border:1px solid var(--bd);border-radius:16px;overflow:hidden;
+  display:flex;flex-direction:column;cursor:pointer;transition:all .3s ease;
+}
+.blog-card:hover{ border-color:var(--bd2);transform:translateY(-6px);box-shadow:0 20px 44px rgba(232,96,138,.14); }
+.blog-card-cover{ width:100%;height:180px;object-fit:cover;background:var(--bg3); }
+.blog-card-body{ padding:20px 22px 24px;display:flex;flex-direction:column;gap:10px;flex:1; }
+.blog-card-tags{ display:flex;flex-wrap:wrap;gap:6px; }
+.blog-tag{
+  font-size:11px;font-weight:600;padding:3px 10px;border-radius:20px;
+  background:rgba(232,96,138,.1);border:1px solid rgba(232,96,138,.25);color:var(--rose2);
+}
+.blog-card-title{ font-family:'Syne',sans-serif;font-size:18px;font-weight:700;color:var(--wht);line-height:1.35; }
+.blog-card-date{ font-size:12px;color:var(--sil2); }
+.blog-card-read{ font-size:13px;font-weight:600;color:var(--rose2);margin-top:auto; }
+
+/* ── ARTICLE READER OVERLAY ── */
+.blog-reader{
+  display:none;position:fixed;inset:0;z-index:3000;
+  background:rgba(15,10,26,.92);backdrop-filter:blur(10px);
+  overflow-y:auto;padding:40px 20px;
+}
+.blog-reader.on{ display:block; }
+.blog-reader-inner{
+  max-width:760px;margin:0 auto;background:var(--bg2);border:1px solid var(--bd);
+  border-radius:18px;padding:40px;position:relative;
+}
+.blog-reader-close{
+  position:sticky;top:0;float:right;width:38px;height:38px;border-radius:10px;
+  background:rgba(232,96,138,.1);border:1px solid rgba(232,96,138,.25);color:var(--wht);
+  font-size:16px;cursor:pointer;
+}
+#blogReaderContent img{ max-width:100%;border-radius:10px;margin:14px 0; }
+#blogReaderContent h1{ font-family:'Syne',sans-serif;font-size:28px;font-weight:800;color:var(--wht);margin-bottom:8px; }
+#blogReaderContent h2{ font-family:'Syne',sans-serif;font-size:22px;font-weight:700;color:var(--wht);margin:24px 0 10px; }
+#blogReaderContent h3{ font-family:'Syne',sans-serif;font-size:18px;font-weight:700;color:var(--wht);margin:20px 0 8px; }
+#blogReaderContent p{ font-size:15px;color:var(--sil);line-height:1.85;margin-bottom:14px; }
+#blogReaderContent blockquote{
+  border-left:3px solid var(--rose);padding:10px 18px;margin:16px 0;
+  color:var(--rose2);font-style:italic;background:rgba(232,96,138,.05);border-radius:0 8px 8px 0;
+}
+#blogReaderContent ul,#blogReaderContent ol{ margin:0 0 14px 22px;color:var(--sil);font-size:15px;line-height:1.85; }
+.blog-reader-meta{ font-size:12px;color:var(--sil2);margin-bottom:24px; }
+
+@media(max-width:768px){
+  .blog-reader-inner{ padding:24px 18px; }
+}
+
+/* ── RECOMMENDED DOCTORS GRID ── */
+.recdoc-grid{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:24px;
+}
+.recdoc-card{
+  background:var(--bg2);border:1px solid var(--bd);border-radius:16px;padding:26px;
+  text-align:center;transition:all .3s ease;
+}
+.recdoc-card:hover{ border-color:var(--bd-teal);transform:translateY(-6px); }
+.recdoc-photo{
+  width:76px;height:76px;border-radius:50%;object-fit:cover;margin:0 auto 14px;
+  background:var(--bg3);border:2px solid rgba(20,184,166,.3);
+}
+.recdoc-name{ font-family:'Syne',sans-serif;font-size:17px;font-weight:700;color:var(--wht); }
+.recdoc-spec{ font-size:13px;color:var(--teal2);margin-bottom:10px; }
+.recdoc-chamber{ font-size:13px;color:var(--sil);margin-bottom:6px;line-height:1.6; }
+.recdoc-note{ font-size:12px;color:var(--sil2);font-style:italic;margin-bottom:16px; }
+.recdoc-actions{ display:flex;gap:10px;justify-content:center; }
+.recdoc-btn{
+  flex:1;max-width:120px;display:inline-flex;align-items:center;justify-content:center;gap:6px;
+  padding:9px 14px;border-radius:8px;font-size:13px;font-weight:600;text-decoration:none;
+  transition:all .25s ease;
+}
+.recdoc-btn.call{ background:rgba(124,58,237,.12);border:1px solid rgba(124,58,237,.3);color:#C4B5FD; }
+.recdoc-btn.wa{ background:rgba(20,184,166,.12);border:1px solid rgba(20,184,166,.3);color:var(--teal2); }
+.recdoc-btn:hover{ transform:translateY(-2px); }
+</style>
 </head>
 <body>
 
@@ -1311,25 +1296,36 @@ body.light-mode .mob { background: rgba(255,248,251,.98); }
 <nav class="nav" id="nav">
   <div class="wrap">
     <div class="nav-in">
-      <a href="#" class="nav-logo">
-        <div class="logo-mark">🌸</div>
-        <span class="logo-txt" id="navTxt">Dr. Asma<em>.</em></span>
-      </a>
+      <div class="nav-logo">
+        <a href="https://aumatiq.com" target="_blank" rel="noopener" class="logo-mark" aria-label="AUMATIQ — powered by" title="Powered by AUMATIQ">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="aumatiqGoldNav" x1="0" y1="0" x2="24" y2="24" gradientUnits="userSpaceOnUse">
+                <stop offset="0" stop-color="#F8C85D"/>
+                <stop offset="1" stop-color="#F5A623"/>
+              </linearGradient>
+            </defs>
+            <path d="M12 3 L20 20 L15.5 20 L12 12.5 L8.5 20 L4 20 Z" fill="url(#aumatiqGoldNav)"/>
+            <path d="M12 3 L20 20 L15.5 20 L12 12.5 Z" fill="url(#aumatiqGoldNav)" fill-opacity="0.55"/>
+          </svg>
+        </a>
+        <a href="#" class="logo-txt-link" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;">
+          <span class="logo-txt" id="navTxt">Dr. Asma<em>.</em></span>
+        </a>
+      </div>
       <ul class="nav-links">
-        <li><a href="#about" data-i18n="nav.about">About</a></li>
-        <li><a href="#svcs" data-i18n="nav.svcs">Services</a></li>
-        <li><a href="#hrs" data-i18n="nav.hrs">Chambers</a></li>
-        <li><a href="#blog" data-i18n="nav.blog">Blog</a></li>
-        <li><a href="#reco" data-i18n="nav.reco">Doctors</a></li>
-        <li><a href="#faq" data-i18n="nav.faq">FAQ</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#svcs">Services</a></li>
+        <li><a href="#blog">Blog</a></li>
+        <li><a href="#recdocs">Specialists</a></li>
+        <li><a href="#hrs">Hours</a></li>
+        <li><a href="#testi">Reviews</a></li>
+        <li><a href="#faq">FAQ</a></li>
       </ul>
       <div class="nav-ctas">
-        <div class="nav-utils">
-          <button class="util-btn" id="themeBtn" onclick="toggleTheme()" aria-label="Toggle theme" title="Dark/Light"><span class="ic" id="themeIcon">🌙</span></button>
-          <button class="util-btn" id="langBtn" onclick="toggleLang()" aria-label="Toggle language" title="EN/বাংলা"><span id="langLbl">EN</span></button>
-        </div>
-        <button class="nbtn nbtn-out" onclick="scrollTo('#portal')" data-i18n="nav.myrec">👤 My Records</button>
-        <a href="#bk" class="nbtn nbtn-rose" data-i18n="nav.book">📅 Book Appointment</a>
+        <button class="theme-toggle-btn" id="themeToggleBtn" onclick="cycleTheme()" title="Theme পরিবর্তন করুন" aria-label="Toggle dark/light theme">🌙</button>
+        <button class="nbtn nbtn-out" onclick="scrollTo('#portal')">👤 My Records</button>
+        <a href="#bk" class="nbtn nbtn-rose">📅 Book Appointment</a>
       </div>
       <button class="ham" id="ham" aria-label="Menu">
         <span></span><span></span><span></span>
@@ -1337,19 +1333,15 @@ body.light-mode .mob { background: rgba(255,248,251,.98); }
     </div>
   </div>
   <div class="mob" id="mob">
-    <div class="mob-utils">
-      <button class="util-btn" onclick="toggleTheme()"><span class="ic" id="themeIconM">🌙</span></button>
-      <button class="util-btn" onclick="toggleLang()"><span id="langLblM">EN</span></button>
-    </div>
-    <a href="#about"  onclick="cMob()" data-i18n="mob.about">About Doctor</a>
-    <a href="#svcs"   onclick="cMob()" data-i18n="mob.svcs">Services</a>
-    <a href="#hrs"    onclick="cMob()" data-i18n="mob.hrs">Chambers &amp; Locations</a>
-    <a href="#blog"   onclick="cMob()" data-i18n="mob.blog">Doctor's Blog</a>
-    <a href="#reco"   onclick="cMob()" data-i18n="mob.reco">Recommended Doctors</a>
-    <a href="#testi"  onclick="cMob()" data-i18n="mob.testi">Patient Reviews</a>
-    <a href="#faq"    onclick="cMob()" data-i18n="mob.faq">FAQ</a>
-    <a href="#portal" class="mp" onclick="cMob()" data-i18n="mob.portal">👤 Patient Portal</a>
-    <a href="#bk"     class="mc" onclick="cMob()" data-i18n="mob.book">📅 Book Appointment</a>
+    <a href="#about"  onclick="cMob()">About Doctor</a>
+    <a href="#svcs"   onclick="cMob()">Services</a>
+    <a href="#blog"   onclick="cMob()">Blog</a>
+    <a href="#recdocs" onclick="cMob()">Recommended Specialists</a>
+    <a href="#hrs"    onclick="cMob()">Hours &amp; Location</a>
+    <a href="#testi"  onclick="cMob()">Patient Reviews</a>
+    <a href="#faq"    onclick="cMob()">FAQ</a>
+    <a href="#portal" class="mp" onclick="cMob()">👤 Patient Portal</a>
+    <a href="#bk"     class="mc" onclick="cMob()">📅 Book Appointment</a>
   </div>
 </nav>
 
@@ -1362,32 +1354,32 @@ body.light-mode .mob { background: rgba(255,248,251,.98); }
   <div class="hero-glow g3"></div>
   <div class="wrap">
     <div class="hero-content">
-      <div class="hero-badge"><div class="dot"></div> <span data-i18n="hero.badge">Accepting New Patients</span></div>
+      <div class="hero-badge"><div class="dot"></div> Accepting New Patients</div>
       <h1 class="h1">
-        <span class="hw" data-i18n="hero.h1a">Your Health,</span><br>
-        <span class="hw" style="color:var(--rose)" data-i18n="hero.h1b">Our </span>
-        <span class="hw" style="color:var(--teal)" data-i18n="hero.h1c">Priority.</span>
+        <span class="hw">Your Health,</span><br>
+        <span class="hw" style="color:var(--rose)">Our </span>
+        <span class="hw" style="color:var(--teal)">Priority.</span>
       </h1>
       <p class="hero-sub" id="heroSub">Expert medical care delivered with compassion. Book your appointment in minutes — secure, simple, and online.</p>
       <div class="hero-ctas">
-        <a href="#bk" class="btn-rose" data-i18n="hero.book">📅 Book Appointment</a>
-        <button class="btn-ghost" onclick="scrollTo('#portal')" data-i18n="hero.myrec">My Records →</button>
+        <a href="#bk" class="btn-rose">📅 Book Appointment</a>
+        <button class="btn-ghost" onclick="scrollTo('#portal')">My Records →</button>
       </div>
       <div class="hero-stats">
         <div>
           <div class="hstat-num" id="hsYears">—</div>
-          <div class="hstat-lbl" data-i18n="hero.stat1">Years Experience</div>
+          <div class="hstat-lbl">Years Experience</div>
         </div>
         <div>
           <div class="hstat-num">5,000+</div>
-          <div class="hstat-lbl" data-i18n="hero.stat2">Patients Served</div>
+          <div class="hstat-lbl">Patients Served</div>
         </div>
         <div>
           <div class="hstat-num">70%</div>
-          <div class="hstat-lbl" data-i18n="hero.stat3">Fewer No-Shows</div>
+          <div class="hstat-lbl">Fewer No-Shows</div>
         </div>
         <div>
-          <div class="online-pill" data-i18n="hero.stat4">Booking Open Now</div>
+          <div class="online-pill">Booking Open Now</div>
         </div>
       </div>
     </div>
@@ -1401,29 +1393,31 @@ body.light-mode .mob { background: rgba(255,248,251,.98); }
   <div class="wrap">
     <div class="about-grid">
       <div class="doc-card rv">
-        <div class="doc-photo" id="docPhotoWrap"><span style="font-family:'Syne',sans-serif;font-size:56px;font-weight:800;background:linear-gradient(135deg,var(--rose),var(--teal));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">AK</span></div>
-        <div class="doc-deco">
-          <div class="doc-name" id="docName">Dr. <span>Asma</span></div>
-          <div class="doc-spec" id="docSpec">Gynaecologist &amp; Obstetrician</div>
+        <div class="doc-photo-wrap">
+          <div class="doc-photo" id="docPhotoWrap">👩‍⚕️</div>
+          <div class="doc-deco">
+            <div class="doc-name" id="docName">Dr. <span>Asma</span></div>
+            <div class="doc-spec" id="docSpec">General Physician &amp; Women's Health</div>
+          </div>
         </div>
         <div class="doc-creds" id="docCreds">
           <span class="ctag r">MBBS</span>
-          <span class="ctag t">Gynaecology &amp; Obstetrics</span>
-          <span class="ctag i">Laparoscopic Surgeon</span>
+          <span class="ctag t">Women's Health</span>
+          <span class="ctag i">General Medicine</span>
         </div>
       </div>
       <div class="rv">
-        <span class="lbl" data-i18n="about.lbl">About Your Doctor</span>
+        <span class="lbl">About Your Doctor</span>
         <h2 class="ttl" id="aboutTtl">Meet <span class="r">Dr. Asma</span></h2>
-        <p class="about-bio" id="aboutBio">Assistant Professor (Obs &amp; Gynae) at Khulna Medical College Hospital, specializing in gynaecology, obstetrics, and laparoscopic surgery. Experienced in infertility treatment, IUI, high-risk pregnancy, gynaecological cancer, and painless normal delivery — treating every patient with care, clarity, and respect.</p>
+        <p class="about-bio" id="aboutBio">A dedicated physician committed to providing compassionate, personalized healthcare. With years of experience in general medicine and women's health, Dr. Asma treats every patient as an individual — listening, diagnosing, and guiding you toward better health.</p>
         <div class="feat-grid">
-          <div class="feat"><div class="ficon">🏆</div><div><h4 data-i18n="about.f1t">Board Certified</h4><p data-i18n="about.f1d">MBBS, MS, BCS (Health)</p></div></div>
-          <div class="feat"><div class="ficon">💗</div><div><h4 data-i18n="about.f2t">Women's Health</h4><p data-i18n="about.f2d">Gynaecology &amp; obstetrics specialist</p></div></div>
-          <div class="feat"><div class="ficon">🔬</div><div><h4 data-i18n="about.f3t">Laparoscopic Surgery</h4><p data-i18n="about.f3d">Advanced minimally-invasive care</p></div></div>
-          <div class="feat"><div class="ficon">🌐</div><div><h4 data-i18n="about.f4t">Digital Records</h4><p data-i18n="about.f4d">Secure online access 24/7</p></div></div>
+          <div class="feat"><div class="ficon">🏆</div><div><h4>Board Certified</h4><p>Qualified with top credentials</p></div></div>
+          <div class="feat"><div class="ficon">💗</div><div><h4>Women's Health</h4><p>Specialist care for women</p></div></div>
+          <div class="feat"><div class="ficon">🔬</div><div><h4>Modern Care</h4><p>Evidence-based treatment</p></div></div>
+          <div class="feat"><div class="ficon">🌐</div><div><h4>Digital Records</h4><p>Secure online access 24/7</p></div></div>
         </div>
         <div style="margin-top:28px;">
-          <a href="#bk" class="btn-rose" style="display:inline-flex;animation:none;width:auto;padding:13px 28px;" data-i18n="about.cta">
+          <a href="#bk" class="btn-rose" style="display:inline-flex;animation:none;width:auto;padding:13px 28px;">
             Book a Consultation →
           </a>
         </div>
@@ -1438,9 +1432,9 @@ body.light-mode .mob { background: rgba(255,248,251,.98); }
 <section class="svcs sec" id="svcs">
   <div class="wrap" style="position:relative;z-index:1;">
     <div class="cx">
-      <span class="lbl" data-i18n="svcs.lbl">Our Services</span>
-      <h2 class="ttl" data-i18n="svcs.ttl">What We <span class="r">Treat</span></h2>
-      <p class="sub" data-i18n="svcs.sub">Comprehensive healthcare tailored for women and families — delivered with expertise and warmth.</p>
+      <span class="lbl">Our Services</span>
+      <h2 class="ttl">What We <span class="r">Treat</span></h2>
+      <p class="sub">Comprehensive healthcare tailored for women and families — delivered with expertise and warmth.</p>
     </div>
     <div class="svc-grid">
       <div class="svc-card rv"><div class="svc-ico">🩺</div><span class="svc-badge">General Medicine</span><div class="svc-ttl">General Consultation</div><p class="svc-desc">Complete physical exams, health screenings, and medical advice for all ages — children, adults, and seniors.</p></div>
@@ -1459,8 +1453,8 @@ body.light-mode .mob { background: rgba(255,248,251,.98); }
 <section class="stats sec" id="results">
   <div class="wrap">
     <div class="cx" style="margin-bottom:56px;position:relative;z-index:1;">
-      <span class="lbl teal" style="border-color:rgba(20,184,166,.35);" data-i18n="stats.lbl">Why Patients Choose Us</span>
-      <h2 class="ttl" style="color:#fff;" data-i18n="stats.ttl">Numbers That <span class="t">Speak</span></h2>
+      <span class="lbl teal" style="border-color:rgba(20,184,166,.35);">Why Patients Choose Us</span>
+      <h2 class="ttl" style="color:#fff;">Numbers That <span class="t">Speak</span></h2>
     </div>
     <div class="stat-grid" id="statGrid">
       <div class="stat-card"><div class="sico">⏱️</div><div class="snum" data-t="15" data-s=" min">0</div><div class="slbl">Average Wait Time</div><div class="ssub">With online booking</div></div>
@@ -1472,137 +1466,31 @@ body.light-mode .mob { background: rgba(255,248,251,.98); }
 </section>
 
 <!-- ══════════════════════════════════
-  CHAMBERS & LOCATIONS (two chambers)
+  HOURS & LOCATION
 ══════════════════════════════════ -->
 <section class="hrs sec" id="hrs">
   <div class="wrap">
     <div class="cx" style="margin-bottom:48px;">
-      <span class="lbl" data-i18n="hrs.lbl">Visit Us</span>
-      <h2 class="ttl" data-i18n="hrs.ttl">Chambers &amp; <span class="t">Locations</span></h2>
-      <p class="sub" data-i18n="hrs.sub">Two chambers in Khulna. Walk-ins welcome during visiting hours — online booking available 24/7.</p>
+      <span class="lbl">Visit Us</span>
+      <h2 class="ttl">Hours &amp; <span class="t">Location</span></h2>
+      <p class="sub">Walk-ins welcome during open hours. Online booking available 24/7.</p>
     </div>
-    <div class="chmb-grid" id="chmbGrid">
-      <div class="chmb-card rv">
-        <span class="chmb-badge">🏥 Chamber 1</span>
-        <div class="chmb-name" id="c1Name">Islami Bank Hospital, Khulna</div>
-        <div class="chmb-addr" id="c1Addr">42 Khan Jahan Ali Road, Khulna</div>
-        <div class="chmb-row"><span class="ic">🕐</span><span class="k" data-i18n="hrs.hours">Hours</span><span class="v" id="c1Hours">3:00 PM – 5:00 PM</span></div>
-        <div class="chmb-row"><span class="ic">☎️</span><span class="k" data-i18n="hrs.serial">Serial</span><span class="v" id="c1Serial"><a href="tel:01712068684">01712-068684</a></span></div>
-        <div class="chmb-cta">
-          <a href="#" id="c1Map" target="_blank" class="chmb-map" data-i18n="hrs.directions">📍 Get Directions</a>
-          <a href="#" id="c1Call" class="chmb-call" data-i18n="hrs.call">Call Serial</a>
+    <div class="hrs-grid">
+      <div class="hrs-card rv">
+        <h3>🕐 Working Hours</h3>
+        <div id="hrsTable"><div class="hrow"><span class="hday">Loading...</span></div></div>
+        <div style="margin-top:18px;padding:14px 16px;background:rgba(20,184,166,.07);border:1px solid rgba(20,184,166,.2);border-radius:12px;font-size:13px;color:var(--sil);">
+          💡 <strong style="color:var(--wht);">Online booking is open 24/7</strong> — book any time, even outside clinic hours.
         </div>
       </div>
-      <div class="chmb-card c2 rv">
-        <span class="chmb-badge">🏥 Chamber 2</span>
-        <div class="chmb-name" id="c2Name">Doctors Point Specialized Hospital</div>
-        <div class="chmb-addr" id="c2Addr">49 KDA Avenue, Khulna</div>
-        <div class="chmb-row"><span class="ic">🕐</span><span class="k" data-i18n="hrs.hours">Hours</span><span class="v" id="c2Hours">5:00 PM – 7:00 PM</span></div>
-        <div class="chmb-row"><span class="ic">☎️</span><span class="k" data-i18n="hrs.serial">Serial</span><span class="v" id="c2Serial"><a href="tel:01795383803">01795-383803</a></span></div>
-        <div class="chmb-cta">
-          <a href="#" id="c2Map" target="_blank" class="chmb-map" data-i18n="hrs.directions">📍 Get Directions</a>
-          <a href="#" id="c2Call" class="chmb-call" data-i18n="hrs.call">Call Serial</a>
+      <div class="rv">
+        <h3 style="font-family:'Syne',sans-serif;font-size:22px;font-weight:700;margin-bottom:20px;">📍 Contact &amp; Location</h3>
+        <div class="ci-list">
+          <div class="ci-item"><div class="ci-ico">📍</div><div><div class="ci-lbl">Address</div><div class="ci-val" id="ciAddr">—</div></div></div>
+          <div class="ci-item"><div class="ci-ico">📞</div><div><div class="ci-lbl">Phone</div><div class="ci-val" id="ciPhone">—</div></div></div>
+          <div class="ci-item"><div class="ci-ico">✉️</div><div><div class="ci-lbl">Email</div><div class="ci-val" id="ciEmail">clinic.drasma@gmail.com</div></div></div>
+          <div class="ci-item" style="border-color:rgba(232,96,138,.3);background:rgba(232,96,138,.03);"><div class="ci-ico" style="background:rgba(232,96,138,.12);border-color:rgba(232,96,138,.25);">💬</div><div><div class="ci-lbl">WhatsApp</div><div class="ci-val" id="ciWa">—</div></div></div>
         </div>
-      </div>
-    </div>
-    <div class="rv" style="margin-top:32px;">
-      <h3 style="font-family:'Syne',sans-serif;font-size:18px;font-weight:700;margin-bottom:16px;" data-i18n="hrs.general">📍 General Contact</h3>
-      <div class="ci-list" style="display:grid;grid-template-columns:1fr;gap:12px;">
-        <div class="ci-item"><div class="ci-ico">📞</div><div><div class="ci-lbl" data-i18n="hrs.phone">Phone</div><div class="ci-val" id="ciPhone">—</div></div></div>
-        <div class="ci-item"><div class="ci-ico">✉️</div><div><div class="ci-lbl" data-i18n="hrs.email">Email</div><div class="ci-val" id="ciEmail">clinic.drasma@gmail.com</div></div></div>
-        <div class="ci-item" style="border-color:rgba(232,96,138,.3);background:rgba(232,96,138,.03);"><div class="ci-ico" style="background:rgba(232,96,138,.12);border-color:rgba(232,96,138,.25);">💬</div><div><div class="ci-lbl">WhatsApp</div><div class="ci-val" id="ciWa">—</div></div></div>
-      </div>
-      <div style="margin-top:18px;padding:14px 16px;background:rgba(20,184,166,.07);border:1px solid rgba(20,184,166,.2);border-radius:12px;font-size:13px;color:var(--sil);">
-        💡 <strong style="color:var(--wht);" data-i18n="hrs.note">Online booking is open 24/7</strong> <span data-i18n="hrs.note2">— book any time, even outside chamber hours.</span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ══════════════════════════════════
-  DOCTOR'S BLOG (full module in Part 18)
-══════════════════════════════════ -->
-<section class="blog-sec sec" id="blog">
-  <div class="wrap">
-    <div class="cx">
-      <span class="lbl" data-i18n="blog.lbl">Health Insights</span>
-      <h2 class="ttl" data-i18n="blog.ttl">Doctor's <span class="r">Blog</span></h2>
-      <p class="sub" data-i18n="blog.sub">Articles and guidance from Dr. Asma on women's health, pregnancy, and general wellbeing.</p>
-    </div>
-    <div class="blog-grid" id="blogGrid">
-      <div class="blog-card rv" onclick="openBlogDemo(1)">
-        <div class="blog-cov">🤰</div>
-        <div class="blog-body">
-          <span class="blog-tag" data-i18n="blog.demo1tag">Pregnancy</span>
-          <div class="blog-ttl" data-i18n="blog.demo1ttl">Understanding Your First Trimester</div>
-          <p class="blog-excerpt" data-i18n="blog.demo1ex">What to expect, common symptoms, and when to see your doctor during the first three months.</p>
-          <div class="blog-meta"><span data-i18n="blog.demoRead">4 min read</span><span data-i18n="blog.demoSoon">Sample — real posts coming soon</span></div>
-        </div>
-      </div>
-      <div class="blog-card rv" onclick="openBlogDemo(2)">
-        <div class="blog-cov">🌸</div>
-        <div class="blog-body">
-          <span class="blog-tag" data-i18n="blog.demo2tag">Women's Health</span>
-          <div class="blog-ttl" data-i18n="blog.demo2ttl">PCOS: Signs, Diagnosis &amp; Care</div>
-          <p class="blog-excerpt" data-i18n="blog.demo2ex">A simple guide to recognising PCOS symptoms and the treatment options available.</p>
-          <div class="blog-meta"><span data-i18n="blog.demoRead">5 min read</span><span data-i18n="blog.demoSoon">Sample — real posts coming soon</span></div>
-        </div>
-      </div>
-      <div class="blog-card rv" onclick="openBlogDemo(3)">
-        <div class="blog-cov">💗</div>
-        <div class="blog-body">
-          <span class="blog-tag" data-i18n="blog.demo3tag">Wellness</span>
-          <div class="blog-ttl" data-i18n="blog.demo3ttl">Painless Normal Delivery — Myths vs Facts</div>
-          <p class="blog-excerpt" data-i18n="blog.demo3ex">Clearing up common misconceptions about painless delivery options.</p>
-          <div class="blog-meta"><span data-i18n="blog.demoRead">3 min read</span><span data-i18n="blog.demoSoon">Sample — real posts coming soon</span></div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-<div class="blog-modal" id="blogModal">
-  <div class="blog-modal-card">
-    <button class="blog-modal-close" onclick="closeBlogModal()">✕</button>
-    <span class="blog-tag" id="bmTag"></span>
-    <h2 class="ttl" style="margin-top:8px;" id="bmTtl"></h2>
-    <div class="blog-modal-body" id="bmBody"></div>
-  </div>
-</div>
-
-<!-- ══════════════════════════════════
-  RECOMMENDED DOCTORS (full module in Part 19)
-══════════════════════════════════ -->
-<section class="reco-sec sec" id="reco">
-  <div class="wrap">
-    <div class="cx">
-      <span class="lbl teal" data-i18n="reco.lbl">Trusted Network</span>
-      <h2 class="ttl" data-i18n="reco.ttl">Recommended <span class="t">Doctors</span></h2>
-      <p class="sub" data-i18n="reco.sub">Specialists Dr. Asma personally trusts and refers patients to when needed.</p>
-    </div>
-    <div class="reco-grid" id="recoGrid">
-      <div class="reco-card rv">
-        <div class="reco-photo">RH</div>
-        <div class="reco-name">Dr. Rafiqul Haque</div>
-        <div class="reco-spec" data-i18n="reco.demo1spec">Paediatrician</div>
-        <p class="reco-note" data-i18n="reco.demo1note">Sample entry — real recommended doctors will appear here.</p>
-      </div>
-      <div class="reco-card rv">
-        <div class="reco-photo">SN</div>
-        <div class="reco-name">Dr. Shirin Nahar</div>
-        <div class="reco-spec" data-i18n="reco.demo2spec">Radiologist &amp; Sonologist</div>
-        <p class="reco-note" data-i18n="reco.demo2note">Sample entry — real recommended doctors will appear here.</p>
-      </div>
-      <div class="reco-card rv">
-        <div class="reco-photo">KI</div>
-        <div class="reco-name">Dr. Kamal Islam</div>
-        <div class="reco-spec" data-i18n="reco.demo3spec">Anaesthesiologist</div>
-        <p class="reco-note" data-i18n="reco.demo3note">Sample entry — real recommended doctors will appear here.</p>
-      </div>
-      <div class="reco-card rv">
-        <div class="reco-photo">FA</div>
-        <div class="reco-name">Dr. Farzana Akter</div>
-        <div class="reco-spec" data-i18n="reco.demo4spec">Endocrinologist</div>
-        <p class="reco-note" data-i18n="reco.demo4note">Sample entry — real recommended doctors will appear here.</p>
       </div>
     </div>
   </div>
@@ -1614,9 +1502,9 @@ body.light-mode .mob { background: rgba(255,248,251,.98); }
 <section class="testi sec" id="testi">
   <div class="wrap" style="position:relative;z-index:1;">
     <div class="cx" style="margin-bottom:52px;">
-      <span class="lbl" data-i18n="testi.lbl">Patient Reviews</span>
-      <h2 class="ttl" data-i18n="testi.ttl">What Patients <span class="r">Say</span></h2>
-      <p class="sub" data-i18n="testi.sub">Real feedback from patients who trust us with their health.</p>
+      <span class="lbl">Patient Reviews</span>
+      <h2 class="ttl">What Patients <span class="r">Say</span></h2>
+      <p class="sub">Real feedback from patients who trust us with their health.</p>
     </div>
     <div class="t-grid">
       <div class="tc rv"><div class="tqm">"</div><div class="tstars">★★★★★</div><p class="tq">Booking online was so easy. I got my appointment confirmed immediately with a Patient ID. The doctor listened to everything and explained my condition clearly.</p><div class="tdiv"></div><div class="tpc"><div class="tav">RK</div><div><div class="tn">Rashida K.</div><div class="tr">Patient since 2024</div></div></div></div>
@@ -1628,23 +1516,63 @@ body.light-mode .mob { background: rgba(255,248,251,.98); }
 </section>
 
 <!-- ══════════════════════════════════
+  BLOG / ARTICLES  (Part 18)
+══════════════════════════════════ -->
+<section class="blog sec" id="blog">
+  <div class="wrap" style="position:relative;z-index:1;">
+    <div class="cx" style="margin-bottom:40px;">
+      <span class="lbl">Health Articles</span>
+      <h2 class="ttl">From the <span class="r">Doctor's Desk</span></h2>
+      <p class="sub">Tips, insights, and health guidance written by Dr. Asma for you and your family.</p>
+    </div>
+    <div class="blog-grid" id="blogGrid">
+      <p style="text-align:center;color:var(--sil2);font-size:13px;grid-column:1/-1;">Loading articles...</p>
+    </div>
+  </div>
+</section>
+
+<!-- Full Article Reader Overlay -->
+<div class="blog-reader" id="blogReader">
+  <div class="blog-reader-inner">
+    <button class="blog-reader-close" onclick="closeArticleReader()" aria-label="Close">✕</button>
+    <div id="blogReaderContent"><p style="color:var(--sil);">Loading...</p></div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════
+  RECOMMENDED DOCTORS  (Part 19)
+══════════════════════════════════ -->
+<section class="recdocs sec" id="recdocs">
+  <div class="wrap">
+    <div class="cx" style="margin-bottom:40px;">
+      <span class="lbl teal" style="border-color:rgba(20,184,166,.35);">Trusted Network</span>
+      <h2 class="ttl">Doctors We <span class="t">Recommend</span></h2>
+      <p class="sub">Specialists Dr. Asma personally refers her patients to for further care.</p>
+    </div>
+    <div class="recdoc-grid" id="recDocPubGrid">
+      <p style="text-align:center;color:var(--sil2);font-size:13px;grid-column:1/-1;">Loading...</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════
   FAQ
 ══════════════════════════════════ -->
 <section class="faq-sec sec" id="faq">
   <div class="wrap">
     <div class="faq-wrap">
       <div class="cx">
-        <span class="lbl" data-i18n="faq.lbl">FAQ</span>
-        <h2 class="ttl" data-i18n="faq.ttl">Questions <span class="r">Answered</span></h2>
-        <p class="sub" data-i18n="faq.sub">Everything you need to know before your visit.</p>
+        <span class="lbl">FAQ</span>
+        <h2 class="ttl">Questions <span class="r">Answered</span></h2>
+        <p class="sub">Everything you need to know before your visit.</p>
       </div>
       <div class="faq-list">
-        <div class="fi rv"><button class="fq"><span data-i18n="faq.q1">How do I book an appointment?</span><div class="fi-ico"><svg viewBox="0 0 14 14"><polyline points="2 4 7 10 12 4"/></svg></div></button><div class="fa"><p data-i18n="faq.a1">Scroll to the <strong>Book Appointment</strong> section below. Select a date, pick an available time slot, fill in your details, and confirm. You'll receive a <strong>Patient ID</strong> instantly — save it to access your records.</p></div></div>
-        <div class="fi rv"><button class="fq"><span data-i18n="faq.q2">What is a Patient ID?</span><div class="fi-ico"><svg viewBox="0 0 14 14"><polyline points="2 4 7 10 12 4"/></svg></div></button><div class="fa"><p data-i18n="faq.a2">Your <strong>Patient ID</strong> (format: PT-2026-0001) is assigned automatically when you book your first appointment. Use it with your registered phone number to log into the <strong>Patient Portal</strong> and view your appointments, test results, and health records.</p></div></div>
-        <div class="fi rv"><button class="fq"><span data-i18n="faq.q3">How do I access my test results?</span><div class="fi-ico"><svg viewBox="0 0 14 14"><polyline points="2 4 7 10 12 4"/></svg></div></button><div class="fa"><p data-i18n="faq.a3">Click <strong>My Records</strong> in the navigation or scroll to the Patient Portal section. Log in with your Patient ID and phone number. Doctor-approved results appear there for download. You can also upload your own scan files for doctor review.</p></div></div>
-        <div class="fi rv"><button class="fq"><span data-i18n="faq.q4">Can I cancel or reschedule?</span><div class="fi-ico"><svg viewBox="0 0 14 14"><polyline points="2 4 7 10 12 4"/></svg></div></button><div class="fa"><p data-i18n="faq.a4">Please contact us via <strong>phone or WhatsApp</strong> at least 2 hours before your scheduled appointment. Our team will find you a new suitable slot. Walk-ins are also welcome during open chamber hours.</p></div></div>
-        <div class="fi rv"><button class="fq"><span data-i18n="faq.q5">Is my medical data secure?</span><div class="fi-ico"><svg viewBox="0 0 14 14"><polyline points="2 4 7 10 12 4"/></svg></div></button><div class="fa"><p data-i18n="faq.a5">Yes. All data is stored securely via <strong>Google Workspace</strong>. Your records are accessible only with your unique Patient ID + phone number. Test results remain private until explicitly approved by the doctor. We never share patient data with third parties.</p></div></div>
-        <div class="fi rv"><button class="fq"><span data-i18n="faq.q6">What should I bring to my first visit?</span><div class="fi-ico"><svg viewBox="0 0 14 14"><polyline points="2 4 7 10 12 4"/></svg></div></button><div class="fa"><p data-i18n="faq.a6">Bring your <strong>National ID</strong>, any previous medical records or test results, a list of current medications, and your appointment confirmation (Patient ID). Arriving <strong>10 minutes early</strong> ensures a smooth check-in.</p></div></div>
+        <div class="fi rv"><button class="fq"><span>How do I book an appointment?</span><div class="fi-ico"><svg viewBox="0 0 14 14"><polyline points="2 4 7 10 12 4"/></svg></div></button><div class="fa"><p>Scroll to the <strong>Book Appointment</strong> section below. Select a date, pick an available time slot, fill in your details, and confirm. You'll receive a <strong>Patient ID</strong> instantly — save it to access your records.</p></div></div>
+        <div class="fi rv"><button class="fq"><span>What is a Patient ID?</span><div class="fi-ico"><svg viewBox="0 0 14 14"><polyline points="2 4 7 10 12 4"/></svg></div></button><div class="fa"><p>Your <strong>Patient ID</strong> (format: PT-2026-0001) is assigned automatically when you book your first appointment. Use it with your registered phone number to log into the <strong>Patient Portal</strong> and view your appointments, test results, and health records.</p></div></div>
+        <div class="fi rv"><button class="fq"><span>How do I access my test results?</span><div class="fi-ico"><svg viewBox="0 0 14 14"><polyline points="2 4 7 10 12 4"/></svg></div></button><div class="fa"><p>Click <strong>My Records</strong> in the navigation or scroll to the Patient Portal section. Log in with your Patient ID and phone number. Doctor-approved results appear there for download. You can also upload your own scan files for doctor review.</p></div></div>
+        <div class="fi rv"><button class="fq"><span>Can I cancel or reschedule?</span><div class="fi-ico"><svg viewBox="0 0 14 14"><polyline points="2 4 7 10 12 4"/></svg></div></button><div class="fa"><p>Please contact us via <strong>phone or WhatsApp</strong> at least 2 hours before your scheduled appointment. Our team will find you a new suitable slot. Walk-ins are also welcome during open clinic hours.</p></div></div>
+        <div class="fi rv"><button class="fq"><span>Is my medical data secure?</span><div class="fi-ico"><svg viewBox="0 0 14 14"><polyline points="2 4 7 10 12 4"/></svg></div></button><div class="fa"><p>Yes. All data is stored securely via <strong>Google Workspace</strong>. Your records are accessible only with your unique Patient ID + phone number. Test results remain private until explicitly approved by the doctor. We never share patient data with third parties.</p></div></div>
+        <div class="fi rv"><button class="fq"><span>What should I bring to my first visit?</span><div class="fi-ico"><svg viewBox="0 0 14 14"><polyline points="2 4 7 10 12 4"/></svg></div></button><div class="fa"><p>Bring your <strong>National ID</strong>, any previous medical records or test results, a list of current medications, and your appointment confirmation (Patient ID). Arriving <strong>10 minutes early</strong> ensures a smooth check-in.</p></div></div>
       </div>
     </div>
   </div>
@@ -1658,31 +1586,31 @@ body.light-mode .mob { background: rgba(255,248,251,.98); }
     <div class="bk-grid">
       <!-- Left: Form -->
       <div>
-        <span class="lbl" data-i18n="bk.lbl">Online Booking</span>
-        <h2 class="ttl" data-i18n="bk.ttl">Book Your <span class="r">Appointment</span></h2>
-        <p class="sub" style="margin-bottom:36px;" data-i18n="bk.sub">Free, instant online scheduling. Confirmation in seconds.</p>
+        <span class="lbl">Online Booking</span>
+        <h2 class="ttl">Book Your <span class="r">Appointment</span></h2>
+        <p class="sub" style="margin-bottom:36px;">Free, instant online scheduling. Confirmation in seconds.</p>
         <div id="bkMsg"></div>
         <div class="bk-card" id="bkCard">
           <div class="sdots">
             <div class="sd a" id="sd1"></div>
             <div class="sd" id="sd2"></div>
-            <span class="slbl" id="sLbl" data-i18n="bk.step1">Step 1 of 2 — Date &amp; Time</span>
+            <span class="slbl" id="sLbl">Step 1 of 2 — Date &amp; Time</span>
           </div>
           <!-- Step 1 -->
           <div id="s1">
             <div class="fg">
-              <label class="fl" data-i18n="bk.date">Preferred Date</label>
+              <label class="fl">Preferred Date</label>
               <input type="date" id="bkDate" class="fi-input" onchange="loadSlots()" min="">
             </div>
             <div id="slotArea" class="hide">
-              <span class="slot-lbl" data-i18n="bk.slots">Available Time Slots</span>
+              <span class="slot-lbl">Available Time Slots</span>
               <div class="sg" id="sg"></div>
               <input type="hidden" id="selSlot">
             </div>
             <div id="slotLoad" class="hide" style="color:var(--sil);font-size:13px;margin:10px 0;">
-              <span class="spin" style="vertical-align:middle;margin-right:6px;"></span> <span data-i18n="bk.loading">Loading available slots...</span>
+              <span class="spin" style="vertical-align:middle;margin-right:6px;"></span> Loading available slots...
             </div>
-            <button class="btn-submit" id="toS2" onclick="goS2()" disabled data-i18n="bk.continue">
+            <button class="btn-submit" id="toS2" onclick="goS2()" disabled>
               Continue — Select Time →
             </button>
           </div>
@@ -1690,30 +1618,30 @@ body.light-mode .mob { background: rgba(255,248,251,.98); }
           <div id="s2" class="hide">
             <div class="al al-inf" id="dtSum"></div>
             <div class="fr">
-              <div class="fg"><label class="fl" data-i18n="bk.name">Full Name *</label><input type="text" id="bkN" class="fi-input" placeholder="Your full name"></div>
-              <div class="fg"><label class="fl" data-i18n="bk.phone">Phone Number *</label><input type="tel" id="bkP" class="fi-input" placeholder="01XXXXXXXXX"></div>
+              <div class="fg"><label class="fl">Full Name *</label><input type="text" id="bkN" class="fi-input" placeholder="Your full name"></div>
+              <div class="fg"><label class="fl">Phone Number *</label><input type="tel" id="bkP" class="fi-input" placeholder="01XXXXXXXXX"></div>
             </div>
             <div class="fr">
-              <div class="fg"><label class="fl" data-i18n="bk.age">Age</label><input type="number" id="bkA" class="fi-input" placeholder="Age" min="1" max="120"></div>
-              <div class="fg"><label class="fl" data-i18n="bk.gender">Gender</label><select id="bkG" class="fi-sel"><option value="">Select</option></select></div>
+              <div class="fg"><label class="fl">Age</label><input type="number" id="bkA" class="fi-input" placeholder="Age" min="1" max="120"></div>
+              <div class="fg"><label class="fl">Gender</label><select id="bkG" class="fi-sel"><option value="">Select</option></select></div>
             </div>
-            <div class="fg"><label class="fl" data-i18n="bk.reason">Reason for Visit</label><textarea id="bkR" class="fi-ta" placeholder="Briefly describe your symptoms or reason for consultation..."></textarea></div>
+            <div class="fg"><label class="fl">Reason for Visit</label><textarea id="bkR" class="fi-ta" placeholder="Briefly describe your symptoms or reason for consultation..."></textarea></div>
             <div style="display:flex;gap:12px;margin-top:4px;">
-              <button class="btn-back" onclick="goS1()" data-i18n="bk.back">← Back</button>
-              <button class="btn-submit" id="cnfBtn" onclick="cnfBook()" style="margin-top:0;" data-i18n="bk.confirm">Confirm Appointment →</button>
+              <button class="btn-back" onclick="goS1()">← Back</button>
+              <button class="btn-submit" id="cnfBtn" onclick="cnfBook()" style="margin-top:0;">Confirm Appointment →</button>
             </div>
           </div>
         </div>
       </div>
       <!-- Right: Info -->
       <div class="bk-info">
-        <div class="bi rose"><div class="bi-ico">⚡</div><div><div class="bi-t" data-i18n="bk.i1t">Instant Confirmation</div><div class="bi-d" data-i18n="bk.i1d">Your Patient ID and appointment details appear immediately after booking.</div></div></div>
-        <div class="bi tl"><div class="bi-ico">🔔</div><div><div class="bi-t" data-i18n="bk.i2t">Automatic Reminders</div><div class="bi-d" data-i18n="bk.i2d">Receive reminders before your appointment so you never miss a visit.</div></div></div>
-        <div class="bi"><div class="bi-ico">📱</div><div><div class="bi-t" data-i18n="bk.i3t">Digital Records</div><div class="bi-d" data-i18n="bk.i3d">Access all your test results and history via your Patient Portal using your Patient ID.</div></div></div>
-        <div class="bi rose"><div class="bi-ico">💬</div><div><div class="bi-t" data-i18n="bk.i4t">Need Help?</div><div class="bi-d" data-i18n="bk.i4d">Call or message us on WhatsApp.<br><a id="waHelpLink" href="https://wa.me/880" target="_blank">Chat on WhatsApp →</a></div></div></div>
+        <div class="bi rose"><div class="bi-ico">⚡</div><div><div class="bi-t">Instant Confirmation</div><div class="bi-d">Your Patient ID and appointment details appear immediately after booking.</div></div></div>
+        <div class="bi tl"><div class="bi-ico">🔔</div><div><div class="bi-t">Automatic Reminders</div><div class="bi-d">Receive reminders before your appointment so you never miss a visit.</div></div></div>
+        <div class="bi"><div class="bi-ico">📱</div><div><div class="bi-t">Digital Records</div><div class="bi-d">Access all your test results and history via your Patient Portal using your Patient ID.</div></div></div>
+        <div class="bi rose"><div class="bi-ico">💬</div><div><div class="bi-t">Need Help?</div><div class="bi-d">Call or message us on WhatsApp.<br><a id="waHelpLink" href="https://wa.me/880" target="_blank">Chat on WhatsApp →</a></div></div></div>
         <div style="padding:18px;background:rgba(232,96,138,.05);border:1px solid var(--bd);border-radius:14px;font-size:13px;color:var(--sil);">
           <strong style="color:var(--wht);">📧 clinic.drasma@gmail.com</strong><br>
-          <span data-i18n="bk.emailNote">Reach us anytime via email for non-urgent queries.</span>
+          Reach us anytime via email for non-urgent queries.
         </div>
       </div>
     </div>
@@ -1726,58 +1654,26 @@ body.light-mode .mob { background: rgba(255,248,251,.98); }
 <section class="portal-sec sec" id="portal">
   <div class="wrap">
     <div class="cx" style="margin-bottom:48px;">
-      <span class="lbl teal" data-i18n="portal.lbl">Patient Portal</span>
-      <h2 class="ttl" data-i18n="portal.ttl">My <span class="t">Health Records</span></h2>
-      <p class="sub" data-i18n="portal.sub2">Log in with your name and mobile number to access your medical records, appointments, and test results.</p>
+      <span class="lbl teal">Patient Portal</span>
+      <h2 class="ttl">My <span class="t">Health Records</span></h2>
+      <p class="sub">Log in with your Patient ID and registered phone number.</p>
     </div>
     <div class="portal-grid">
       <!-- Login panel -->
       <div id="loginPanel">
         <div class="p-login">
-          <h3 data-i18n="portal.loginTtl">Secure Login</h3>
-          <p data-i18n="portal.loginSub2">Enter your name and phone number to access your records.</p>
+          <h3>Secure Login</h3>
+          <p>Enter your details to access your records.</p>
           <div id="loginMsg"></div>
-
-          <!-- Name field with autocomplete dropdown (Part 2) -->
-          <div class="fg" style="position:relative;">
-            <label class="fl" data-i18n="portal.nameLbl">Full Name</label>
-            <input
-              type="text"
-              id="nameIn"
-              class="fi-input"
-              placeholder="Start typing your name..."
-              autocomplete="off"
-              oninput="handleNameInput(this)"
-              onkeydown="handleNameKeydown(event)"
-              style="position:relative;z-index:10;"
-            >
-            <div id="nameDropdown" class="name-dropdown" style="display:none;position:absolute;top:100%;left:0;right:0;background:var(--card);border:1px solid var(--bd);border-top:none;border-radius:0 0 8px 8px;max-height:250px;overflow-y:auto;z-index:11;box-shadow:0 4px 12px rgba(0,0,0,0.15);"></div>
-          </div>
-
-          <!-- Mobile Password field (Part 2 — replaces old Patient ID field) -->
-          <div class="fg">
-            <label class="fl" data-i18n="portal.mobileLbl">Mobile Number (Password)</label>
-            <input
-              type="tel"
-              id="phpIn"
-              class="fi-input"
-              placeholder="01XXXXXXXXX"
-              oninput="this.value = this.value.replace(/[^0-9+\- ]/g, '').slice(0, 20);"
-            >
-            <p style="font-size:11px;color:var(--sil2);margin-top:4px;margin-bottom:0;" data-i18n="portal.mobileHint">✓ Spaces, dashes, and country codes are automatically handled.</p>
-          </div>
-
-          <button class="btn-submit" style="margin-top:12px;" onclick="doLoginPart2()" data-i18n="portal.loginBtn2">Log In to My Records →</button>
-
+          <div class="fg"><label class="fl">Patient ID</label><input type="text" id="pidIn" class="fi-input" placeholder="PT-2026-0001"></div>
+          <div class="fg"><label class="fl">Phone Number</label><input type="tel" id="phpIn" class="fi-input" placeholder="01XXXXXXXXX"></div>
+          <button class="btn-submit" style="margin-top:4px;" onclick="doLogin()">Login to My Records →</button>
           <p style="font-size:12px;color:var(--sil2);margin-top:14px;line-height:1.6;">
-            💡 নতুন রোগী? <a href="#bk" style="color:var(--rose2);text-decoration:none;font-weight:500;">প্রথম অ্যাপয়েন্টমেন্ট বুক করুন</a> — আপনার Patient ID স্বয়ংক্রিয়ভাবে তৈরি হবে।
-          </p>
-          <p style="font-size:12px;color:var(--sil2);margin-top:6px;line-height:1.6;">
             💡 No Patient ID? <a href="#bk" style="color:var(--rose2);">Book your first appointment</a> — your ID is created automatically.
           </p>
         </div>
       </div>
-      <!-- Records panel (unchanged) -->
+      <!-- Records panel -->
       <div id="recPanel" class="hide">
         <div class="p-records">
           <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-bottom:20px;">
@@ -1818,7 +1714,15 @@ body.light-mode .mob { background: rgba(255,248,251,.98); }
     <div class="foot-grid">
       <div>
         <a href="#" class="f-logo">
-          <div class="f-logo-ico">🌸</div>
+          <div class="f-logo-ico" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M6 3v5.5a4 4 0 0 0 8 0V3" stroke="#FDF8FF" stroke-width="1.7" stroke-linecap="round"/>
+              <path d="M6 8.5v1.7a5.5 5.5 0 0 0 11 0V8.5" stroke="#FDF8FF" stroke-width="1.7" stroke-linecap="round"/>
+              <path d="M17 10.2v2.1a3.3 3.3 0 1 1-6.6 0" stroke="#FDF8FF" stroke-width="1.7" stroke-linecap="round"/>
+              <circle cx="19.4" cy="17.6" r="2.6" stroke="#FDF8FF" stroke-width="1.7"/>
+              <circle cx="19.4" cy="17.6" r="0.9" fill="#FDF8FF"/>
+            </svg>
+          </div>
           <span class="f-logo-txt" id="footTxt">Dr. Asma<em>.</em></span>
         </a>
         <div class="f-tag" id="footTag">Expert Care. Trusted Results.</div>
@@ -1830,28 +1734,26 @@ body.light-mode .mob { background: rgba(255,248,251,.98); }
         <div class="f-powered">Powered by <a href="https://www.aumatiq.com" target="_blank">AUMATIQ</a></div>
       </div>
       <div>
-        <div class="fn-title" data-i18n="foot.quick">Quick Links</div>
+        <div class="fn-title">Quick Links</div>
         <div class="fn-links">
-          <a href="#about" data-i18n="mob.about">About Doctor</a>
-          <a href="#svcs" data-i18n="mob.svcs">Services</a>
-          <a href="#hrs" data-i18n="mob.hrs">Chambers &amp; Locations</a>
-          <a href="#blog" data-i18n="mob.blog">Doctor's Blog</a>
-          <a href="#reco" data-i18n="mob.reco">Recommended Doctors</a>
-          <a href="#testi" data-i18n="mob.testi">Reviews</a>
-          <a href="#faq" data-i18n="nav.faq">FAQ</a>
+          <a href="#about">About Doctor</a>
+          <a href="#svcs">Services</a>
+          <a href="#hrs">Hours &amp; Location</a>
+          <a href="#testi">Reviews</a>
+          <a href="#faq">FAQ</a>
         </div>
       </div>
       <div>
-        <div class="fn-title" data-i18n="foot.patients">Patients</div>
+        <div class="fn-title">Patients</div>
         <div class="fn-links">
-          <a href="#bk" data-i18n="nav.book">Book Appointment</a>
-          <a href="#portal" data-i18n="foot.myrec">My Records</a>
-          <a href="#portal" data-i18n="foot.tests">Test Results</a>
-          <a href="#faq" data-i18n="foot.faqlink">Common Questions</a>
+          <a href="#bk">Book Appointment</a>
+          <a href="#portal">My Records</a>
+          <a href="#portal">Test Results</a>
+          <a href="#faq">Common Questions</a>
         </div>
       </div>
       <div>
-        <div class="fn-title" data-i18n="foot.contact">Contact</div>
+        <div class="fn-title">Contact</div>
         <div class="fn-links">
           <a id="fPhone" href="#">—</a>
           <a href="mailto:clinic.drasma@gmail.com">clinic.drasma@gmail.com</a>
@@ -1861,8 +1763,8 @@ body.light-mode .mob { background: rgba(255,248,251,.98); }
       </div>
     </div>
     <div class="f-bot">
-      <div class="f-copy">© <span id="fYear"></span> <span id="fClinic">Clinic</span>. <span data-i18n="foot.rights">All rights reserved.</span></div>
-      <div class="f-blinks"><a href="#" data-i18n="foot.privacy">Privacy Policy</a><a href="#" data-i18n="foot.terms">Terms of Service</a></div>
+      <div class="f-copy">© <span id="fYear"></span> <span id="fClinic">Clinic</span>. All rights reserved.</div>
+      <div class="f-blinks"><a href="#">Privacy Policy</a><a href="#">Terms of Service</a></div>
     </div>
   </div>
 </footer>
@@ -1871,16 +1773,54 @@ body.light-mode .mob { background: rgba(255,248,251,.98); }
   JAVASCRIPT
 ══════════════════════════════════ -->
 <script>
-var APP={ profile:{}, loggedIn:null, selSlot:'', selFile:null, lang:'en', theme:'dark' };
+// ── Part 14: Manual Light/Dark Theme Toggle ──
+// Default = device/system theme (prefers-color-scheme, handled purely in CSS).
+// Toggle cycles Auto → Light → Dark → Auto, remembered for this browser tab
+// via sessionStorage (localStorage is unreliable inside the Apps Script
+// sandbox — sessionStorage is the established, working pattern here).
+(function(){
+  var KEY = 'aumatiq-drasma-theme';
+  function apply(mode){
+    document.body.classList.remove('theme-light-force','theme-dark-force');
+    var btn = document.getElementById('themeToggleBtn');
+    if (mode === 'light') { document.body.classList.add('theme-light-force'); if(btn) btn.textContent = '☀️'; }
+    else if (mode === 'dark') { document.body.classList.add('theme-dark-force'); if(btn) btn.textContent = '🌙'; }
+    else { if(btn) btn.textContent = '🌓'; } // auto
+  }
+  var saved = sessionStorage.getItem(KEY) || 'auto';
+  apply(saved);
+  window.cycleTheme = function(){
+    var cur = sessionStorage.getItem(KEY) || 'auto';
+    var next = cur === 'auto' ? 'light' : (cur === 'light' ? 'dark' : 'auto');
+    sessionStorage.setItem(KEY, next);
+    apply(next);
+  };
+})();
+
+var APP={ profile:{}, loggedIn:null, selSlot:'', selFile:null };
+
+// ── v3.3 (Part 17 — Security Hardening): XSS Escape Helper ──
+// Patient portal-এ যা কিছু রোগীর নিজের ডেটা (reason, testName ইত্যাদি) innerHTML-এ
+// বসানো হয়, সেটা এই ফাংশন দিয়ে escape করা হয় (stored XSS ঠেকাতে)।
+function escapeHtml(str) {
+  if (str === null || str === undefined) return '';
+  return String(str)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#039;');
+}
 
 /* ── INIT ── */
 window.addEventListener('DOMContentLoaded',function(){
   document.getElementById('fYear').textContent=new Date().getFullYear();
   var d=document.getElementById('bkDate');
   if(d) d.setAttribute('min',new Date().toISOString().split('T')[0]);
-  initTheme(); initLang();
   initNav(); initScroll(); initFAQ(); initStatCounters(); initReveal();
-  loadProfile(); loadGenders(); loadTestNames(); loadBlog(); loadReco();
+  loadProfile(); loadGenders(); loadTestNames();
+  loadBlog();                  // ← Part 18
+  loadRecommendedDoctorsPublic(); // ← Part 19
 });
 
 /* ── NAV ── */
@@ -1897,168 +1837,6 @@ function initNav(){
 }
 function cMob(){ document.getElementById('ham').classList.remove('o'); document.getElementById('mob').classList.remove('o'); }
 function scrollTo(id){ document.querySelector(id).scrollIntoView({behavior:'smooth'}); }
-
-/* ── THEME (dark/light) ── */
-function initTheme(){
-  var saved;
-  try{ saved=sessionStorage.getItem('drasma_theme'); }catch(e){}
-  if(!saved){ saved=window.matchMedia('(prefers-color-scheme: light)').matches?'light':'dark'; }
-  setTheme(saved);
-}
-function setTheme(t){
-  APP.theme=t;
-  document.body.classList.toggle('light-mode',t==='light');
-  var ic=t==='light'?'☀️':'🌙';
-  var i1=document.getElementById('themeIcon'),i2=document.getElementById('themeIconM');
-  if(i1) i1.textContent=ic; if(i2) i2.textContent=ic;
-  try{ sessionStorage.setItem('drasma_theme',t); }catch(e){}
-}
-function toggleTheme(){ setTheme(APP.theme==='light'?'dark':'light'); }
-
-/* ── LANGUAGE (EN / বাংলা) ── */
-var TR={
-en:{
- 'nav.about':'About','nav.svcs':'Services','nav.hrs':'Chambers','nav.blog':'Blog','nav.reco':'Doctors','nav.faq':'FAQ',
- 'nav.myrec':'👤 My Records','nav.book':'📅 Book Appointment',
- 'mob.about':'About Doctor','mob.svcs':'Services','mob.hrs':'Chambers &amp; Locations','mob.blog':"Doctor's Blog",
- 'mob.reco':'Recommended Doctors','mob.testi':'Patient Reviews','mob.faq':'FAQ','mob.portal':'👤 Patient Portal','mob.book':'📅 Book Appointment',
- 'hero.badge':'Accepting New Patients','hero.h1a':'Your Health,','hero.h1b':'Our ','hero.h1c':'Priority.',
- 'hero.book':'📅 Book Appointment','hero.myrec':'My Records →',
- 'hero.stat1':'Years Experience','hero.stat2':'Patients Served','hero.stat3':'Fewer No-Shows','hero.stat4':'Booking Open Now',
- 'about.lbl':'About Your Doctor','about.f1t':'Board Certified','about.f1d':'MBBS, MS, BCS (Health)',
- 'about.f2t':"Women's Health",'about.f2d':'Gynaecology &amp; obstetrics specialist',
- 'about.f3t':'Laparoscopic Surgery','about.f3d':'Advanced minimally-invasive care',
- 'about.f4t':'Digital Records','about.f4d':'Secure online access 24/7','about.cta':'Book a Consultation →',
- 'svcs.lbl':'Our Services','svcs.ttl':'What We <span class="r">Treat</span>','svcs.sub':'Comprehensive healthcare tailored for women and families — delivered with expertise and warmth.',
- 'stats.lbl':'Why Patients Choose Us','stats.ttl':'Numbers That <span class="t">Speak</span>',
- 'hrs.lbl':'Visit Us','hrs.ttl':'Chambers &amp; <span class="t">Locations</span>','hrs.sub':'Two chambers in Khulna. Walk-ins welcome during visiting hours — online booking available 24/7.',
- 'hrs.hours':'Hours','hrs.serial':'Serial','hrs.directions':'📍 Get Directions','hrs.call':'Call Serial',
- 'hrs.general':'📍 General Contact','hrs.phone':'Phone','hrs.email':'Email',
- 'hrs.note':'Online booking is open 24/7','hrs.note2':'— book any time, even outside chamber hours.',
- 'blog.lbl':'Health Insights','blog.ttl':"Doctor's <span class=\"r\">Blog</span>",'blog.sub':"Articles and guidance from Dr. Asma on women's health, pregnancy, and general wellbeing.",
- 'blog.demo1tag':'Pregnancy','blog.demo1ttl':'Understanding Your First Trimester','blog.demo1ex':'What to expect, common symptoms, and when to see your doctor during the first three months.',
- 'blog.demo2tag':"Women's Health",'blog.demo2ttl':'PCOS: Signs, Diagnosis &amp; Care','blog.demo2ex':'A simple guide to recognising PCOS symptoms and the treatment options available.',
- 'blog.demo3tag':'Wellness','blog.demo3ttl':'Painless Normal Delivery — Myths vs Facts','blog.demo3ex':'Clearing up common misconceptions about painless delivery options.',
- 'blog.demoRead':'min read','blog.demoSoon':'Sample — real posts coming soon',
- 'reco.lbl':'Trusted Network','reco.ttl':'Recommended <span class="t">Doctors</span>','reco.sub':'Specialists Dr. Asma personally trusts and refers patients to when needed.',
- 'reco.demo1spec':'Paediatrician','reco.demo2spec':'Radiologist &amp; Sonologist','reco.demo3spec':'Anaesthesiologist','reco.demo4spec':'Endocrinologist',
- 'reco.demo1note':'Sample entry — real recommended doctors will appear here.','reco.demo2note':'Sample entry — real recommended doctors will appear here.',
- 'reco.demo3note':'Sample entry — real recommended doctors will appear here.','reco.demo4note':'Sample entry — real recommended doctors will appear here.',
- 'testi.lbl':'Patient Reviews','testi.ttl':'What Patients <span class="r">Say</span>','testi.sub':'Real feedback from patients who trust us with their health.',
- 'faq.lbl':'FAQ','faq.ttl':'Questions <span class="r">Answered</span>','faq.sub':'Everything you need to know before your visit.',
- 'faq.q1':'How do I book an appointment?','faq.a1':'Scroll to the <strong>Book Appointment</strong> section below. Select a date, pick an available time slot, fill in your details, and confirm. You\'ll receive a <strong>Patient ID</strong> instantly — save it to access your records.',
- 'faq.q2':'What is a Patient ID?','faq.a2':'Your <strong>Patient ID</strong> (format: PT-2026-0001) is assigned automatically when you book your first appointment. Use it with your registered phone number to log into the <strong>Patient Portal</strong> and view your appointments, test results, and health records.',
- 'faq.q3':'How do I access my test results?','faq.a3':'Click <strong>My Records</strong> in the navigation or scroll to the Patient Portal section. Log in with your Patient ID and phone number. Doctor-approved results appear there for download. You can also upload your own scan files for doctor review.',
- 'faq.q4':'Can I cancel or reschedule?','faq.a4':'Please contact us via <strong>phone or WhatsApp</strong> at least 2 hours before your scheduled appointment. Our team will find you a new suitable slot. Walk-ins are also welcome during open chamber hours.',
- 'faq.q5':'Is my medical data secure?','faq.a5':'Yes. All data is stored securely via <strong>Google Workspace</strong>. Your records are accessible only with your unique Patient ID + phone number. Test results remain private until explicitly approved by the doctor. We never share patient data with third parties.',
- 'faq.q6':'What should I bring to my first visit?','faq.a6':'Bring your <strong>National ID</strong>, any previous medical records or test results, a list of current medications, and your appointment confirmation (Patient ID). Arriving <strong>10 minutes early</strong> ensures a smooth check-in.',
- 'bk.lbl':'Online Booking','bk.ttl':'Book Your <span class="r">Appointment</span>','bk.sub':'Free, instant online scheduling. Confirmation in seconds.',
- 'bk.step1':'Step 1 of 2 — Date &amp; Time','bk.date':'Preferred Date','bk.slots':'Available Time Slots','bk.loading':'Loading available slots...',
- 'bk.continue':'Continue — Select Time →','bk.name':'Full Name *','bk.phone':'Phone Number *','bk.age':'Age','bk.gender':'Gender',
- 'bk.reason':'Reason for Visit','bk.back':'← Back','bk.confirm':'Confirm Appointment →',
- 'bk.i1t':'Instant Confirmation','bk.i1d':'Your Patient ID and appointment details appear immediately after booking.',
- 'bk.i2t':'Automatic Reminders','bk.i2d':'Receive reminders before your appointment so you never miss a visit.',
- 'bk.i3t':'Digital Records','bk.i3d':'Access all your test results and history via your Patient Portal using your Patient ID.',
- 'bk.i4t':'Need Help?','bk.i4d':'Call or message us on WhatsApp.<br><a id="waHelpLink" href="https://wa.me/880" target="_blank">Chat on WhatsApp →</a>',
- 'bk.emailNote':'Reach us anytime via email for non-urgent queries.',
- 'portal.lbl':'Patient Portal','portal.ttl':'My <span class="t">Health Records</span>','portal.sub':'Log in with your Patient ID and registered phone number.',
- 'portal.loginTtl':'Secure Login','portal.loginSub':'Enter your details to access your records.','portal.pid':'Patient ID',
- 'portal.sub2':'Log in with your name and mobile number to access your medical records, appointments, and test results.',
- 'portal.loginSub2':'Enter your name and phone number to access your records.',
- 'portal.nameLbl':'Full Name','portal.mobileLbl':'Mobile Number (Password)',
- 'portal.mobileHint':'✓ Spaces, dashes, and country codes are automatically handled.',
- 'portal.loginBtn2':'Log In to My Records →',
- 'portal.noIdBn':'💡 নতুন রোগী? <a href="#bk" style="color:var(--rose2);text-decoration:none;font-weight:500;">প্রথম অ্যাপয়েন্টমেন্ট বুক করুন</a> — আপনার Patient ID স্বয়ংক্রিয়ভাবে তৈরি হবে।',
- 'portal.loginBtn':'Login to My Records →','portal.noId':'💡 No Patient ID? <a href="#bk" style="color:var(--rose2);">Book your first appointment</a> — your ID is created automatically.',
- 'foot.quick':'Quick Links','foot.patients':'Patients','foot.contact':'Contact','foot.myrec':'My Records','foot.tests':'Test Results',
- 'foot.faqlink':'Common Questions','foot.rights':'All rights reserved.','foot.privacy':'Privacy Policy','foot.terms':'Terms of Service'
-},
-bn:{
- 'nav.about':'পরিচিতি','nav.svcs':'সেবা','nav.hrs':'চেম্বার','nav.blog':'ব্লগ','nav.reco':'ডাক্তার','nav.faq':'প্রশ্নোত্তর',
- 'nav.myrec':'👤 আমার রেকর্ড','nav.book':'📅 অ্যাপয়েন্টমেন্ট বুক করুন',
- 'mob.about':'ডাক্তার সম্পর্কে','mob.svcs':'সেবাসমূহ','mob.hrs':'চেম্বার ও ঠিকানা','mob.blog':'ডাক্তারের ব্লগ',
- 'mob.reco':'সুপারিশকৃত ডাক্তার','mob.testi':'রোগীদের মতামত','mob.faq':'প্রশ্নোত্তর','mob.portal':'👤 পেশেন্ট পোর্টাল','mob.book':'📅 অ্যাপয়েন্টমেন্ট বুক করুন',
- 'hero.badge':'নতুন রোগী ভর্তি চলছে','hero.h1a':'আপনার স্বাস্থ্য,','hero.h1b':'আমাদের ','hero.h1c':'অগ্রাধিকার।',
- 'hero.book':'📅 অ্যাপয়েন্টমেন্ট বুক করুন','hero.myrec':'আমার রেকর্ড →',
- 'hero.stat1':'বছরের অভিজ্ঞতা','hero.stat2':'সেবাপ্রাপ্ত রোগী','hero.stat3':'কম নো-শো','hero.stat4':'বুকিং চালু আছে',
- 'about.lbl':'আপনার ডাক্তার সম্পর্কে','about.f1t':'বোর্ড সার্টিফাইড','about.f1d':'এমবিবিএস, এমএস, বিসিএস (স্বাস্থ্য)',
- 'about.f2t':'নারী স্বাস্থ্য','about.f2d':'গাইনী ও প্রসূতিবিদ্যা বিশেষজ্ঞ',
- 'about.f3t':'ল্যাপারোস্কোপিক সার্জারি','about.f3d':'আধুনিক ন্যূনতম-ইনভেসিভ চিকিৎসা',
- 'about.f4t':'ডিজিটাল রেকর্ড','about.f4d':'নিরাপদ অনলাইন অ্যাক্সেস ২৪/৭','about.cta':'কনসালটেশন বুক করুন →',
- 'svcs.lbl':'আমাদের সেবা','svcs.ttl':'আমরা যা <span class="r">চিকিৎসা করি</span>','svcs.sub':'নারী ও পরিবারের জন্য বিশেষজ্ঞ যত্ন সহকারে সম্পূর্ণ স্বাস্থ্যসেবা।',
- 'stats.lbl':'রোগীরা কেন আমাদের বেছে নেয়','stats.ttl':'সংখ্যাই <span class="t">বলে দেয়</span>',
- 'hrs.lbl':'আমাদের ঠিকানা','hrs.ttl':'চেম্বার ও <span class="t">ঠিকানা</span>','hrs.sub':'খুলনায় দুটি চেম্বার। ভিজিটিং আওয়ারে ওয়াক-ইন স্বাগত — অনলাইন বুকিং ২৪/৭ চালু।',
- 'hrs.hours':'সময়','hrs.serial':'সিরিয়াল','hrs.directions':'📍 দিক নির্দেশনা','hrs.call':'সিরিয়ালে কল করুন',
- 'hrs.general':'📍 সাধারণ যোগাযোগ','hrs.phone':'ফোন','hrs.email':'ইমেইল',
- 'hrs.note':'অনলাইন বুকিং ২৪/৭ খোলা','hrs.note2':'— চেম্বারের সময়ের বাইরেও যেকোনো সময় বুক করুন।',
- 'blog.lbl':'স্বাস্থ্য পরামর্শ','blog.ttl':'ডাক্তারের <span class="r">ব্লগ</span>','blog.sub':'নারী স্বাস্থ্য, গর্ভাবস্থা ও সাধারণ সুস্থতা নিয়ে ডা. আসমার লেখা।',
- 'blog.demo1tag':'গর্ভাবস্থা','blog.demo1ttl':'প্রথম ত্রৈমাসিক বোঝা','blog.demo1ex':'প্রথম তিন মাসে কী আশা করবেন, সাধারণ লক্ষণ, এবং কখন ডাক্তার দেখাবেন।',
- 'blog.demo2tag':'নারী স্বাস্থ্য','blog.demo2ttl':'পিসিওএস: লক্ষণ, নির্ণয় ও যত্ন','blog.demo2ex':'পিসিওএস চেনার সহজ গাইড এবং চিকিৎসার বিকল্পসমূহ।',
- 'blog.demo3tag':'সুস্থতা','blog.demo3ttl':'ব্যথাহীন নরমাল ডেলিভারি — ভুল ধারণা বনাম সত্য','blog.demo3ex':'ব্যথাহীন ডেলিভারি নিয়ে প্রচলিত ভুল ধারণা দূর করা।',
- 'blog.demoRead':'মিনিট পড়ার সময়','blog.demoSoon':'নমুনা — শীঘ্রই আসল পোস্ট আসবে',
- 'reco.lbl':'বিশ্বস্ত নেটওয়ার্ক','reco.ttl':'সুপারিশকৃত <span class="t">ডাক্তার</span>','reco.sub':'যে বিশেষজ্ঞদের ডা. আসমা ব্যক্তিগতভাবে বিশ্বাস করেন এবং প্রয়োজনে রেফার করেন।',
- 'reco.demo1spec':'শিশু বিশেষজ্ঞ','reco.demo2spec':'রেডিওলজিস্ট ও সোনোলজিস্ট','reco.demo3spec':'অ্যানেস্থেসিওলজিস্ট','reco.demo4spec':'এন্ডোক্রাইনোলজিস্ট',
- 'reco.demo1note':'নমুনা এন্ট্রি — শীঘ্রই আসল সুপারিশকৃত ডাক্তার দেখা যাবে।','reco.demo2note':'নমুনা এন্ট্রি — শীঘ্রই আসল সুপারিশকৃত ডাক্তার দেখা যাবে।',
- 'reco.demo3note':'নমুনা এন্ট্রি — শীঘ্রই আসল সুপারিশকৃত ডাক্তার দেখা যাবে।','reco.demo4note':'নমুনা এন্ট্রি — শীঘ্রই আসল সুপারিশকৃত ডাক্তার দেখা যাবে।',
- 'testi.lbl':'রোগীদের মতামত','testi.ttl':'রোগীরা যা <span class="r">বলেন</span>','testi.sub':'যেসব রোগী আমাদের ওপর আস্থা রাখেন তাদের প্রকৃত মতামত।',
- 'faq.lbl':'প্রশ্নোত্তর','faq.ttl':'সাধারণ <span class="r">প্রশ্নের উত্তর</span>','faq.sub':'ভিজিটের আগে যা জানা দরকার।',
- 'faq.q1':'কীভাবে অ্যাপয়েন্টমেন্ট বুক করব?','faq.a1':'নিচে <strong>Book Appointment</strong> সেকশনে যান। একটি তারিখ ও সময় বেছে নিন, তথ্য পূরণ করুন এবং কনফার্ম করুন। সাথে সাথেই একটি <strong>Patient ID</strong> পাবেন — এটি সংরক্ষণ করুন।',
- 'faq.q2':'Patient ID কী?','faq.a2':'আপনার <strong>Patient ID</strong> (ফরম্যাট: PT-2026-0001) প্রথম অ্যাপয়েন্টমেন্ট বুক করার সময় স্বয়ংক্রিয়ভাবে দেওয়া হয়। এটি ও আপনার ফোন নম্বর দিয়ে <strong>Patient Portal</strong> এ লগইন করে অ্যাপয়েন্টমেন্ট, টেস্ট রেজাল্ট ও রেকর্ড দেখতে পারবেন।',
- 'faq.q3':'আমার টেস্ট রেজাল্ট কীভাবে পাব?','faq.a3':'নেভিগেশনে <strong>My Records</strong> ক্লিক করুন বা Patient Portal সেকশনে যান। Patient ID ও ফোন নম্বর দিয়ে লগইন করুন। ডাক্তার-অনুমোদিত রেজাল্ট সেখানে ডাউনলোডের জন্য পাওয়া যাবে। নিজের স্ক্যান ফাইলও আপলোড করতে পারবেন।',
- 'faq.q4':'বাতিল বা পুনঃনির্ধারণ করা যাবে কি?','faq.a4':'নির্ধারিত সময়ের অন্তত ২ ঘণ্টা আগে <strong>ফোন বা হোয়াটসঅ্যাপে</strong> যোগাযোগ করুন। আমাদের টিম আপনাকে নতুন সময় দেবে। খোলা চেম্বার আওয়ারে ওয়াক-ইনও স্বাগত।',
- 'faq.q5':'আমার তথ্য কি নিরাপদ?','faq.a5':'হ্যাঁ। সব তথ্য <strong>Google Workspace</strong> এর মাধ্যমে নিরাপদে সংরক্ষিত থাকে। শুধুমাত্র আপনার Patient ID ও ফোন নম্বর দিয়েই অ্যাক্সেস করা যায়। ডাক্তার অনুমোদন না দেওয়া পর্যন্ত টেস্ট রেজাল্ট প্রাইভেট থাকে। তৃতীয় পক্ষের সাথে কখনো তথ্য শেয়ার করা হয় না।',
- 'faq.q6':'প্রথম ভিজিটে কী আনতে হবে?','faq.a6':'আপনার <strong>জাতীয় পরিচয়পত্র</strong>, পূর্ববর্তী মেডিকেল রেকর্ড বা টেস্ট রেজাল্ট, বর্তমান ওষুধের তালিকা এবং অ্যাপয়েন্টমেন্ট কনফার্মেশন (Patient ID) সাথে আনুন। <strong>১০ মিনিট আগে</strong> পৌঁছালে চেক-ইন সহজ হয়।',
- 'bk.lbl':'অনলাইন বুকিং','bk.ttl':'আপনার <span class="r">অ্যাপয়েন্টমেন্ট</span> বুক করুন','bk.sub':'বিনামূল্যে, তাৎক্ষণিক অনলাইন শিডিউলিং। মুহূর্তেই কনফার্মেশন।',
- 'bk.step1':'ধাপ ১ এর ২ — তারিখ ও সময়','bk.date':'পছন্দের তারিখ','bk.slots':'উপলব্ধ সময়সূচি','bk.loading':'সময়সূচি লোড হচ্ছে...',
- 'bk.continue':'পরবর্তী ধাপ — সময় বেছে নিন →','bk.name':'পূর্ণ নাম *','bk.phone':'ফোন নম্বর *','bk.age':'বয়স','bk.gender':'লিঙ্গ',
- 'bk.reason':'ভিজিটের কারণ','bk.back':'← পেছনে','bk.confirm':'অ্যাপয়েন্টমেন্ট কনফার্ম করুন →',
- 'bk.i1t':'তাৎক্ষণিক কনফার্মেশন','bk.i1d':'বুকিংয়ের সাথে সাথেই আপনার Patient ID ও অ্যাপয়েন্টমেন্ট তথ্য দেখতে পাবেন।',
- 'bk.i2t':'স্বয়ংক্রিয় রিমাইন্ডার','bk.i2d':'অ্যাপয়েন্টমেন্টের আগে রিমাইন্ডার পাবেন যাতে ভিজিট মিস না হয়।',
- 'bk.i3t':'ডিজিটাল রেকর্ড','bk.i3d':'Patient ID দিয়ে Patient Portal-এ আপনার সব টেস্ট রেজাল্ট ও হিস্ট্রি দেখুন।',
- 'bk.i4t':'সাহায্য দরকার?','bk.i4d':'ফোন বা হোয়াটসঅ্যাপে যোগাযোগ করুন।<br><a id="waHelpLink" href="https://wa.me/880" target="_blank">হোয়াটসঅ্যাপে চ্যাট করুন →</a>',
- 'bk.emailNote':'জরুরি নয় এমন প্রশ্নের জন্য যেকোনো সময় ইমেইল করুন।',
- 'portal.lbl':'পেশেন্ট পোর্টাল','portal.ttl':'আমার <span class="t">স্বাস্থ্য রেকর্ড</span>','portal.sub':'আপনার Patient ID ও নিবন্ধিত ফোন নম্বর দিয়ে লগইন করুন।',
- 'portal.loginTtl':'নিরাপদ লগইন','portal.loginSub':'রেকর্ড দেখতে আপনার তথ্য দিন।','portal.pid':'Patient ID',
- 'portal.sub2':'আপনার নাম ও মোবাইল নম্বর দিয়ে লগইন করে মেডিকেল রেকর্ড, অ্যাপয়েন্টমেন্ট ও টেস্ট রেজাল্ট দেখুন।',
- 'portal.loginSub2':'রেকর্ড দেখতে আপনার নাম ও ফোন নম্বর দিন।',
- 'portal.nameLbl':'পূর্ণ নাম','portal.mobileLbl':'মোবাইল নম্বর (Password)',
- 'portal.mobileHint':'✓ স্পেস, ড্যাশ, কান্ট্রি কোড স্বয়ংক্রিয়ভাবে ঠিক হয়ে যাবে।',
- 'portal.loginBtn2':'আমার রেকর্ডে লগইন করুন →',
- 'portal.noIdBn':'💡 নতুন রোগী? <a href="#bk" style="color:var(--rose2);text-decoration:none;font-weight:500;">প্রথম অ্যাপয়েন্টমেন্ট বুক করুন</a> — আপনার Patient ID স্বয়ংক্রিয়ভাবে তৈরি হবে।',
- 'portal.loginBtn':'আমার রেকর্ডে লগইন করুন →','portal.noId':'💡 Patient ID নেই? <a href="#bk" style="color:var(--rose2);">প্রথম অ্যাপয়েন্টমেন্ট বুক করুন</a> — আপনার ID স্বয়ংক্রিয়ভাবে তৈরি হবে।',
- 'foot.quick':'দ্রুত লিংক','foot.patients':'রোগীদের জন্য','foot.contact':'যোগাযোগ','foot.myrec':'আমার রেকর্ড','foot.tests':'টেস্ট রেজাল্ট',
- 'foot.faqlink':'সাধারণ প্রশ্ন','foot.rights':'সর্বস্বত্ব সংরক্ষিত।','foot.privacy':'গোপনীয়তা নীতি','foot.terms':'ব্যবহারের শর্তাবলী'
-}
-};
-function initLang(){
-  var saved;
-  try{ saved=sessionStorage.getItem('drasma_lang'); }catch(e){}
-  setLang(saved||'en');
-}
-function setLang(l){
-  APP.lang=l;
-  var d=TR[l]||TR.en;
-  document.querySelectorAll('[data-i18n]').forEach(function(el){
-    var k=el.getAttribute('data-i18n');
-    if(d[k]!==undefined) el.innerHTML=d[k];
-  });
-  var lb=document.getElementById('langLbl'),lm=document.getElementById('langLblM');
-  var txt=l==='bn'?'বাং':'EN';
-  if(lb) lb.textContent=txt; if(lm) lm.textContent=txt;
-  document.documentElement.lang=l==='bn'?'bn':'en';
-  try{ sessionStorage.setItem('drasma_lang',l); }catch(e){}
-  resyncDynamic();
-}
-function resyncDynamic(){
-  // Re-apply profile-driven values that live inside translated (innerHTML-replaced) blocks
-  var p=APP.profile; if(p&&p.ContactPhone){
-    var wn=p.ContactPhone.replace(/\D/g,''), wh='https://wa.me/'+wn;
-    var wl=document.getElementById('waHelpLink'); if(wl) wl.href=wh;
-  }
-  // Recompute any open FAQ panel height (translated text may be longer/shorter)
-  document.querySelectorAll('.fi.on .fa').forEach(function(fa){ fa.style.maxHeight=fa.scrollHeight+'px'; });
-}
-function toggleLang(){ setLang(APP.lang==='bn'?'en':'bn'); }
 
 /* ── SCROLL PROGRESS ── */
 function initScroll(){
@@ -2126,8 +1904,8 @@ function applyProfile(r){
   function st(id,txt){ var e=document.getElementById(id); if(e) e.innerHTML=txt; }
   st('navTxt','Dr. '+dn+'<em>.</em>');
   st('footTxt','Dr. '+dn+'<em>.</em>');
-  st('footTag',p.Bio?p.Bio.substring(0,60)+'...':(sp+' Specialist'));
-  st('footDesc',p.Bio?p.Bio.substring(0,130)+'...':'Professional healthcare.');
+  st('footTag', sp ? sp+' Specialist' : 'Expert Care. Trusted Results.');
+  st('footDesc', p.Bio ? p.Bio.substring(0,130)+(p.Bio.length>130?'...':'') : 'Professional healthcare.');
   st('fClinic',cn);
   // Hero
   st('heroSub',p.Bio?p.Bio.substring(0,180)+'...':document.getElementById('heroSub').textContent);
@@ -2147,107 +1925,59 @@ function applyProfile(r){
       (sp?'<span class="ctag t">'+sp+'</span>':'')+
       sv.map(function(s){ return '<span class="ctag i">'+s.trim()+'</span>'; }).join('');
   }
-  // Contact
-  if(p.ContactPhone){ st('ciPhone','<a href="tel:'+p.ContactPhone+'">'+p.ContactPhone+'</a>'); }
+  // Contact — Bangladeshi phone numbers may be saved in Settings as
+  // "01716233101" or "1716233101" or already "+8801716233101"; every
+  // place we SHOW or LINK the number must consistently use the full
+  // "+8801716233101" display format and a correct wa.me deep link.
+  function formatBDPhone(raw){
+    if(!raw) return '';
+    var d = String(raw).replace(/\D/g,'');
+    if (d.indexOf('880') === 0) d = d.substring(3);       // strip existing 880
+    if (d.indexOf('0') === 0)   d = d.substring(1);        // strip local leading 0
+    if (!d) return String(raw);
+    return '+880' + d;                                     // canonical display
+  }
+  function waDigits(raw){ return formatBDPhone(raw).replace(/\D/g,''); } // digits only, for wa.me
+
+  st('ciAddr',p.ClinicAddress||'—');
+  if(p.ContactPhone){ var fullPh=formatBDPhone(p.ContactPhone); st('ciPhone','<a href="tel:'+fullPh+'">'+fullPh+'</a>'); }
   if(p.ContactEmail){ st('ciEmail','<a href="mailto:'+p.ContactEmail+'">'+p.ContactEmail+'</a>'); }
   if(p.ContactPhone){
-    var wn=p.ContactPhone.replace(/\D/g,'');
-    var wh='https://wa.me/'+wn;
-    st('ciWa','<a href="'+wh+'" target="_blank">'+p.ContactPhone+' →</a>');
+    var fullPhWa=formatBDPhone(p.ContactPhone);
+    var wh='https://wa.me/'+waDigits(p.ContactPhone);
+    st('ciWa','<a href="'+wh+'" target="_blank">'+fullPhWa+' →</a>');
     var wl=document.getElementById('waHelpLink'); if(wl) wl.href=wh;
     var fw=document.getElementById('footWa'); if(fw) fw.href=wh;
-    var fl=document.getElementById('fWaLnk'); if(fl){ fl.textContent='WhatsApp: '+p.ContactPhone; fl.href=wh; }
+    var fl=document.getElementById('fWaLnk'); if(fl){ fl.textContent='WhatsApp: '+fullPhWa; fl.href=wh; }
   }
-  if(p.ContactPhone){ var fp=document.getElementById('fPhone'); if(fp){ fp.textContent=p.ContactPhone; fp.href='tel:'+p.ContactPhone; } }
-  var fAddrVal=p.ClinicAddress||p.Chamber1Address||CHMB_DEFAULTS.c1.addr;
-  if(fAddrVal){ var fa=document.getElementById('fAddr'); if(fa) fa.textContent=fAddrVal; }
+  if(p.ContactPhone){ var fp=document.getElementById('fPhone'); if(fp){ var fullPhF=formatBDPhone(p.ContactPhone); fp.textContent=fullPhF; fp.href='tel:'+fullPhF; } }
+  if(p.ClinicAddress){ var fa=document.getElementById('fAddr'); if(fa) fa.textContent=p.ClinicAddress; }
   // Title
   document.title='Dr. '+dn+' — '+cn;
-  // Chambers
-  buildChambers(p);
+  // Hours
+  buildHours(p);
 }
 
-/* ── CHAMBERS (two-chamber dynamic sync) ── */
-var CHMB_DEFAULTS={
-  c1:{name:'Islami Bank Hospital, Khulna',addr:'42 Khan Jahan Ali Road, Khulna',hours:'Sat–Wed · 3:00 PM – 5:00 PM',serial:'01712-068684'},
-  c2:{name:'Doctors Point Specialized Hospital',addr:'49 KDA Avenue, Khulna',hours:'Sat–Thu · 5:00 PM – 7:00 PM',serial:'01795-383803'}
-};
-function buildChambers(p){
-  fillChamber('c1',p.Chamber1Name,p.Chamber1Address,p.Chamber1Hours,p.Chamber1Serial,p.Chamber1MapsLink,CHMB_DEFAULTS.c1);
-  fillChamber('c2',p.Chamber2Name,p.Chamber2Address,p.Chamber2Hours,p.Chamber2Serial,p.Chamber2MapsLink,CHMB_DEFAULTS.c2);
+/* ── HOURS TABLE ── */
+function buildHours(p){
+  var tbl=document.getElementById('hrsTable'); if(!tbl) return;
+  var wdays=(p.WorkingDays||'Sat,Sun,Mon,Tue,Wed').split(',').map(function(d){ return d.trim(); });
+  var op=p.OpeningTime||'09:00', cl=p.ClosingTime||'20:00';
+  var days=[{k:'Sat',l:'Saturday'},{k:'Sun',l:'Sunday'},{k:'Mon',l:'Monday'},{k:'Tue',l:'Tuesday'},{k:'Wed',l:'Wednesday'},{k:'Thu',l:'Thursday'},{k:'Fri',l:'Friday'}];
+  var today=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'][new Date().getDay()];
+  var h='';
+  days.forEach(function(d){
+    var on=wdays.indexOf(d.k)!==-1, td=d.k===today;
+    var tCls=on?'htime op':'htime cl';
+    h+='<div class="hrow"><span class="hday">'+d.l+(td?'<span class="today-tag">TODAY</span>':'')+'</span>'+
+      '<span class="'+tCls+'">'+(on?fmt12(op)+' – '+fmt12(cl):'Closed')+'</span></div>';
+  });
+  tbl.innerHTML=h;
 }
-function fillChamber(pfx,name,addr,hours,serial,mapsLink,def){
-  var nm=name||def.name, ad=addr||def.addr, hr=hours||def.hours, sr=serial||def.serial;
-  var e;
-  e=document.getElementById(pfx+'Name'); if(e) e.textContent=nm;
-  e=document.getElementById(pfx+'Addr'); if(e) e.textContent=ad;
-  e=document.getElementById(pfx+'Hours'); if(e) e.textContent=hr;
-  e=document.getElementById(pfx+'Serial'); if(e) e.innerHTML='<a href="tel:'+sr.replace(/\D/g,'')+'">'+sr+'</a>';
-  var map=mapsLink||('https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(nm+' '+ad));
-  var mEl=document.getElementById(pfx+'Map'); if(mEl) mEl.href=map;
-  var cEl=document.getElementById(pfx+'Call'); if(cEl) cEl.href='tel:'+sr.replace(/\D/g,'');
-}
-
-/* ── BLOG (Part 18 will populate real data; graceful fallback keeps demo cards) ── */
-function loadBlog(){
-  try{
-    google.script.run
-      .withSuccessHandler(function(r){
-        if(!r||!r.success||!r.articles||!r.articles.length) return; // keep demo cards
-        var g=document.getElementById('blogGrid');
-        g.innerHTML=r.articles.map(function(a,i){
-          return '<div class="blog-card rv in" onclick="openBlogReal('+i+')">'+
-            '<div class="blog-cov">'+(a.coverImage?'<img src="'+a.coverImage+'">':'📄')+'</div>'+
-            '<div class="blog-body"><span class="blog-tag">'+(a.category||'')+'</span>'+
-            '<div class="blog-ttl">'+(a.title||'')+'</div>'+
-            '<p class="blog-excerpt">'+(a.excerpt||'')+'</p>'+
-            '<div class="blog-meta"><span>'+(a.readTime||'')+'</span><span>'+(a.date||'')+'</span></div></div></div>';
-        }).join('');
-        APP.articles=r.articles;
-      })
-      .withFailureHandler(function(){ /* backend not ready yet — demo cards stay */ })
-      .getPublishedArticles();
-  }catch(e){}
-}
-function openBlogDemo(n){
-  var d=TR[APP.lang]||TR.en;
-  var map={1:['blog.demo1tag','blog.demo1ttl','blog.demo1ex'],2:['blog.demo2tag','blog.demo2ttl','blog.demo2ex'],3:['blog.demo3tag','blog.demo3ttl','blog.demo3ex']};
-  var k=map[n];
-  document.getElementById('bmTag').textContent=d[k[0]]||'';
-  document.getElementById('bmTtl').textContent=d[k[1]]||'';
-  document.getElementById('bmBody').innerHTML='<p>'+(d[k[2]]||'')+'</p><p style="margin-top:14px;color:var(--sil2);font-size:13px;">'+(d['blog.demoSoon']||'')+'</p>';
-  document.getElementById('blogModal').classList.add('o');
-}
-function openBlogReal(i){
-  var a=APP.articles&&APP.articles[i]; if(!a) return;
-  document.getElementById('bmTag').textContent=a.category||'';
-  document.getElementById('bmTtl').textContent=a.title||'';
-  document.getElementById('bmBody').innerHTML=a.content||a.excerpt||'';
-  document.getElementById('blogModal').classList.add('o');
-}
-function closeBlogModal(){ document.getElementById('blogModal').classList.remove('o'); }
-
-/* ── RECOMMENDED DOCTORS (Part 19 will populate real data; graceful fallback keeps demo cards) ── */
-function loadReco(){
-  try{
-    google.script.run
-      .withSuccessHandler(function(r){
-        if(!r||!r.success||!r.doctors||!r.doctors.length) return; // keep demo cards
-        var g=document.getElementById('recoGrid');
-        g.innerHTML=r.doctors.map(function(d){
-          var initials=(d.name||'Dr').split(' ').map(function(w){return w[0];}).slice(0,2).join('').toUpperCase();
-          return '<div class="reco-card rv in">'+
-            '<div class="reco-photo">'+(d.photoUrl?'<img src="'+d.photoUrl+'">':initials)+'</div>'+
-            '<div class="reco-name">'+(d.name||'')+'</div>'+
-            '<div class="reco-spec">'+(d.specialty||'')+'</div>'+
-            (d.note?'<p class="reco-note">'+d.note+'</p>':'')+
-            (d.contact?'<div class="reco-contact">'+d.contact+'</div>':'')+
-            '</div>';
-        }).join('');
-      })
-      .withFailureHandler(function(){ /* backend not ready yet — demo cards stay */ })
-      .getActiveRecommendedDoctors();
-  }catch(e){}
+function fmt12(t){
+  if(!t) return '';
+  var p=t.split(':'),h=parseInt(p[0]),m=p[1]||'00';
+  return (h===0?12:h>12?h-12:h)+':'+m+(h<12?' AM':' PM');
 }
 
 /* ── GENDER + TEST NAMES ── */
@@ -2320,128 +2050,35 @@ function cnfBook(){
 }
 
 /* ── LOGIN / LOGOUT ── */
-/* ══════════════════ PART 2 — NAME AUTOCOMPLETE + LOGIN ══════════════════ */
-var currentDropdownIndex = -1;
-
-function escapeHtml(text) {
-  var map = { '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#039;' };
-  return String(text==null?'':text).replace(/[&<>"']/g, function(m){ return map[m]; });
-}
-
-function handleNameInput(element) {
-  var query = element.value.trim();
-  var dropdown = document.getElementById('nameDropdown');
-  if (query.length < 2) {
-    dropdown.style.display = 'none'; dropdown.innerHTML = ''; currentDropdownIndex = -1; return;
-  }
-  google.script.run
-    .withSuccessHandler(function(result) {
-      if (result && result.success && result.results && result.results.length > 0) {
-        var html = '';
-        result.results.forEach(function(patient) {
-          var displayAge = patient.age ? ' · ' + patient.age + ' yrs' : '';
-          var displayPhone = ' · ***' + patient.phoneLastThree;
-          var displayLastVisit = patient.lastVisit ? ' · Last: ' + patient.lastVisit : ' · New';
-          html += '<div class="name-dropdown-item" data-patient-id="'+escapeHtml(patient.patientId)+'" data-full-name="'+escapeHtml(patient.fullName)+'" onclick="selectDropdownItem(this)" style="padding:10px 14px;border-bottom:1px solid var(--bd);cursor:pointer;transition:background .2s;font-size:13px;line-height:1.5;">';
-          html += '<div style="font-weight:500;color:var(--wht);">' + escapeHtml(patient.fullName) + '</div>';
-          html += '<div style="font-size:11px;color:var(--sil2);margin-top:2px;">' + escapeHtml(displayAge + displayPhone + displayLastVisit) + '</div>';
-          html += '</div>';
-        });
-        dropdown.innerHTML = html; dropdown.style.display = 'block'; currentDropdownIndex = -1;
-        var items = dropdown.querySelectorAll('.name-dropdown-item');
-        items.forEach(function(item) {
-          item.onmouseover = function(){ this.style.backgroundColor = 'var(--ind)'; };
-          item.onmouseout = function(){ this.style.backgroundColor = 'transparent'; };
-        });
-      } else {
-        dropdown.innerHTML = '<div style="padding:10px 14px;font-size:12px;color:var(--sil2);">No matching patients found.</div>';
-        dropdown.style.display = 'block'; currentDropdownIndex = -1;
-      }
-    })
-    .withFailureHandler(function() {
-      dropdown.innerHTML = '<div style="padding:10px 14px;font-size:12px;color:var(--error);">Search error.</div>';
-      dropdown.style.display = 'block'; currentDropdownIndex = -1;
-    })
-    .searchPatientNamesForAutocomplete(query);
-}
-
-function handleNameKeydown(event) {
-  var dropdown = document.getElementById('nameDropdown');
-  var items = dropdown.querySelectorAll('.name-dropdown-item');
-  if (event.key === 'ArrowDown') {
-    event.preventDefault();
-    if (currentDropdownIndex < items.length - 1) { currentDropdownIndex++; updateDropdownSelection(items); }
-  } else if (event.key === 'ArrowUp') {
-    event.preventDefault();
-    if (currentDropdownIndex > 0) { currentDropdownIndex--; updateDropdownSelection(items); }
-    else if (currentDropdownIndex === 0) { currentDropdownIndex = -1; items.forEach(function(item){ item.style.backgroundColor='transparent'; }); }
-  } else if (event.key === 'Enter') {
-    event.preventDefault();
-    if (currentDropdownIndex >= 0 && currentDropdownIndex < items.length) { selectDropdownItem(items[currentDropdownIndex]); }
-    else { doLoginPart2(); }
-  } else if (event.key === 'Escape') {
-    dropdown.style.display = 'none'; dropdown.innerHTML = ''; currentDropdownIndex = -1;
-  }
-}
-
-function updateDropdownSelection(items) {
-  items.forEach(function(item, idx) {
-    item.style.backgroundColor = (idx === currentDropdownIndex) ? 'var(--ind)' : 'transparent';
-  });
-}
-
-function selectDropdownItem(element) {
-  var fullName = element.getAttribute('data-full-name');
-  document.getElementById('nameIn').value = fullName;
-  document.getElementById('nameDropdown').style.display = 'none';
-  document.getElementById('nameDropdown').innerHTML = '';
-  currentDropdownIndex = -1;
-  document.getElementById('phpIn').focus();
-}
-
-function doLoginPart2() {
-  var nameField = document.getElementById('nameIn').value.trim();
-  var phoneField = document.getElementById('phpIn').value.trim();
-  if (!nameField || !phoneField) { showAl('loginMsg','err','Please enter both name and phone number.'); return; }
+function doLogin(){
+  var pid=document.getElementById('pidIn').value.trim(), ph=document.getElementById('phpIn').value.trim();
+  if(!pid||!ph){ showAl('loginMsg','err','Please enter both fields.'); return; }
   showAl('loginMsg','inf','<span class="spin" style="vertical-align:middle;margin-right:6px;"></span> Verifying...');
   google.script.run
-    .withSuccessHandler(function(searchResult) {
-      if (!searchResult || !searchResult.success || !searchResult.results || searchResult.results.length === 0) {
-        showAl('loginMsg','err','Patient name not found. Please check and try again.'); return;
-      }
-      var patientId = searchResult.results[0].patientId;
-      google.script.run
-        .withSuccessHandler(function(loginResult) {
-          if (loginResult && loginResult.success) {
-            APP.loggedIn = loginResult.patient;
-            document.getElementById('loginPanel').classList.add('hide');
-            document.getElementById('recPanel').classList.remove('hide');
-            loadRecs(loginResult.patient);
-          } else {
-            showAl('loginMsg','err',(loginResult && loginResult.error) || 'Login failed. Check your details and try again.');
-          }
-        })
-        .withFailureHandler(function(){ showAl('loginMsg','err','Connection error.'); })
-        .patientPortalLoginByName(patientId, phoneField);
+    .withSuccessHandler(function(r){
+      if(r&&r.success){
+        APP.loggedIn=r.patient;
+        document.getElementById('loginPanel').classList.add('hide');
+        document.getElementById('recPanel').classList.remove('hide');
+        var pg=document.querySelector('.portal-grid'); if(pg) pg.classList.add('two-col');
+        loadRecs(r.patient);
+      } else { showAl('loginMsg','err',(r&&r.error)||'Login failed. Check your Patient ID and phone.'); }
     })
-    .withFailureHandler(function(){ showAl('loginMsg','err','Search error.'); })
-    .searchPatientNamesForAutocomplete(nameField);
+    .withFailureHandler(function(){ showAl('loginMsg','err','Connection error.'); })
+    .patientPortalLogin(pid,ph);
 }
-
 function doLogout(){
   APP.loggedIn=null;
   document.getElementById('recPanel').classList.add('hide');
   document.getElementById('loginPanel').classList.remove('hide');
-  document.getElementById('nameIn').value=''; document.getElementById('phpIn').value='';
+  var pg=document.querySelector('.portal-grid'); if(pg) pg.classList.remove('two-col');
+  document.getElementById('pidIn').value=''; document.getElementById('phpIn').value='';
   document.getElementById('loginMsg').innerHTML='';
-  document.getElementById('nameDropdown').style.display='none';
-  document.getElementById('nameDropdown').innerHTML='';
 }
-/* ══════════════════ END PART 2 ══════════════════ */
 
 /* ── LOAD RECORDS ── */
 function loadRecs(pt){
-  var we=document.getElementById('recWel'); if(we) we.textContent='Hello, '+escapeHtml(pt.fullName||'Patient');
+  var we=document.getElementById('recWel'); if(we) we.textContent='Hello, '+(pt.fullName||'Patient');
   var pg=document.getElementById('piGrid');
   if(pg) pg.innerHTML=
     '<div class="pi-item"><div class="pi-ico">🪪</div><div><div class="pi-k">Patient ID</div><div class="pi-v">'+escapeHtml(pt.patientId)+'</div></div></div>'+
@@ -2469,7 +2106,7 @@ function rTests(d){
   var el=document.getElementById('testsTbl');
   if(!d||!d.length){ el.innerHTML='<div class="es"><div class="ei">🧪</div><p>No approved test results yet.</p></div>'; return; }
   el.innerHTML='<div style="overflow-x:auto;"><table class="pt-table"><thead><tr><th>Test</th><th>Date</th><th>By</th><th>Report</th></tr></thead><tbody>'+
-    d.map(function(r){ return '<tr><td>'+escapeHtml(r.testName||'—')+'</td><td>'+escapeHtml(r.testDate||'—')+'</td><td style="color:var(--sil);">'+escapeHtml(r.uploadedBy||'—')+'</td><td><a href="'+encodeURI(r.fileLink||'')+'" target="_blank" style="color:var(--rose2);font-weight:600;text-decoration:none;">Download →</a></td></tr>'; }).join('')+
+    d.map(function(r){ return '<tr><td>'+escapeHtml(r.testName||'—')+'</td><td>'+escapeHtml(r.testDate||'—')+'</td><td style="color:var(--sil);">'+escapeHtml(r.uploadedBy||'—')+'</td><td><a href="'+encodeURI(r.fileLink)+'" target="_blank" style="color:var(--rose2);font-weight:600;text-decoration:none;">Download →</a></td></tr>'; }).join('')+
     '</tbody></table></div>';
 }
 
@@ -2523,6 +2160,125 @@ function fmtD(s){
   if(!s) return '';
   var d=new Date(s), ms=['January','February','March','April','May','June','July','August','September','October','November','December'];
   return d.getDate()+' '+ms[d.getMonth()]+' '+d.getFullYear();
+}
+</script>
+<script>
+// ═══════════════════════════════════════════════════════════
+// PART 18 — PUBLIC BLOG
+// ═══════════════════════════════════════════════════════════
+var _pubArticles = [];
+
+function loadBlog(){
+  google.script.run
+    .withSuccessHandler(function(r){
+      if(!r||!r.success) return;
+      _pubArticles = r.articles || [];
+      renderBlogGrid();
+    })
+    .withFailureHandler(function(){})
+    .getPublishedArticles();
+}
+
+function renderBlogGrid(){
+  var el = document.getElementById('blogGrid');
+  if(!el) return;
+  if(!_pubArticles.length){
+    el.innerHTML = '<p style="text-align:center;color:var(--sil2);font-size:13px;grid-column:1/-1;">No articles published yet. Check back soon!</p>';
+    return;
+  }
+  el.innerHTML = _pubArticles.map(function(a){
+    var tags = (a.tags||'').split(',').map(function(t){ return t.trim(); }).filter(Boolean);
+    return '<div class="blog-card rv" onclick="openArticleReader(\''+a.articleId+'\')">' +
+      (a.coverImageURL ? '<img class="blog-card-cover" src="'+a.coverImageURL+'">' : '<div class="blog-card-cover"></div>') +
+      '<div class="blog-card-body">' +
+        (tags.length ? '<div class="blog-card-tags">'+tags.map(function(t){ return '<span class="blog-tag">'+escPub_(t)+'</span>'; }).join('')+'</div>' : '') +
+        '<div class="blog-card-title">'+escPub_(a.title)+'</div>' +
+        '<div class="blog-card-date">'+fmtPubDate_(a.publishedDate)+'</div>' +
+        '<div class="blog-card-read">Read Article →</div>' +
+      '</div>' +
+    '</div>';
+  }).join('');
+  if (typeof initReveal === 'function') initReveal();
+}
+
+function openArticleReader(id){
+  var overlay = document.getElementById('blogReader');
+  var content = document.getElementById('blogReaderContent');
+  content.innerHTML = '<p style="color:var(--sil);">Loading...</p>';
+  overlay.classList.add('on');
+  document.body.style.overflow = 'hidden';
+
+  google.script.run
+    .withSuccessHandler(function(r){
+      if(!r||!r.success){ content.innerHTML = '<p style="color:var(--error);">Article not found.</p>'; return; }
+      var a = r.article;
+      content.innerHTML =
+        (a.coverImageURL ? '<img src="'+a.coverImageURL+'" style="width:100%;border-radius:12px;margin-bottom:20px;">' : '') +
+        '<h1>'+escPub_(a.title)+'</h1>' +
+        '<div class="blog-reader-meta">By '+escPub_(a.authorName||'Dr. Asma')+' · '+fmtPubDate_(a.publishedDate)+'</div>' +
+        (a.bodyHtml || '');
+    })
+    .withFailureHandler(function(){ content.innerHTML = '<p style="color:var(--error);">Failed to load article.</p>'; })
+    .getPublicArticleById(id);
+}
+
+function closeArticleReader(){
+  document.getElementById('blogReader').classList.remove('on');
+  document.body.style.overflow = '';
+}
+
+// ═══════════════════════════════════════════════════════════
+// PART 19 — PUBLIC RECOMMENDED DOCTORS
+// ═══════════════════════════════════════════════════════════
+function loadRecommendedDoctorsPublic(){
+  google.script.run
+    .withSuccessHandler(function(r){
+      if(!r||!r.success) return;
+      renderRecDocPubGrid(r.doctors||[]);
+    })
+    .withFailureHandler(function(){})
+    .getActiveRecommendedDoctors();
+}
+
+function renderRecDocPubGrid(list){
+  var el = document.getElementById('recDocPubGrid');
+  if(!el) return;
+  if(!list.length){
+    el.innerHTML = '<p style="text-align:center;color:var(--sil2);font-size:13px;grid-column:1/-1;">No recommendations listed yet.</p>';
+    return;
+  }
+  el.innerHTML = list.map(function(d){
+    var digits = (d.contactInfo||'').replace(/\D/g,'');
+    var waNum = digits.length===11 && digits.charAt(0)==='0' ? '880'+digits.substring(1) : digits;
+    var telHref = digits ? 'tel:+'+ (digits.length===11 && digits.charAt(0)==='0' ? '880'+digits.substring(1) : digits) : '';
+    var waHref  = waNum ? 'https://wa.me/'+waNum : '';
+    return '<div class="recdoc-card rv">' +
+      (d.photoURL ? '<img class="recdoc-photo" src="'+d.photoURL+'">' : '<div class="recdoc-photo"></div>') +
+      '<div class="recdoc-name">'+escPub_(d.name)+'</div>' +
+      '<div class="recdoc-spec">'+escPub_(d.specialty)+'</div>' +
+      (d.chamber ? '<div class="recdoc-chamber">📍 '+escPub_(d.chamber)+'</div>' : '') +
+      (d.note ? '<div class="recdoc-note">"'+escPub_(d.note)+'"</div>' : '') +
+      '<div class="recdoc-actions">' +
+        (telHref ? '<a class="recdoc-btn call" href="'+telHref+'">📞 Call</a>' : '') +
+        (waHref  ? '<a class="recdoc-btn wa" href="'+waHref+'" target="_blank" rel="noopener">💬 WhatsApp</a>' : '') +
+      '</div>' +
+    '</div>';
+  }).join('');
+  if (typeof initReveal === 'function') initReveal();
+}
+
+// ── shared helpers ──
+function escPub_(s){
+  var d = document.createElement('div');
+  d.textContent = s || '';
+  return d.innerHTML;
+}
+function fmtPubDate_(s){
+  if(!s) return '';
+  try{
+    var d = new Date(s);
+    return d.getDate()+' '+['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][d.getMonth()]+' '+d.getFullYear();
+  }catch(e){ return ''; }
 }
 </script>
 </body>

@@ -844,10 +844,124 @@ Dependencies: Part 1 (entry point), Part 4 (nav), Part 8 (Settings pattern).
 | 10 | Part 6 (finance/close flow) | | open |
 | 11 | Part 8 (settings + sync) | | open |
 | 12 | Part 9 (future tabs scaffold) | | open |
-| 13 | Part 18 (blog/articles) | | open |
-| 14 | Part 19 (recommended doctors) | | open |
+| 13 | Part 18 (blog/articles) | | **✅ done — Part 14 session** |
+| 14 | Part 19 (recommended doctors) | | **✅ done — Part 14 session** |
 | 15 | Part 10 (WhatsApp/email) | | open |
-| 16 | Part 12 (visiting card) | finalize once Part 11's URL is locked | v2 done, pending final QR/domain confirm |
-| 17 | Part 13 (PWA/icons) | | **✅ done this session** |
-| 18 | Part 14 (QA pass) | after everything else | open |
+| 16 | Part 12 (visiting card) | finalize once Part 11's URL is locked | v2 done; **Part 14: re-do with new stethoscope motif + elegant name font — not yet done, next session** |
+| 17 | Part 13 (PWA/icons) | | ✅ done (theme+brand mark); **new stethoscope PWA icon PNGs still pending — next session** |
+| 18 | Part 14 (Full system build — see below) | consolidation of Parts 6/16/18/19 + new fixes | **✅ done this session (2026-07-12)** |
 | 19 | Part 15 (handover package) | very last | open |
+
+---
+
+# PART 14 — Full System Build & Bugfix Pass (2026-07-12) ✅
+
+```
+কনটেক্সট: repo-তে দুইটা ভিন্ন branch পাওয়া গিয়েছিল — Part-13 (theme
+toggle ছিল) আর Part-16/17 (নতুন Auth/Security/Finance backend ছিল, কিন্তু
+theme toggle ছিল না)। Client নিশ্চিত করেছেন: Part-17 base ধরে তার ওপর
+theme toggle নতুন করে বানানো হবে। এই session-এ তাই হয়েছে।
+
+✅ যা করা হয়েছে (সব physically verified — JS syntax check + HTML tag
+balance + backend↔frontend function cross-check দিয়ে):
+
+1. Base ফাইনালাইজ: Code/DashboardAdapter/AppointmentFinance/Auth/
+   Security/PatientModule সব Part-17, + Articles/RecommendedDoctors
+   Part-18+19, + PWASetup Part-13, + Prescription Part-10 (⚠️ এটা আগে
+   missed ছিল — build-এ কখনো কপি করা হয়নি, dashboard savePrescription/
+   getPrescriptionsForPatient call করত কিন্তু backend file-ই ছিল না।
+   এখন যোগ করা হয়েছে — নিচে "Key learning" দেখুন)।
+
+2. Time-Slot bug ফিক্স: `getPublicBookingSlots()` (Code.gs, public
+   booking form ব্যবহার করে) date parsing-এ `new Date(dateStr)` UTC
+   parsing bug ছিল — একই bug আগে `getAvailableSlots()` (AppointmentFinance.gs,
+   dashboard ব্যবহার করে)-এ ফিক্স হয়ে গিয়েছিল কিন্তু public সাইডে হয়নি,
+   ফলে patient booking ভুল weekday/slot দেখাতে পারত। দুই জায়গায় এখন
+   identical timezone-safe parsing।
+
+3. Delete = Soft Delete (client confirmed): নতুন `DeleteRestore.gs` —
+   archivePatient/restorePatient/archiveAppointment/restoreAppointment/
+   listArchivedPatients/listArchivedAppointments। "Archived" কলাম
+   self-healing (প্রথমবার চালালে নিজে যোগ হয়ে যায়, migration লাগে না)।
+   Permission: Doctor + Assistant দুজনেই (client confirmed) —
+   requireDoctorOrReceptionist() ব্যবহার করে, editPatient()-এর existing
+   pattern অনুসরণ করে। Dashboard-এ Patients ও Appointments দুই ট্যাবেই
+   "🗄️ Archived" toggle + Delete/Restore বাটন। মূল লিস্ট থেকে archived
+   row বাদ পড়ে (DashboardAdapter.gs-এর getPatientsData/getAppointmentsData
+   এ ফিল্টার যোগ হয়েছে)।
+
+4. Finance/Payment UI (client confirmed: Doctor-only — এবং ভালো খবর হলো
+   AppointmentFinance.gs-এর addFinanceEntry/getFinanceEntries/
+   getMonthlyFinanceSummary সবগুলোই আগে থেকেই requireDoctor() দিয়ে
+   locked ছিল, তাই backend permission আগে থেকেই সঠিক ছিল — শুধু UI
+   screen বানানো বাকি ছিল)। নতুন "💰 Finance" sidebar item (doctor-only),
+   পুরো tab-page: monthly summary cards (Income/Expense/Net), category-
+   aware Add Entry ফর্ম (getAllCategories থেকে dropdown populate), date-
+   range filtered entries table।
+
+5. Light/Dark Theme — নতুন করে বানানো (device default অনুসরণ করে +
+   Settings ট্যাবে ও topbar-এ ম্যানুয়াল Auto/Light/Dark override,
+   sessionStorage-এ persist, dashboard ও public website দুটোতেই)।
+
+6. Branding ঠিক করা হয়েছে (client feedback অনুযায়ী, আগের ধারণা থেকে
+   ভিন্ন): Public Website-এর header + footer-এর square logo মার্ক
+   AUMATIQ-এর নিজের gold "A" mark (aumatiq.com-এ ক্লিক করে যায়, নতুন
+   ট্যাবে) — stethoscope মোটিফ এখানে না। ডাক্তারের নাম টেক্সট
+   (nav+footer) আলাদাভাবে ক্লিকেবল → হোমপেজে স্ক্রল করে। এলিগ্যান্ট ফন্ট
+   (Playfair Display italic) নাম-এ প্রয়োগ করা হয়েছে (dashboard topbar
+   clinic name + website nav/footer logo text)।
+   → Stethoscope motif এখন শুধু ভিজিটিং কার্ডের জন্য reserved থাকবে
+   (Part 12 রি-ডু বাকি, পরের session)।
+
+7. Bug ফিক্স (client-এর screenshot থেকে ধরা পড়া, সব ফিক্স হয়েছে):
+   - About section-এ doctor name/specialty caption ভুল element-এর সাপেক্ষে
+     absolute-positioned ছিল (পুরো `.doc-card`-এর bottom, শুধু ছবির bottom
+     না) — ফলে credential ট্যাগের ওপর ওভারল্যাপ করত। ছবি+ক্যাপশন এখন
+     নিজস্ব relative wrapper-এ নেস্টেড, long name-এর জন্যও robust
+     (clamp() font-size, word-break)।
+   - Patient Portal login card লগ-আউট অবস্থায় centre-aligned ছিল না
+     (grid সবসময় ২-কলাম reserve করত, দ্বিতীয় কলাম ফাঁকা থাকত) — এখন
+     লগ-ইন করার আগে single-column centred, লগ-ইন করলে JS `two-col`
+     class যোগ করে ২-কলামে switch করে।
+   - Footer-এ Bio-র দুইটা ভিন্ন-দৈর্ঘ্যের truncation (৬০ char ট্যাগলাইনে,
+     ১৩০ char বায়োতে) পাশাপাশি প্রায়-ডুপ্লিকেট টেক্সটের মতো দেখাচ্ছিল —
+     ট্যাগলাইন এখন Bio থেকে না নিয়ে "[Specialty] Specialist" ব্যবহার
+     করে, শুধু একটাই bio excerpt দেখা যায়।
+   - Contact/WhatsApp নম্বর যেভাবেই Settings-এ সেভ থাকুক (লিডিং 0 সহ/ছাড়া,
+     880 সহ/ছাড়া) — এখন সবজায়গায় `formatBDPhone()` দিয়ে consistent
+     "+8801716233101" ফরম্যাটে দেখায়, এবং wa.me লিংকও এখন সবসময় সঠিক
+     880-prefixed নম্বরে যায় (আগে লিডিং-0 নম্বর দিয়ে ভুল wa.me লিংক
+     হওয়ার সম্ভাবনা ছিল)।
+   - প্রি-এক্সিস্টিং bug: `.grid2` CSS class Settings ফর্মে ব্যবহার হতো
+     কিন্তু কোথাও define করা ছিল না (তাই ফর্ম ফিল্ড এক কলামে পড়ে
+     যাচ্ছিল) — এখন responsive ২-কলাম গ্রিড হিসেবে define করা হয়েছে।
+
+8. PATCH_1 (DoctorDashboard Blog+RecDocs) ও PATCH_2 (PublicWebsite
+   Blog+RecDocs) — দুটোই আগে থেকে লেখা ছিল কিন্তু কখনো ফাইলে বসানো হয়নি,
+   এই session-এ সম্পূর্ণ apply করা হয়েছে, সব ৮+৬ ধাপ, existing Finance/
+   Delete UI-এর সাথে conflict ছাড়াই merge করা হয়েছে।
+
+⚠️ Key learning (future session-এর জন্য গুরুত্বপূর্ণ):
+   - Prescription.gs (Part-10) সবসময় build/deploy-এ include করতে হবে —
+     এটা আলাদা ফাইল, Code.gs-এর ভেতরে না, এবং আগে মিস হয়ে গিয়েছিল।
+   - নতুন কোনো major feature commit করার সময় সবসময় git clone করে actual
+     file পড়ে branch-divergence চেক করা — এই session-এ Part-13 vs
+     Part-16/17 divergence আগে থেকে ধরা না পড়লে theme toggle পুরোপুরি
+     হারিয়ে যেত।
+   - "কার্ড" শব্দটা client-এর ভাষায় দুই অর্থে ব্যবহার হতে পারে: (ক)
+     ভিজিটিং/বিজনেস কার্ড (PDF), (খ) ওয়েবসাইটের কোনো UI card — কনটেক্সট
+     থেকে বুঝে নিতে হবে, নাহলে ভুল জায়গায় ব্র্যান্ডিং change হয়ে যেতে
+     পারে (এই session-এ প্রথমে ভুল জায়গায় stethoscope বসানো হয়েছিল,
+     client feedback-এ ঠিক হয়েছে)।
+
+🔜 পরের session-এর জন্য বাকি:
+   - ভিজিটিং কার্ড (Part 12) নতুন stethoscope মোটিফ + এলিগ্যান্ট নাম-ফন্ট
+     দিয়ে রি-জেনারেট করা, QR কোড /#bk-এ পয়েন্ট করে কনফার্ম করা।
+   - নতুন stethoscope PWA icon সেট (favicon/apple-touch/192/512) — memory
+     অনুযায়ী আগে একবার বানানো হয়েছিল কিন্তু repo-তে actual ফাইল হিসেবে
+     পাওয়া যায়নি, তাই রি-জেনারেট করতে হবে।
+   - Part 14-এর master plan-এ উল্লেখিত পুরনো "QA pass" scope (component-
+     by-component light-mode contrast audit) — এখনো বাকি, ভবিষ্যতে
+     আলাদা part হিসেবে করা যেতে পারে।
+```
+

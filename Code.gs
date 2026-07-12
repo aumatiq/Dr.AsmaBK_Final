@@ -357,7 +357,13 @@ function getPublicBookingSlots(dateStr) {
     var slotDuration = parseInt(settings['SlotDuration'] || '20', 10);
 
     // Check if selected date is a working day
-    var targetDate = new Date(dateStr);
+    // FIX (Part 14): "new Date(dateStr)" parses "yyyy-MM-dd" as UTC midnight,
+    // which can shift the weekday back by one when script execution offset
+    // differs from UTC — this caused wrong slots / wrong "closed day"
+    // messages near midnight. Parse Y/M/D as plain integers instead so the
+    // weekday always matches the calendar date the patient actually picked.
+    var dParts     = String(dateStr).split('-').map(Number); // [yyyy, mm, dd]
+    var targetDate = new Date(dParts[0], dParts[1] - 1, dParts[2]);
     var dayNames   = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
     var dayName    = dayNames[targetDate.getDay()];
     if (workingDays.indexOf(dayName) === -1) {
