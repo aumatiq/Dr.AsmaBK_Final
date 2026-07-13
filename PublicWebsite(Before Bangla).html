@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" id="htmlRoot">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -110,20 +110,6 @@ body.theme-dark-force {
   color:var(--wht);transition:all .25s ease;
 }
 .theme-toggle-btn:hover{background:rgba(232,96,138,0.2);transform:translateY(-1px);}
-.lang-toggle-btn{
-  height:38px;min-width:38px;padding:0 12px;border-radius:10px;flex-shrink:0;cursor:pointer;
-  display:flex;align-items:center;justify-content:center;font-size:12.5px;font-weight:700;
-  letter-spacing:.5px;font-family:'Inter',sans-serif;
-  background:rgba(20,184,166,0.1);border:1px solid var(--bd-teal);
-  color:var(--wht);transition:all .25s ease;
-}
-.lang-toggle-btn:hover{background:rgba(20,184,166,0.2);transform:translateY(-1px);}
-.mob-lang-btn{
-  margin-top:10px;padding:12px 16px;border-radius:10px;
-  background:rgba(20,184,166,0.08);border:1px solid var(--bd-teal);
-  color:var(--wht);font-family:'Inter',sans-serif;font-size:14px;font-weight:600;
-  cursor:pointer;width:100%;text-align:center;
-}
 
 *  { margin: 0; padding: 0; box-sizing: border-box; }
 html { scroll-behavior: smooth; }
@@ -1328,19 +1314,18 @@ h1,h2,h3,h4 { font-family: 'Syne', sans-serif; }
         </a>
       </div>
       <ul class="nav-links">
-        <li><a href="#about" data-i18n="nav_about">About</a></li>
-        <li><a href="#svcs" data-i18n="nav_services">Services</a></li>
-        <li><a href="#blog" data-i18n="nav_blog">Blog</a></li>
-        <li><a href="#recdocs" data-i18n="nav_specialists">Specialists</a></li>
-        <li><a href="#hrs" data-i18n="nav_hours">Hours</a></li>
-        <li><a href="#testi" data-i18n="nav_reviews">Reviews</a></li>
-        <li><a href="#faq" data-i18n="nav_faq">FAQ</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#svcs">Services</a></li>
+        <li><a href="#blog">Blog</a></li>
+        <li><a href="#recdocs">Specialists</a></li>
+        <li><a href="#hrs">Hours</a></li>
+        <li><a href="#testi">Reviews</a></li>
+        <li><a href="#faq">FAQ</a></li>
       </ul>
       <div class="nav-ctas">
-        <button class="lang-toggle-btn" id="langToggleBtn" onclick="toggleLang()" title="ভাষা পরিবর্তন করুন / Change language" aria-label="Change language">EN</button>
         <button class="theme-toggle-btn" id="themeToggleBtn" onclick="cycleTheme()" title="Theme পরিবর্তন করুন" aria-label="Toggle dark/light theme">🌙</button>
-        <button class="nbtn nbtn-out" onclick="scrollTo('#portal')" data-i18n="nav_myrecords">👤 My Records</button>
-        <a href="#bk" class="nbtn nbtn-rose" data-i18n="nav_book">📅 Book Appointment</a>
+        <button class="nbtn nbtn-out" onclick="scrollTo('#portal')">👤 My Records</button>
+        <a href="#bk" class="nbtn nbtn-rose">📅 Book Appointment</a>
       </div>
       <button class="ham" id="ham" aria-label="Menu">
         <span></span><span></span><span></span>
@@ -1348,16 +1333,15 @@ h1,h2,h3,h4 { font-family: 'Syne', sans-serif; }
     </div>
   </div>
   <div class="mob" id="mob">
-    <a href="#about"  onclick="cMob()" data-i18n="mob_about">About Doctor</a>
-    <a href="#svcs"   onclick="cMob()" data-i18n="nav_services">Services</a>
-    <a href="#blog"   onclick="cMob()" data-i18n="nav_blog">Blog</a>
-    <a href="#recdocs" onclick="cMob()" data-i18n="mob_recdocs">Recommended Specialists</a>
-    <a href="#hrs"    onclick="cMob()" data-i18n="mob_hours">Hours &amp; Location</a>
-    <a href="#testi"  onclick="cMob()" data-i18n="mob_reviews">Patient Reviews</a>
-    <a href="#faq"    onclick="cMob()" data-i18n="nav_faq">FAQ</a>
-    <a href="#portal" class="mp" onclick="cMob()" data-i18n="mob_portal">👤 Patient Portal</a>
-    <a href="#bk"     class="mc" onclick="cMob()" data-i18n="nav_book">📅 Book Appointment</a>
-    <button class="mob-lang-btn" id="mobLangBtn" onclick="toggleLang()">বাংলায় দেখুন</button>
+    <a href="#about"  onclick="cMob()">About Doctor</a>
+    <a href="#svcs"   onclick="cMob()">Services</a>
+    <a href="#blog"   onclick="cMob()">Blog</a>
+    <a href="#recdocs" onclick="cMob()">Recommended Specialists</a>
+    <a href="#hrs"    onclick="cMob()">Hours &amp; Location</a>
+    <a href="#testi"  onclick="cMob()">Patient Reviews</a>
+    <a href="#faq"    onclick="cMob()">FAQ</a>
+    <a href="#portal" class="mp" onclick="cMob()">👤 Patient Portal</a>
+    <a href="#bk"     class="mc" onclick="cMob()">📅 Book Appointment</a>
   </div>
 </nav>
 
@@ -1370,7 +1354,7 @@ h1,h2,h3,h4 { font-family: 'Syne', sans-serif; }
   <div class="hero-glow g3"></div>
   <div class="wrap">
     <div class="hero-content">
-      <div class="hero-badge"><div class="dot"></div> <span data-i18n="hero_badge">Accepting New Patients</span></div>
+      <div class="hero-badge"><div class="dot"></div> Accepting New Patients</div>
       <h1 class="h1">
         <span class="hw">Your Health,</span><br>
         <span class="hw" style="color:var(--rose)">Our </span>
@@ -1378,24 +1362,24 @@ h1,h2,h3,h4 { font-family: 'Syne', sans-serif; }
       </h1>
       <p class="hero-sub" id="heroSub">Expert medical care delivered with compassion. Book your appointment in minutes — secure, simple, and online.</p>
       <div class="hero-ctas">
-        <a href="#bk" class="btn-rose" data-i18n="nav_book">📅 Book Appointment</a>
-        <button class="btn-ghost" onclick="scrollTo('#portal')" data-i18n="hero_myrecords">My Records →</button>
+        <a href="#bk" class="btn-rose">📅 Book Appointment</a>
+        <button class="btn-ghost" onclick="scrollTo('#portal')">My Records →</button>
       </div>
       <div class="hero-stats">
         <div>
           <div class="hstat-num" id="hsYears">—</div>
-          <div class="hstat-lbl" data-i18n="hero_years">Years Experience</div>
+          <div class="hstat-lbl">Years Experience</div>
         </div>
         <div>
           <div class="hstat-num">5,000+</div>
-          <div class="hstat-lbl" data-i18n="hero_patients">Patients Served</div>
+          <div class="hstat-lbl">Patients Served</div>
         </div>
         <div>
           <div class="hstat-num">70%</div>
-          <div class="hstat-lbl" data-i18n="hero_noshows">Fewer No-Shows</div>
+          <div class="hstat-lbl">Fewer No-Shows</div>
         </div>
         <div>
-          <div class="online-pill" data-i18n="hero_openpill">Booking Open Now</div>
+          <div class="online-pill">Booking Open Now</div>
         </div>
       </div>
     </div>
@@ -1423,17 +1407,17 @@ h1,h2,h3,h4 { font-family: 'Syne', sans-serif; }
         </div>
       </div>
       <div class="rv">
-        <span class="lbl" data-i18n="about_lbl">About Your Doctor</span>
+        <span class="lbl">About Your Doctor</span>
         <h2 class="ttl" id="aboutTtl">Meet <span class="r">Dr. Asma</span></h2>
         <p class="about-bio" id="aboutBio">A dedicated physician committed to providing compassionate, personalized healthcare. With years of experience in general medicine and women's health, Dr. Asma treats every patient as an individual — listening, diagnosing, and guiding you toward better health.</p>
         <div class="feat-grid">
-          <div class="feat"><div class="ficon">🏆</div><div><h4 data-i18n="about_f1t">Board Certified</h4><p data-i18n="about_f1d">Qualified with top credentials</p></div></div>
-          <div class="feat"><div class="ficon">💗</div><div><h4 data-i18n="about_f2t">Women's Health</h4><p data-i18n="about_f2d">Specialist care for women</p></div></div>
-          <div class="feat"><div class="ficon">🔬</div><div><h4 data-i18n="about_f3t">Modern Care</h4><p data-i18n="about_f3d">Evidence-based treatment</p></div></div>
-          <div class="feat"><div class="ficon">🌐</div><div><h4 data-i18n="about_f4t">Digital Records</h4><p data-i18n="about_f4d">Secure online access 24/7</p></div></div>
+          <div class="feat"><div class="ficon">🏆</div><div><h4>Board Certified</h4><p>Qualified with top credentials</p></div></div>
+          <div class="feat"><div class="ficon">💗</div><div><h4>Women's Health</h4><p>Specialist care for women</p></div></div>
+          <div class="feat"><div class="ficon">🔬</div><div><h4>Modern Care</h4><p>Evidence-based treatment</p></div></div>
+          <div class="feat"><div class="ficon">🌐</div><div><h4>Digital Records</h4><p>Secure online access 24/7</p></div></div>
         </div>
         <div style="margin-top:28px;">
-          <a href="#bk" class="btn-rose" style="display:inline-flex;animation:none;width:auto;padding:13px 28px;" data-i18n="about_cta">
+          <a href="#bk" class="btn-rose" style="display:inline-flex;animation:none;width:auto;padding:13px 28px;">
             Book a Consultation →
           </a>
         </div>
@@ -1448,17 +1432,17 @@ h1,h2,h3,h4 { font-family: 'Syne', sans-serif; }
 <section class="svcs sec" id="svcs">
   <div class="wrap" style="position:relative;z-index:1;">
     <div class="cx">
-      <span class="lbl" data-i18n="svc_lbl">Our Services</span>
-      <h2 class="ttl" data-i18n-html="svc_ttl">What We <span class="r">Treat</span></h2>
-      <p class="sub" data-i18n="svc_sub">Comprehensive healthcare tailored for women and families — delivered with expertise and warmth.</p>
+      <span class="lbl">Our Services</span>
+      <h2 class="ttl">What We <span class="r">Treat</span></h2>
+      <p class="sub">Comprehensive healthcare tailored for women and families — delivered with expertise and warmth.</p>
     </div>
     <div class="svc-grid">
-      <div class="svc-card rv"><div class="svc-ico">🩺</div><span class="svc-badge" data-i18n="svc1_badge">General Medicine</span><div class="svc-ttl" data-i18n="svc1_ttl">General Consultation</div><p class="svc-desc" data-i18n="svc1_desc">Complete physical exams, health screenings, and medical advice for all ages — children, adults, and seniors.</p></div>
-      <div class="svc-card star rv"><div class="svc-ico" style="background:rgba(245,166,35,.12);border-color:rgba(245,166,35,.25);">💗</div><span class="svc-badge" data-i18n="svc2_badge">⭐ Most Requested</span><div class="svc-ttl" data-i18n="svc2_ttl">Women's Health</div><p class="svc-desc" data-i18n="svc2_desc">Reproductive health, hormonal issues, menstrual care, prenatal consultations, and menopause management.</p></div>
-      <div class="svc-card rv"><div class="svc-ico">💊</div><span class="svc-badge" data-i18n="svc3_badge">Chronic Care</span><div class="svc-ttl" data-i18n="svc3_ttl">Chronic Disease Management</div><p class="svc-desc" data-i18n="svc3_desc">Ongoing care for diabetes, hypertension, thyroid disorders, and other chronic conditions with regular monitoring.</p></div>
-      <div class="svc-card rv"><div class="svc-ico">🧪</div><span class="svc-badge" data-i18n="svc4_badge">Diagnostics</span><div class="svc-ttl" data-i18n-html="svc4_ttl">Lab Tests &amp; Reports</div><p class="svc-desc" data-i18n="svc4_desc">Comprehensive blood work, pathology referrals, and digital delivery of all test results to your patient portal.</p></div>
-      <div class="svc-card rv"><div class="svc-ico">👶</div><span class="svc-badge" data-i18n="svc5_badge">Pediatrics</span><div class="svc-ttl" data-i18n="svc5_ttl">Child Healthcare</div><p class="svc-desc" data-i18n="svc5_desc">Vaccinations, growth monitoring, and specialized care for infants, children, and adolescents.</p></div>
-      <div class="svc-card rv"><div class="svc-ico">📋</div><span class="svc-badge" data-i18n="svc6_badge">Preventive</span><div class="svc-ttl" data-i18n="svc6_ttl">Health Checkup Packages</div><p class="svc-desc" data-i18n="svc6_desc">Annual and semi-annual comprehensive health packages tailored to your age, risk profile, and lifestyle.</p></div>
+      <div class="svc-card rv"><div class="svc-ico">🩺</div><span class="svc-badge">General Medicine</span><div class="svc-ttl">General Consultation</div><p class="svc-desc">Complete physical exams, health screenings, and medical advice for all ages — children, adults, and seniors.</p></div>
+      <div class="svc-card star rv"><div class="svc-ico" style="background:rgba(245,166,35,.12);border-color:rgba(245,166,35,.25);">💗</div><span class="svc-badge">⭐ Most Requested</span><div class="svc-ttl">Women's Health</div><p class="svc-desc">Reproductive health, hormonal issues, menstrual care, prenatal consultations, and menopause management.</p></div>
+      <div class="svc-card rv"><div class="svc-ico">💊</div><span class="svc-badge">Chronic Care</span><div class="svc-ttl">Chronic Disease Management</div><p class="svc-desc">Ongoing care for diabetes, hypertension, thyroid disorders, and other chronic conditions with regular monitoring.</p></div>
+      <div class="svc-card rv"><div class="svc-ico">🧪</div><span class="svc-badge">Diagnostics</span><div class="svc-ttl">Lab Tests &amp; Reports</div><p class="svc-desc">Comprehensive blood work, pathology referrals, and digital delivery of all test results to your patient portal.</p></div>
+      <div class="svc-card rv"><div class="svc-ico">👶</div><span class="svc-badge">Pediatrics</span><div class="svc-ttl">Child Healthcare</div><p class="svc-desc">Vaccinations, growth monitoring, and specialized care for infants, children, and adolescents.</p></div>
+      <div class="svc-card rv"><div class="svc-ico">📋</div><span class="svc-badge">Preventive</span><div class="svc-ttl">Health Checkup Packages</div><p class="svc-desc">Annual and semi-annual comprehensive health packages tailored to your age, risk profile, and lifestyle.</p></div>
     </div>
   </div>
 </section>
@@ -1469,14 +1453,14 @@ h1,h2,h3,h4 { font-family: 'Syne', sans-serif; }
 <section class="stats sec" id="results">
   <div class="wrap">
     <div class="cx" style="margin-bottom:56px;position:relative;z-index:1;">
-      <span class="lbl teal" style="border-color:rgba(20,184,166,.35);" data-i18n="stats_lbl">Why Patients Choose Us</span>
-      <h2 class="ttl" style="color:#fff;" data-i18n-html="stats_ttl">Numbers That <span class="t">Speak</span></h2>
+      <span class="lbl teal" style="border-color:rgba(20,184,166,.35);">Why Patients Choose Us</span>
+      <h2 class="ttl" style="color:#fff;">Numbers That <span class="t">Speak</span></h2>
     </div>
     <div class="stat-grid" id="statGrid">
-      <div class="stat-card"><div class="sico">⏱️</div><div class="snum" data-t="15" data-s=" min">0</div><div class="slbl" data-i18n="st1_lbl">Average Wait Time</div><div class="ssub" data-i18n="st1_sub">With online booking</div></div>
-      <div class="stat-card"><div class="sico">📅</div><div class="snum" data-t="70" data-s="%">0</div><div class="slbl" data-i18n="hero_noshows">Fewer No-Shows</div><div class="ssub" data-i18n="st2_sub">Automated reminder system</div></div>
-      <div class="stat-card"><div class="sico">⭐</div><div class="snum" data-t="4.9" data-s="★">0</div><div class="slbl" data-i18n="st3_lbl">Patient Rating</div><div class="ssub" data-i18n="st3_sub">Average from feedback</div></div>
-      <div class="stat-card"><div class="sico">🔒</div><div class="snum" data-t="24" data-s="/7">0</div><div class="slbl" data-i18n="st4_lbl">Records Access</div><div class="ssub" data-i18n="st4_sub">Secure portal anytime</div></div>
+      <div class="stat-card"><div class="sico">⏱️</div><div class="snum" data-t="15" data-s=" min">0</div><div class="slbl">Average Wait Time</div><div class="ssub">With online booking</div></div>
+      <div class="stat-card"><div class="sico">📅</div><div class="snum" data-t="70" data-s="%">0</div><div class="slbl">Fewer No-Shows</div><div class="ssub">Automated reminder system</div></div>
+      <div class="stat-card"><div class="sico">⭐</div><div class="snum" data-t="4.9" data-s="★">0</div><div class="slbl">Patient Rating</div><div class="ssub">Average from feedback</div></div>
+      <div class="stat-card"><div class="sico">🔒</div><div class="snum" data-t="24" data-s="/7">0</div><div class="slbl">Records Access</div><div class="ssub">Secure portal anytime</div></div>
     </div>
   </div>
 </section>
@@ -1487,25 +1471,25 @@ h1,h2,h3,h4 { font-family: 'Syne', sans-serif; }
 <section class="hrs sec" id="hrs">
   <div class="wrap">
     <div class="cx" style="margin-bottom:48px;">
-      <span class="lbl" data-i18n="hrs_lbl">Visit Us</span>
-      <h2 class="ttl" data-i18n-html="hrs_ttl">Hours &amp; <span class="t">Location</span></h2>
-      <p class="sub" data-i18n="hrs_sub">Walk-ins welcome during open hours. Online booking available 24/7.</p>
+      <span class="lbl">Visit Us</span>
+      <h2 class="ttl">Hours &amp; <span class="t">Location</span></h2>
+      <p class="sub">Walk-ins welcome during open hours. Online booking available 24/7.</p>
     </div>
     <div class="hrs-grid">
       <div class="hrs-card rv">
-        <h3 data-i18n="hrs_wh">🕐 Working Hours</h3>
+        <h3>🕐 Working Hours</h3>
         <div id="hrsTable"><div class="hrow"><span class="hday">Loading...</span></div></div>
         <div style="margin-top:18px;padding:14px 16px;background:rgba(20,184,166,.07);border:1px solid rgba(20,184,166,.2);border-radius:12px;font-size:13px;color:var(--sil);">
-          <span data-i18n-html="hrs_note">💡 <strong style="color:var(--wht);">Online booking is open 24/7</strong> — book any time, even outside clinic hours.</span>
+          💡 <strong style="color:var(--wht);">Online booking is open 24/7</strong> — book any time, even outside clinic hours.
         </div>
       </div>
       <div class="rv">
-        <h3 style="font-family:'Syne',sans-serif;font-size:22px;font-weight:700;margin-bottom:20px;" data-i18n="hrs_contact">📍 Contact &amp; Location</h3>
+        <h3 style="font-family:'Syne',sans-serif;font-size:22px;font-weight:700;margin-bottom:20px;">📍 Contact &amp; Location</h3>
         <div class="ci-list">
-          <div class="ci-item"><div class="ci-ico">📍</div><div><div class="ci-lbl" data-i18n="ci_addr">Address</div><div class="ci-val" id="ciAddr">—</div></div></div>
-          <div class="ci-item"><div class="ci-ico">📞</div><div><div class="ci-lbl" data-i18n="ci_phone">Phone</div><div class="ci-val" id="ciPhone">—</div></div></div>
-          <div class="ci-item"><div class="ci-ico">✉️</div><div><div class="ci-lbl" data-i18n="ci_email">Email</div><div class="ci-val" id="ciEmail">clinic.drasma@gmail.com</div></div></div>
-          <div class="ci-item" style="border-color:rgba(232,96,138,.3);background:rgba(232,96,138,.03);"><div class="ci-ico" style="background:rgba(232,96,138,.12);border-color:rgba(232,96,138,.25);">💬</div><div><div class="ci-lbl" data-i18n="ci_wa">WhatsApp</div><div class="ci-val" id="ciWa">—</div></div></div>
+          <div class="ci-item"><div class="ci-ico">📍</div><div><div class="ci-lbl">Address</div><div class="ci-val" id="ciAddr">—</div></div></div>
+          <div class="ci-item"><div class="ci-ico">📞</div><div><div class="ci-lbl">Phone</div><div class="ci-val" id="ciPhone">—</div></div></div>
+          <div class="ci-item"><div class="ci-ico">✉️</div><div><div class="ci-lbl">Email</div><div class="ci-val" id="ciEmail">clinic.drasma@gmail.com</div></div></div>
+          <div class="ci-item" style="border-color:rgba(232,96,138,.3);background:rgba(232,96,138,.03);"><div class="ci-ico" style="background:rgba(232,96,138,.12);border-color:rgba(232,96,138,.25);">💬</div><div><div class="ci-lbl">WhatsApp</div><div class="ci-val" id="ciWa">—</div></div></div>
         </div>
       </div>
     </div>
@@ -1518,16 +1502,16 @@ h1,h2,h3,h4 { font-family: 'Syne', sans-serif; }
 <section class="testi sec" id="testi">
   <div class="wrap" style="position:relative;z-index:1;">
     <div class="cx" style="margin-bottom:52px;">
-      <span class="lbl" data-i18n="testi_lbl">Patient Reviews</span>
-      <h2 class="ttl" data-i18n-html="testi_ttl">What Patients <span class="r">Say</span></h2>
-      <p class="sub" data-i18n="testi_sub">Real feedback from patients who trust us with their health.</p>
+      <span class="lbl">Patient Reviews</span>
+      <h2 class="ttl">What Patients <span class="r">Say</span></h2>
+      <p class="sub">Real feedback from patients who trust us with their health.</p>
     </div>
     <div class="t-grid">
       <div class="tc rv"><div class="tqm">"</div><div class="tstars">★★★★★</div><p class="tq">Booking online was so easy. I got my appointment confirmed immediately with a Patient ID. The doctor listened to everything and explained my condition clearly.</p><div class="tdiv"></div><div class="tpc"><div class="tav">RK</div><div><div class="tn">Rashida K.</div><div class="tr">Patient since 2024</div></div></div></div>
       <div class="tc ft rv"><div class="tqm">"</div><div class="tstars">★★★★★</div><p class="tq">I love accessing my test results online without calling the clinic. The reminders mean I never miss my follow-ups. This system has made my healthcare so much easier to manage.</p><div class="tdiv"></div><div class="tpc"><div class="tav">MA</div><div><div class="tn">Monira A.</div><div class="tr">Regular Patient</div></div></div></div>
       <div class="tc rv"><div class="tqm">"</div><div class="tstars">★★★★★</div><p class="tq">আমার সব টেস্ট রিপোর্ট এখন অনলাইনে পাই। অ্যাপয়েন্টমেন্ট নেওয়াও অনেক সহজ। ডাক্তার সাহেবার ব্যবহার এবং সেবা দুটোই অসাধারণ।</p><div class="tdiv"></div><div class="tpc"><div class="tav">SB</div><div><div class="tn">Sultana B.</div><div class="tr">Patient, Dhaka</div></div></div></div>
     </div>
-    <p style="text-align:center;font-size:12px;color:var(--sil2);margin-top:32px;" data-i18n="testi_placeholder">Placeholder reviews — real patient testimonials will be added here.</p>
+    <p style="text-align:center;font-size:12px;color:var(--sil2);margin-top:32px;">Placeholder reviews — real patient testimonials will be added here.</p>
   </div>
 </section>
 
@@ -1537,9 +1521,9 @@ h1,h2,h3,h4 { font-family: 'Syne', sans-serif; }
 <section class="blog sec" id="blog">
   <div class="wrap" style="position:relative;z-index:1;">
     <div class="cx" style="margin-bottom:40px;">
-      <span class="lbl" data-i18n="blog_lbl">Health Articles</span>
-      <h2 class="ttl" data-i18n-html="blog_ttl">From the <span class="r">Doctor's Desk</span></h2>
-      <p class="sub" data-i18n="blog_sub">Tips, insights, and health guidance written by Dr. Asma for you and your family.</p>
+      <span class="lbl">Health Articles</span>
+      <h2 class="ttl">From the <span class="r">Doctor's Desk</span></h2>
+      <p class="sub">Tips, insights, and health guidance written by Dr. Asma for you and your family.</p>
     </div>
     <div class="blog-grid" id="blogGrid">
       <p style="text-align:center;color:var(--sil2);font-size:13px;grid-column:1/-1;">Loading articles...</p>
@@ -1561,9 +1545,9 @@ h1,h2,h3,h4 { font-family: 'Syne', sans-serif; }
 <section class="recdocs sec" id="recdocs">
   <div class="wrap">
     <div class="cx" style="margin-bottom:40px;">
-      <span class="lbl teal" style="border-color:rgba(20,184,166,.35);" data-i18n="rec_lbl">Trusted Network</span>
-      <h2 class="ttl" data-i18n-html="rec_ttl">Doctors We <span class="t">Recommend</span></h2>
-      <p class="sub" data-i18n="rec_sub">Specialists Dr. Asma personally refers her patients to for further care.</p>
+      <span class="lbl teal" style="border-color:rgba(20,184,166,.35);">Trusted Network</span>
+      <h2 class="ttl">Doctors We <span class="t">Recommend</span></h2>
+      <p class="sub">Specialists Dr. Asma personally refers her patients to for further care.</p>
     </div>
     <div class="recdoc-grid" id="recDocPubGrid">
       <p style="text-align:center;color:var(--sil2);font-size:13px;grid-column:1/-1;">Loading...</p>
@@ -1578,17 +1562,17 @@ h1,h2,h3,h4 { font-family: 'Syne', sans-serif; }
   <div class="wrap">
     <div class="faq-wrap">
       <div class="cx">
-        <span class="lbl" data-i18n="faq_lbl">FAQ</span>
-        <h2 class="ttl" data-i18n-html="faq_ttl">Questions <span class="r">Answered</span></h2>
-        <p class="sub" data-i18n="faq_sub">Everything you need to know before your visit.</p>
+        <span class="lbl">FAQ</span>
+        <h2 class="ttl">Questions <span class="r">Answered</span></h2>
+        <p class="sub">Everything you need to know before your visit.</p>
       </div>
       <div class="faq-list">
-        <div class="fi rv"><button class="fq"><span data-i18n="faq1_q">How do I book an appointment?</span><div class="fi-ico"><svg viewBox="0 0 14 14"><polyline points="2 4 7 10 12 4"/></svg></div></button><div class="fa"><p data-i18n-html="faq1_a">Scroll to the <strong>Book Appointment</strong> section below. Select a date, pick an available time slot, fill in your details, and confirm. You'll receive a <strong>Patient ID</strong> instantly — save it to access your records.</p></div></div>
-        <div class="fi rv"><button class="fq"><span data-i18n="faq2_q">What is a Patient ID?</span><div class="fi-ico"><svg viewBox="0 0 14 14"><polyline points="2 4 7 10 12 4"/></svg></div></button><div class="fa"><p data-i18n-html="faq2_a">Your <strong>Patient ID</strong> (format: PT-2026-0001) is assigned automatically when you book your first appointment. Use it with your registered phone number to log into the <strong>Patient Portal</strong> and view your appointments, test results, and health records.</p></div></div>
-        <div class="fi rv"><button class="fq"><span data-i18n="faq3_q">How do I access my test results?</span><div class="fi-ico"><svg viewBox="0 0 14 14"><polyline points="2 4 7 10 12 4"/></svg></div></button><div class="fa"><p data-i18n-html="faq3_a">Click <strong>My Records</strong> in the navigation or scroll to the Patient Portal section. Log in with your Patient ID and phone number. Doctor-approved results appear there for download. You can also upload your own scan files for doctor review.</p></div></div>
-        <div class="fi rv"><button class="fq"><span data-i18n="faq4_q">Can I cancel or reschedule?</span><div class="fi-ico"><svg viewBox="0 0 14 14"><polyline points="2 4 7 10 12 4"/></svg></div></button><div class="fa"><p data-i18n-html="faq4_a">Please contact us via <strong>phone or WhatsApp</strong> at least 2 hours before your scheduled appointment. Our team will find you a new suitable slot. Walk-ins are also welcome during open clinic hours.</p></div></div>
-        <div class="fi rv"><button class="fq"><span data-i18n="faq5_q">Is my medical data secure?</span><div class="fi-ico"><svg viewBox="0 0 14 14"><polyline points="2 4 7 10 12 4"/></svg></div></button><div class="fa"><p data-i18n-html="faq5_a">Yes. All data is stored securely via <strong>Google Workspace</strong>. Your records are accessible only with your unique Patient ID + phone number. Test results remain private until explicitly approved by the doctor. We never share patient data with third parties.</p></div></div>
-        <div class="fi rv"><button class="fq"><span data-i18n="faq6_q">What should I bring to my first visit?</span><div class="fi-ico"><svg viewBox="0 0 14 14"><polyline points="2 4 7 10 12 4"/></svg></div></button><div class="fa"><p data-i18n-html="faq6_a">Bring your <strong>National ID</strong>, any previous medical records or test results, a list of current medications, and your appointment confirmation (Patient ID). Arriving <strong>10 minutes early</strong> ensures a smooth check-in.</p></div></div>
+        <div class="fi rv"><button class="fq"><span>How do I book an appointment?</span><div class="fi-ico"><svg viewBox="0 0 14 14"><polyline points="2 4 7 10 12 4"/></svg></div></button><div class="fa"><p>Scroll to the <strong>Book Appointment</strong> section below. Select a date, pick an available time slot, fill in your details, and confirm. You'll receive a <strong>Patient ID</strong> instantly — save it to access your records.</p></div></div>
+        <div class="fi rv"><button class="fq"><span>What is a Patient ID?</span><div class="fi-ico"><svg viewBox="0 0 14 14"><polyline points="2 4 7 10 12 4"/></svg></div></button><div class="fa"><p>Your <strong>Patient ID</strong> (format: PT-2026-0001) is assigned automatically when you book your first appointment. Use it with your registered phone number to log into the <strong>Patient Portal</strong> and view your appointments, test results, and health records.</p></div></div>
+        <div class="fi rv"><button class="fq"><span>How do I access my test results?</span><div class="fi-ico"><svg viewBox="0 0 14 14"><polyline points="2 4 7 10 12 4"/></svg></div></button><div class="fa"><p>Click <strong>My Records</strong> in the navigation or scroll to the Patient Portal section. Log in with your Patient ID and phone number. Doctor-approved results appear there for download. You can also upload your own scan files for doctor review.</p></div></div>
+        <div class="fi rv"><button class="fq"><span>Can I cancel or reschedule?</span><div class="fi-ico"><svg viewBox="0 0 14 14"><polyline points="2 4 7 10 12 4"/></svg></div></button><div class="fa"><p>Please contact us via <strong>phone or WhatsApp</strong> at least 2 hours before your scheduled appointment. Our team will find you a new suitable slot. Walk-ins are also welcome during open clinic hours.</p></div></div>
+        <div class="fi rv"><button class="fq"><span>Is my medical data secure?</span><div class="fi-ico"><svg viewBox="0 0 14 14"><polyline points="2 4 7 10 12 4"/></svg></div></button><div class="fa"><p>Yes. All data is stored securely via <strong>Google Workspace</strong>. Your records are accessible only with your unique Patient ID + phone number. Test results remain private until explicitly approved by the doctor. We never share patient data with third parties.</p></div></div>
+        <div class="fi rv"><button class="fq"><span>What should I bring to my first visit?</span><div class="fi-ico"><svg viewBox="0 0 14 14"><polyline points="2 4 7 10 12 4"/></svg></div></button><div class="fa"><p>Bring your <strong>National ID</strong>, any previous medical records or test results, a list of current medications, and your appointment confirmation (Patient ID). Arriving <strong>10 minutes early</strong> ensures a smooth check-in.</p></div></div>
       </div>
     </div>
   </div>
@@ -1602,31 +1586,31 @@ h1,h2,h3,h4 { font-family: 'Syne', sans-serif; }
     <div class="bk-grid">
       <!-- Left: Form -->
       <div>
-        <span class="lbl" data-i18n="bk_lbl">Online Booking</span>
-        <h2 class="ttl" data-i18n-html="bk_ttl">Book Your <span class="r">Appointment</span></h2>
-        <p class="sub" style="margin-bottom:36px;" data-i18n="bk_sub">Free, instant online scheduling. Confirmation in seconds.</p>
+        <span class="lbl">Online Booking</span>
+        <h2 class="ttl">Book Your <span class="r">Appointment</span></h2>
+        <p class="sub" style="margin-bottom:36px;">Free, instant online scheduling. Confirmation in seconds.</p>
         <div id="bkMsg"></div>
         <div class="bk-card" id="bkCard">
           <div class="sdots">
             <div class="sd a" id="sd1"></div>
             <div class="sd" id="sd2"></div>
-            <span class="slbl" id="sLbl" data-i18n="bk_step1">Step 1 of 2 — Date &amp; Time</span>
+            <span class="slbl" id="sLbl">Step 1 of 2 — Date &amp; Time</span>
           </div>
           <!-- Step 1 -->
           <div id="s1">
             <div class="fg">
-              <label class="fl" data-i18n="bk_predate">Preferred Date</label>
+              <label class="fl">Preferred Date</label>
               <input type="date" id="bkDate" class="fi-input" onchange="loadSlots()" min="">
             </div>
             <div id="slotArea" class="hide">
-              <span class="slot-lbl" data-i18n="bk_slots">Available Time Slots</span>
+              <span class="slot-lbl">Available Time Slots</span>
               <div class="sg" id="sg"></div>
               <input type="hidden" id="selSlot">
             </div>
             <div id="slotLoad" class="hide" style="color:var(--sil);font-size:13px;margin:10px 0;">
-              <span class="spin" style="vertical-align:middle;margin-right:6px;"></span> <span data-i18n="bk_loading">Loading available slots...</span>
+              <span class="spin" style="vertical-align:middle;margin-right:6px;"></span> Loading available slots...
             </div>
-            <button class="btn-submit" id="toS2" onclick="goS2()" disabled data-i18n="bk_continue">
+            <button class="btn-submit" id="toS2" onclick="goS2()" disabled>
               Continue — Select Time →
             </button>
           </div>
@@ -1634,30 +1618,30 @@ h1,h2,h3,h4 { font-family: 'Syne', sans-serif; }
           <div id="s2" class="hide">
             <div class="al al-inf" id="dtSum"></div>
             <div class="fr">
-              <div class="fg"><label class="fl" data-i18n="bk_fullname">Full Name *</label><input type="text" id="bkN" class="fi-input" placeholder="Your full name" data-i18n-ph="bk_fullname_ph"></div>
-              <div class="fg"><label class="fl" data-i18n="bk_phone">Phone Number *</label><input type="tel" id="bkP" class="fi-input" placeholder="01XXXXXXXXX"></div>
+              <div class="fg"><label class="fl">Full Name *</label><input type="text" id="bkN" class="fi-input" placeholder="Your full name"></div>
+              <div class="fg"><label class="fl">Phone Number *</label><input type="tel" id="bkP" class="fi-input" placeholder="01XXXXXXXXX"></div>
             </div>
             <div class="fr">
-              <div class="fg"><label class="fl" data-i18n="bk_age">Age</label><input type="number" id="bkA" class="fi-input" placeholder="Age" min="1" max="120" data-i18n-ph="bk_age_ph"></div>
-              <div class="fg"><label class="fl" data-i18n="bk_gender">Gender</label><select id="bkG" class="fi-sel"><option value="" data-i18n="bk_select">Select</option></select></div>
+              <div class="fg"><label class="fl">Age</label><input type="number" id="bkA" class="fi-input" placeholder="Age" min="1" max="120"></div>
+              <div class="fg"><label class="fl">Gender</label><select id="bkG" class="fi-sel"><option value="">Select</option></select></div>
             </div>
-            <div class="fg"><label class="fl" data-i18n="bk_reason">Reason for Visit</label><textarea id="bkR" class="fi-ta" placeholder="Briefly describe your symptoms or reason for consultation..." data-i18n-ph="bk_reason_ph"></textarea></div>
+            <div class="fg"><label class="fl">Reason for Visit</label><textarea id="bkR" class="fi-ta" placeholder="Briefly describe your symptoms or reason for consultation..."></textarea></div>
             <div style="display:flex;gap:12px;margin-top:4px;">
-              <button class="btn-back" onclick="goS1()" data-i18n="bk_back">← Back</button>
-              <button class="btn-submit" id="cnfBtn" onclick="cnfBook()" style="margin-top:0;" data-i18n="bk_confirm">Confirm Appointment →</button>
+              <button class="btn-back" onclick="goS1()">← Back</button>
+              <button class="btn-submit" id="cnfBtn" onclick="cnfBook()" style="margin-top:0;">Confirm Appointment →</button>
             </div>
           </div>
         </div>
       </div>
       <!-- Right: Info -->
       <div class="bk-info">
-        <div class="bi rose"><div class="bi-ico">⚡</div><div><div class="bi-t" data-i18n="bi1_t">Instant Confirmation</div><div class="bi-d" data-i18n="bi1_d">Your Patient ID and appointment details appear immediately after booking.</div></div></div>
-        <div class="bi tl"><div class="bi-ico">🔔</div><div><div class="bi-t" data-i18n="bi2_t">Automatic Reminders</div><div class="bi-d" data-i18n="bi2_d">Receive reminders before your appointment so you never miss a visit.</div></div></div>
-        <div class="bi"><div class="bi-ico">📱</div><div><div class="bi-t" data-i18n="bi3_t">Digital Records</div><div class="bi-d" data-i18n="bi3_d">Access all your test results and history via your Patient Portal using your Patient ID.</div></div></div>
-        <div class="bi rose"><div class="bi-ico">💬</div><div><div class="bi-t" data-i18n="bi4_t">Need Help?</div><div class="bi-d" data-i18n-html="bi4_d">Call or message us on WhatsApp.<br><a id="waHelpLink" href="https://wa.me/880" target="_blank">Chat on WhatsApp →</a></div></div></div>
+        <div class="bi rose"><div class="bi-ico">⚡</div><div><div class="bi-t">Instant Confirmation</div><div class="bi-d">Your Patient ID and appointment details appear immediately after booking.</div></div></div>
+        <div class="bi tl"><div class="bi-ico">🔔</div><div><div class="bi-t">Automatic Reminders</div><div class="bi-d">Receive reminders before your appointment so you never miss a visit.</div></div></div>
+        <div class="bi"><div class="bi-ico">📱</div><div><div class="bi-t">Digital Records</div><div class="bi-d">Access all your test results and history via your Patient Portal using your Patient ID.</div></div></div>
+        <div class="bi rose"><div class="bi-ico">💬</div><div><div class="bi-t">Need Help?</div><div class="bi-d">Call or message us on WhatsApp.<br><a id="waHelpLink" href="https://wa.me/880" target="_blank">Chat on WhatsApp →</a></div></div></div>
         <div style="padding:18px;background:rgba(232,96,138,.05);border:1px solid var(--bd);border-radius:14px;font-size:13px;color:var(--sil);">
           <strong style="color:var(--wht);">📧 clinic.drasma@gmail.com</strong><br>
-          <span data-i18n="bk_email_note">Reach us anytime via email for non-urgent queries.</span>
+          Reach us anytime via email for non-urgent queries.
         </div>
       </div>
     </div>
@@ -1670,21 +1654,21 @@ h1,h2,h3,h4 { font-family: 'Syne', sans-serif; }
 <section class="portal-sec sec" id="portal">
   <div class="wrap">
     <div class="cx" style="margin-bottom:48px;">
-      <span class="lbl teal" data-i18n="portal_lbl">Patient Portal</span>
-      <h2 class="ttl" data-i18n-html="portal_ttl">My <span class="t">Health Records</span></h2>
-      <p class="sub" data-i18n="portal_sub">Log in with your Patient ID and registered phone number.</p>
+      <span class="lbl teal">Patient Portal</span>
+      <h2 class="ttl">My <span class="t">Health Records</span></h2>
+      <p class="sub">Log in with your Patient ID and registered phone number.</p>
     </div>
     <div class="portal-grid">
       <!-- Login panel -->
       <div id="loginPanel">
         <div class="p-login">
-          <h3 data-i18n="login_ttl">Secure Login</h3>
-          <p data-i18n="login_sub">Enter your details to access your records.</p>
+          <h3>Secure Login</h3>
+          <p>Enter your details to access your records.</p>
           <div id="loginMsg"></div>
-          <div class="fg"><label class="fl" data-i18n="login_pid">Patient ID</label><input type="text" id="pidIn" class="fi-input" placeholder="PT-2026-0001"></div>
-          <div class="fg"><label class="fl" data-i18n="bk_phone2">Phone Number</label><input type="tel" id="phpIn" class="fi-input" placeholder="01XXXXXXXXX"></div>
-          <button class="btn-submit" style="margin-top:4px;" onclick="doLogin()" data-i18n="login_btn">Login to My Records →</button>
-          <p style="font-size:12px;color:var(--sil2);margin-top:14px;line-height:1.6;" data-i18n-html="login_note">
+          <div class="fg"><label class="fl">Patient ID</label><input type="text" id="pidIn" class="fi-input" placeholder="PT-2026-0001"></div>
+          <div class="fg"><label class="fl">Phone Number</label><input type="tel" id="phpIn" class="fi-input" placeholder="01XXXXXXXXX"></div>
+          <button class="btn-submit" style="margin-top:4px;" onclick="doLogin()">Login to My Records →</button>
+          <p style="font-size:12px;color:var(--sil2);margin-top:14px;line-height:1.6;">
             💡 No Patient ID? <a href="#bk" style="color:var(--rose2);">Book your first appointment</a> — your ID is created automatically.
           </p>
         </div>
@@ -1694,27 +1678,27 @@ h1,h2,h3,h4 { font-family: 'Syne', sans-serif; }
         <div class="p-records">
           <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-bottom:20px;">
             <h3 id="recWel">My Health Records</h3>
-            <button onclick="doLogout()" style="font-size:13px;color:var(--sil);background:none;border:1px solid var(--bd);padding:8px 14px;border-radius:8px;cursor:pointer;transition:all .2s;" onmouseover="this.style.color='var(--wht)'" onmouseout="this.style.color='var(--sil)'" data-i18n="logout_btn">Logout</button>
+            <button onclick="doLogout()" style="font-size:13px;color:var(--sil);background:none;border:1px solid var(--bd);padding:8px 14px;border-radius:8px;cursor:pointer;transition:all .2s;" onmouseover="this.style.color='var(--wht)'" onmouseout="this.style.color='var(--sil)'">Logout</button>
           </div>
           <div class="pi-grid" id="piGrid"></div>
           <div class="ptabs">
-            <button class="pt a" onclick="pTab('appts',this)" data-i18n="ptab_appts">📅 Appointments</button>
-            <button class="pt"   onclick="pTab('tests',this)" data-i18n="ptab_tests">🧪 Test Results</button>
-            <button class="pt"   onclick="pTab('up',this)" data-i18n="ptab_up">📎 Upload</button>
+            <button class="pt a" onclick="pTab('appts',this)">📅 Appointments</button>
+            <button class="pt"   onclick="pTab('tests',this)">🧪 Test Results</button>
+            <button class="pt"   onclick="pTab('up',this)">📎 Upload</button>
           </div>
           <div id="pAppts"><div id="apptsTbl"></div></div>
-          <div id="pTests" class="hide"><p style="font-size:13px;color:var(--sil);margin-bottom:14px;" data-i18n="ptests_note">Only doctor-approved results shown.</p><div id="testsTbl"></div></div>
+          <div id="pTests" class="hide"><p style="font-size:13px;color:var(--sil);margin-bottom:14px;">Only doctor-approved results shown.</p><div id="testsTbl"></div></div>
           <div id="pUp" class="hide">
             <div id="upMsg"></div>
-            <div class="fg"><label class="fl" data-i18n="up_type">Test Type</label><select id="upType" class="fi-sel"><option value="" data-i18n="up_type_select">Select test type</option></select></div>
+            <div class="fg"><label class="fl">Test Type</label><select id="upType" class="fi-sel"><option value="">Select test type</option></select></div>
             <div class="uz" onclick="document.getElementById('upFile').click()">
               <input type="file" id="upFile" accept=".pdf,image/*" onchange="filePick(this)">
               <div class="ui">📎</div>
-              <p data-i18n="up_click">Click to select a PDF or image (max 5MB)</p>
+              <p>Click to select a PDF or image (max 5MB)</p>
               <div class="uf" id="ufName"></div>
             </div>
-            <button class="btn-submit" style="margin-top:14px;" id="doUpBtn" onclick="doUpload()" data-i18n="up_btn">Upload for Doctor Review →</button>
-            <p style="font-size:12px;color:var(--sil2);margin-top:10px;line-height:1.6;" data-i18n="up_note">⚠️ Uploads are reviewed by the doctor before appearing in your records.</p>
+            <button class="btn-submit" style="margin-top:14px;" id="doUpBtn" onclick="doUpload()">Upload for Doctor Review →</button>
+            <p style="font-size:12px;color:var(--sil2);margin-top:10px;line-height:1.6;">⚠️ Uploads are reviewed by the doctor before appearing in your records.</p>
           </div>
         </div>
       </div>
@@ -1747,40 +1731,40 @@ h1,h2,h3,h4 { font-family: 'Syne', sans-serif; }
           <a href="#" class="fsoc" aria-label="Facebook">f</a>
           <a href="#" class="fsoc" id="footWa" aria-label="WhatsApp">w</a>
         </div>
-        <div class="f-powered" data-i18n-html="foot_powered">Powered by <a href="https://www.aumatiq.com" target="_blank">AUMATIQ</a></div>
+        <div class="f-powered">Powered by <a href="https://www.aumatiq.com" target="_blank">AUMATIQ</a></div>
       </div>
       <div>
-        <div class="fn-title" data-i18n="foot_quicklinks">Quick Links</div>
+        <div class="fn-title">Quick Links</div>
         <div class="fn-links">
-          <a href="#about" data-i18n="mob_about">About Doctor</a>
-          <a href="#svcs" data-i18n="nav_services">Services</a>
-          <a href="#hrs" data-i18n="mob_hours">Hours &amp; Location</a>
-          <a href="#testi" data-i18n="nav_reviews">Reviews</a>
-          <a href="#faq" data-i18n="nav_faq">FAQ</a>
+          <a href="#about">About Doctor</a>
+          <a href="#svcs">Services</a>
+          <a href="#hrs">Hours &amp; Location</a>
+          <a href="#testi">Reviews</a>
+          <a href="#faq">FAQ</a>
         </div>
       </div>
       <div>
-        <div class="fn-title" data-i18n="foot_patients">Patients</div>
+        <div class="fn-title">Patients</div>
         <div class="fn-links">
-          <a href="#bk" data-i18n="nav_book">Book Appointment</a>
-          <a href="#portal" data-i18n="nav_myrecords2">My Records</a>
-          <a href="#portal" data-i18n="foot_testresults">Test Results</a>
-          <a href="#faq" data-i18n="foot_commonq">Common Questions</a>
+          <a href="#bk">Book Appointment</a>
+          <a href="#portal">My Records</a>
+          <a href="#portal">Test Results</a>
+          <a href="#faq">Common Questions</a>
         </div>
       </div>
       <div>
-        <div class="fn-title" data-i18n="foot_contact">Contact</div>
+        <div class="fn-title">Contact</div>
         <div class="fn-links">
           <a id="fPhone" href="#">—</a>
           <a href="mailto:clinic.drasma@gmail.com">clinic.drasma@gmail.com</a>
           <a id="fAddr" href="#">—</a>
-          <a id="fWaLnk" href="#" data-i18n="ci_wa">WhatsApp</a>
+          <a id="fWaLnk" href="#">WhatsApp</a>
         </div>
       </div>
     </div>
     <div class="f-bot">
-      <div class="f-copy">© <span id="fYear"></span> <span id="fClinic">Clinic</span>. <span data-i18n="foot_rights">All rights reserved.</span></div>
-      <div class="f-blinks"><a href="#" data-i18n="foot_privacy">Privacy Policy</a><a href="#" data-i18n="foot_terms">Terms of Service</a></div>
+      <div class="f-copy">© <span id="fYear"></span> <span id="fClinic">Clinic</span>. All rights reserved.</div>
+      <div class="f-blinks"><a href="#">Privacy Policy</a><a href="#">Terms of Service</a></div>
     </div>
   </div>
 </footer>
@@ -1813,245 +1797,6 @@ h1,h2,h3,h4 { font-family: 'Syne', sans-serif; }
   };
 })();
 
-// ── Part 24: Bangla / English Language Toggle ──
-// Static UI chrome (nav, labels, buttons, FAQ, booking form, portal, footer)
-// is translated via the I18N dictionary below and applied through data-i18n /
-// data-i18n-html / data-i18n-ph attributes on the elements.
-// Content that comes from the doctor's own Google Sheet data (bio, address,
-// clinic hours, blog articles, recommended-doctor notes) is NOT machine
-// translated — it stays exactly as the doctor typed it, in whichever
-// language they used. (See GUIDE for how to add a Bangla content field later.)
-// Preference is remembered with sessionStorage — same proven pattern as the
-// theme toggle above (localStorage is unreliable inside the Apps Script
-// sandbox/iframe).
-var LANG_KEY = 'aumatiq-drasma-lang';
-var CURLANG = sessionStorage.getItem(LANG_KEY) || 'en';
-
-var I18N = {
-  // ── Nav ──
-  nav_about:{en:'About',bn:'ডাক্তার সম্পর্কে'},
-  nav_services:{en:'Services',bn:'সেবাসমূহ'},
-  nav_blog:{en:'Blog',bn:'স্বাস্থ্য পরামর্শ'},
-  nav_specialists:{en:'Specialists',bn:'বিশেষজ্ঞ ডাক্তার'},
-  nav_hours:{en:'Hours',bn:'সময়সূচী'},
-  nav_reviews:{en:'Reviews',bn:'মতামত'},
-  nav_faq:{en:'FAQ',bn:'সাধারণ জিজ্ঞাসা'},
-  nav_myrecords:{en:'👤 My Records',bn:'👤 আমার রেকর্ড'},
-  nav_myrecords2:{en:'My Records',bn:'আমার রেকর্ড'},
-  nav_book:{en:'📅 Book Appointment',bn:'📅 অ্যাপয়েন্টমেন্ট নিন'},
-  mob_about:{en:'About Doctor',bn:'ডাক্তার সম্পর্কে'},
-  mob_recdocs:{en:'Recommended Specialists',bn:'প্রস্তাবিত বিশেষজ্ঞ ডাক্তার'},
-  mob_hours:{en:'Hours &amp; Location',bn:'সময়সূচী ও ঠিকানা'},
-  mob_reviews:{en:'Patient Reviews',bn:'রোগীদের মতামত'},
-  mob_portal:{en:'👤 Patient Portal',bn:'👤 রোগীর পোর্টাল'},
-
-  // ── Hero ──
-  hero_badge:{en:'Accepting New Patients',bn:'নতুন রোগী ভর্তি চলছে'},
-  hero_myrecords:{en:'My Records →',bn:'আমার রেকর্ড →'},
-  hero_years:{en:'Years Experience',bn:'বছরের অভিজ্ঞতা'},
-  hero_patients:{en:'Patients Served',bn:'রোগী সেবা দেওয়া হয়েছে'},
-  hero_noshows:{en:'Fewer No-Shows',bn:'কম অনুপস্থিতি'},
-  hero_openpill:{en:'Booking Open Now',bn:'এখনই বুকিং চালু আছে'},
-
-  // ── About ──
-  about_lbl:{en:'About Your Doctor',bn:'আপনার ডাক্তার সম্পর্কে'},
-  about_f1t:{en:'Board Certified',bn:'সনদপ্রাপ্ত ডাক্তার'},
-  about_f1d:{en:'Qualified with top credentials',bn:'উচ্চ মানের ডিগ্রি ও প্রশিক্ষণপ্রাপ্ত'},
-  about_f2t:{en:"Women's Health",bn:'নারী স্বাস্থ্য'},
-  about_f2d:{en:'Specialist care for women',bn:'নারীদের জন্য বিশেষায়িত সেবা'},
-  about_f3t:{en:'Modern Care',bn:'আধুনিক চিকিৎসা'},
-  about_f3d:{en:'Evidence-based treatment',bn:'প্রমাণভিত্তিক চিকিৎসা পদ্ধতি'},
-  about_f4t:{en:'Digital Records',bn:'ডিজিটাল রেকর্ড'},
-  about_f4d:{en:'Secure online access 24/7',bn:'২৪ ঘণ্টা নিরাপদ অনলাইন সুবিধা'},
-  about_cta:{en:'Book a Consultation →',bn:'পরামর্শের জন্য অ্যাপয়েন্টমেন্ট নিন →'},
-
-  // ── Services ──
-  svc_lbl:{en:'Our Services',bn:'আমাদের সেবাসমূহ'},
-  svc_ttl:{en:'What We <span class="r">Treat</span>',bn:'আমরা যেসব <span class="r">চিকিৎসা করি</span>'},
-  svc_sub:{en:'Comprehensive healthcare tailored for women and families — delivered with expertise and warmth.',bn:'নারী ও পরিবারের জন্য পূর্ণাঙ্গ স্বাস্থ্যসেবা — অভিজ্ঞতা ও যত্নের সাথে প্রদান করা হয়।'},
-  svc1_badge:{en:'General Medicine',bn:'সাধারণ চিকিৎসা'},
-  svc1_ttl:{en:'General Consultation',bn:'সাধারণ ডাক্তার দেখানো'},
-  svc1_desc:{en:'Complete physical exams, health screenings, and medical advice for all ages — children, adults, and seniors.',bn:'সব বয়সের জন্য পূর্ণাঙ্গ শারীরিক পরীক্ষা, স্বাস্থ্য স্ক্রিনিং এবং চিকিৎসা পরামর্শ — শিশু, প্রাপ্তবয়স্ক ও বয়স্ক সবার জন্য।'},
-  svc2_badge:{en:'⭐ Most Requested',bn:'⭐ সবচেয়ে বেশি চাহিদা'},
-  svc2_ttl:{en:"Women's Health",bn:'নারী স্বাস্থ্য'},
-  svc2_desc:{en:'Reproductive health, hormonal issues, menstrual care, prenatal consultations, and menopause management.',bn:'প্রজনন স্বাস্থ্য, হরমোনজনিত সমস্যা, মাসিক সংক্রান্ত যত্ন, গর্ভাবস্থার পরামর্শ এবং মেনোপজ ব্যবস্থাপনা।'},
-  svc3_badge:{en:'Chronic Care',bn:'দীর্ঘমেয়াদি রোগের যত্ন'},
-  svc3_ttl:{en:'Chronic Disease Management',bn:'দীর্ঘমেয়াদি রোগ ব্যবস্থাপনা'},
-  svc3_desc:{en:'Ongoing care for diabetes, hypertension, thyroid disorders, and other chronic conditions with regular monitoring.',bn:'ডায়াবেটিস, উচ্চ রক্তচাপ, থাইরয়েড সমস্যাসহ অন্যান্য দীর্ঘমেয়াদি রোগের নিয়মিত পর্যবেক্ষণ ও চিকিৎসা।'},
-  svc4_badge:{en:'Diagnostics',bn:'পরীক্ষা-নিরীক্ষা'},
-  svc4_ttl:{en:'Lab Tests &amp; Reports',bn:'ল্যাব টেস্ট ও রিপোর্ট'},
-  svc4_desc:{en:'Comprehensive blood work, pathology referrals, and digital delivery of all test results to your patient portal.',bn:'রক্ত পরীক্ষা, প্যাথলজি রেফারেল এবং সব টেস্ট রিপোর্ট সরাসরি আপনার পোর্টালে পাঠানো হয়।'},
-  svc5_badge:{en:'Pediatrics',bn:'শিশু চিকিৎসা'},
-  svc5_ttl:{en:'Child Healthcare',bn:'শিশুদের স্বাস্থ্যসেবা'},
-  svc5_desc:{en:'Vaccinations, growth monitoring, and specialized care for infants, children, and adolescents.',bn:'টিকাদান, বৃদ্ধি পর্যবেক্ষণ এবং শিশু-কিশোরদের জন্য বিশেষায়িত সেবা।'},
-  svc6_badge:{en:'Preventive',bn:'প্রতিরোধমূলক সেবা'},
-  svc6_ttl:{en:'Health Checkup Packages',bn:'স্বাস্থ্য পরীক্ষার প্যাকেজ'},
-  svc6_desc:{en:'Annual and semi-annual comprehensive health packages tailored to your age, risk profile, and lifestyle.',bn:'আপনার বয়স ও জীবনযাত্রা অনুযায়ী বাৎসরিক ও ছয় মাস অন্তর পূর্ণাঙ্গ স্বাস্থ্য পরীক্ষার প্যাকেজ।'},
-
-  // ── Stats ──
-  stats_lbl:{en:'Why Patients Choose Us',bn:'রোগীরা কেন আমাদের বেছে নেন'},
-  stats_ttl:{en:'Numbers That <span class="t">Speak</span>',bn:'আমাদের সেবার <span class="t">প্রমাণ</span>'},
-  st1_lbl:{en:'Average Wait Time',bn:'গড় অপেক্ষার সময়'},
-  st1_sub:{en:'With online booking',bn:'অনলাইন বুকিং করলে'},
-  st2_sub:{en:'Automated reminder system',bn:'স্বয়ংক্রিয় স্মরণ করিয়ে দেওয়ার ব্যবস্থা'},
-  st3_lbl:{en:'Patient Rating',bn:'রোগীদের রেটিং'},
-  st3_sub:{en:'Average from feedback',bn:'মতামতের ভিত্তিতে গড় রেটিং'},
-  st4_lbl:{en:'Records Access',bn:'রেকর্ড দেখার সুবিধা'},
-  st4_sub:{en:'Secure portal anytime',bn:'যেকোনো সময় নিরাপদ পোর্টাল'},
-
-  // ── Hours ──
-  hrs_lbl:{en:'Visit Us',bn:'চেম্বারে আসুন'},
-  hrs_ttl:{en:'Hours &amp; <span class="t">Location</span>',bn:'সময়সূচী ও <span class="t">ঠিকানা</span>'},
-  hrs_sub:{en:'Walk-ins welcome during open hours. Online booking available 24/7.',bn:'চেম্বার খোলা থাকাকালীন সরাসরি এসেও দেখাতে পারবেন। অনলাইন বুকিং সবসময় খোলা থাকে।'},
-  hrs_wh:{en:'🕐 Working Hours',bn:'🕐 চেম্বারের সময়'},
-  hrs_note:{en:'💡 <strong style="color:var(--wht);">Online booking is open 24/7</strong> — book any time, even outside clinic hours.',bn:'💡 <strong style="color:var(--wht);">অনলাইন বুকিং সবসময় খোলা থাকে</strong> — চেম্বারের সময়ের বাইরেও যেকোনো সময় বুক করতে পারবেন।'},
-  hrs_contact:{en:'📍 Contact &amp; Location',bn:'📍 যোগাযোগ ও ঠিকানা'},
-  ci_addr:{en:'Address',bn:'ঠিকানা'},
-  ci_phone:{en:'Phone',bn:'ফোন নম্বর'},
-  ci_email:{en:'Email',bn:'ইমেইল'},
-  ci_wa:{en:'WhatsApp',bn:'হোয়াটসঅ্যাপ'},
-
-  // ── Testimonials ──
-  testi_lbl:{en:'Patient Reviews',bn:'রোগীদের মতামত'},
-  testi_ttl:{en:'What Patients <span class="r">Say</span>',bn:'রোগীরা যা <span class="r">বলেন</span>'},
-  testi_sub:{en:'Real feedback from patients who trust us with their health.',bn:'যেসব রোগী আমাদের ওপর ভরসা করেন, তাদের প্রকৃত মতামত।'},
-  testi_placeholder:{en:'Placeholder reviews — real patient testimonials will be added here.',bn:'এগুলো নমুনা মতামত — প্রকৃত রোগীদের মতামত পরে যুক্ত করা হবে।'},
-
-  // ── Blog ──
-  blog_lbl:{en:'Health Articles',bn:'স্বাস্থ্য বিষয়ক লেখা'},
-  blog_ttl:{en:"From the <span class=\"r\">Doctor's Desk</span>",bn:'ডাক্তারের <span class="r">পরামর্শ থেকে</span>'},
-  blog_sub:{en:'Tips, insights, and health guidance written by Dr. Asma for you and your family.',bn:'আপনার ও আপনার পরিবারের জন্য ডা. আসমার লেখা স্বাস্থ্য পরামর্শ ও তথ্য।'},
-
-  // ── Recommended Doctors ──
-  rec_lbl:{en:'Trusted Network',bn:'বিশ্বস্ত নেটওয়ার্ক'},
-  rec_ttl:{en:'Doctors We <span class="t">Recommend</span>',bn:'যেসব ডাক্তারের কাছে <span class="t">পাঠানো হয়</span>'},
-  rec_sub:{en:'Specialists Dr. Asma personally refers her patients to for further care.',bn:'প্রয়োজনে ডা. আসমা যেসব বিশেষজ্ঞ ডাক্তারের কাছে রোগী পাঠান।'},
-
-  // ── FAQ ──
-  faq_lbl:{en:'FAQ',bn:'সাধারণ জিজ্ঞাসা'},
-  faq_ttl:{en:'Questions <span class="r">Answered</span>',bn:'সাধারণ <span class="r">প্রশ্নের উত্তর</span>'},
-  faq_sub:{en:'Everything you need to know before your visit.',bn:'চেম্বারে আসার আগে যা জানা দরকার।'},
-  faq1_q:{en:'How do I book an appointment?',bn:'অ্যাপয়েন্টমেন্ট কীভাবে বুক করবো?'},
-  faq1_a:{en:"Scroll to the <strong>Book Appointment</strong> section below. Select a date, pick an available time slot, fill in your details, and confirm. You'll receive a <strong>Patient ID</strong> instantly — save it to access your records.",bn:'নিচে <strong>অ্যাপয়েন্টমেন্ট বুক করুন</strong> অংশে যান। একটি তারিখ বেছে নিন, খালি সময় বেছে নিন, আপনার তথ্য পূরণ করে নিশ্চিত করুন। সাথে সাথে একটি <strong>রোগীর আইডি</strong> পাবেন — এটি সংরক্ষণ করে রাখুন, পরে রেকর্ড দেখতে কাজে লাগবে।'},
-  faq2_q:{en:'What is a Patient ID?',bn:'রোগীর আইডি কী?'},
-  faq2_a:{en:'Your <strong>Patient ID</strong> (format: PT-2026-0001) is assigned automatically when you book your first appointment. Use it with your registered phone number to log into the <strong>Patient Portal</strong> and view your appointments, test results, and health records.',bn:'প্রথমবার অ্যাপয়েন্টমেন্ট বুক করলে আপনাকে স্বয়ংক্রিয়ভাবে একটি <strong>রোগীর আইডি</strong> (যেমন: PT-2026-0001) দেওয়া হয়। এই আইডি ও আপনার নিবন্ধিত ফোন নম্বর দিয়ে <strong>রোগীর পোর্টালে</strong> লগইন করে অ্যাপয়েন্টমেন্ট, টেস্ট রিপোর্ট ও স্বাস্থ্য রেকর্ড দেখতে পারবেন।'},
-  faq3_q:{en:'How do I access my test results?',bn:'টেস্ট রিপোর্ট কীভাবে দেখবো?'},
-  faq3_a:{en:'Click <strong>My Records</strong> in the navigation or scroll to the Patient Portal section. Log in with your Patient ID and phone number. Doctor-approved results appear there for download. You can also upload your own scan files for doctor review.',bn:'ওপরের মেনুতে <strong>আমার রেকর্ড</strong>-এ ক্লিক করুন অথবা নিচে রোগীর পোর্টাল অংশে যান। রোগীর আইডি ও ফোন নম্বর দিয়ে লগইন করুন। ডাক্তার অনুমোদিত রিপোর্ট সেখানে দেখা ও ডাউনলোড করা যাবে। চাইলে নিজের স্ক্যান করা ফাইলও ডাক্তারের পর্যালোচনার জন্য আপলোড করতে পারবেন।'},
-  faq4_q:{en:'Can I cancel or reschedule?',bn:'অ্যাপয়েন্টমেন্ট বাতিল বা পরিবর্তন করা যাবে কি?'},
-  faq4_a:{en:'Please contact us via <strong>phone or WhatsApp</strong> at least 2 hours before your scheduled appointment. Our team will find you a new suitable slot. Walk-ins are also welcome during open clinic hours.',bn:'অ্যাপয়েন্টমেন্টের কমপক্ষে ২ ঘণ্টা আগে আমাদের <strong>ফোন বা হোয়াটসঅ্যাপে</strong> জানান। আমাদের টিম আপনাকে নতুন উপযুক্ত সময় দেবে। চেম্বার খোলা থাকাকালীন সরাসরি এসেও দেখাতে পারবেন।'},
-  faq5_q:{en:'Is my medical data secure?',bn:'আমার মেডিকেল তথ্য কি নিরাপদ?'},
-  faq5_a:{en:'Yes. All data is stored securely via <strong>Google Workspace</strong>. Your records are accessible only with your unique Patient ID + phone number. Test results remain private until explicitly approved by the doctor. We never share patient data with third parties.',bn:'হ্যাঁ। সব তথ্য <strong>Google Workspace</strong>-এর মাধ্যমে নিরাপদে সংরক্ষণ করা হয়। শুধু আপনার নিজস্ব রোগীর আইডি ও ফোন নম্বর দিয়েই রেকর্ড দেখা যায়। ডাক্তার অনুমোদন না দেওয়া পর্যন্ত টেস্ট রিপোর্ট গোপন থাকে। আপনার তথ্য কখনো তৃতীয় পক্ষের সাথে শেয়ার করা হয় না।'},
-  faq6_q:{en:'What should I bring to my first visit?',bn:'প্রথমবার দেখাতে গেলে কী কী নিয়ে যেতে হবে?'},
-  faq6_a:{en:'Bring your <strong>National ID</strong>, any previous medical records or test results, a list of current medications, and your appointment confirmation (Patient ID). Arriving <strong>10 minutes early</strong> ensures a smooth check-in.',bn:'আপনার <strong>জাতীয় পরিচয়পত্র</strong>, আগের কোনো মেডিকেল রিপোর্ট বা টেস্ট রেজাল্ট থাকলে তা, বর্তমানে চলা ওষুধের তালিকা এবং অ্যাপয়েন্টমেন্টের নিশ্চিতকরণ (রোগীর আইডি) সাথে নিয়ে আসুন। <strong>১০ মিনিট আগে</strong> পৌঁছালে সহজে প্রবেশ করতে পারবেন।'},
-
-  // ── Booking ──
-  bk_lbl:{en:'Online Booking',bn:'অনলাইন বুকিং'},
-  bk_ttl:{en:'Book Your <span class="r">Appointment</span>',bn:'আপনার <span class="r">অ্যাপয়েন্টমেন্ট বুক করুন</span>'},
-  bk_sub:{en:'Free, instant online scheduling. Confirmation in seconds.',bn:'বিনামূল্যে, তাৎক্ষণিক অনলাইন বুকিং। কয়েক সেকেন্ডেই নিশ্চিত হয়ে যাবে।'},
-  bk_step1:{en:'Step 1 of 2 — Date &amp; Time',bn:'ধাপ ১ এর ২ — তারিখ ও সময়'},
-  bk_step2:{en:'Step 2 of 2 — Your Details',bn:'ধাপ ২ এর ২ — আপনার তথ্য'},
-  bk_predate:{en:'Preferred Date',bn:'পছন্দের তারিখ'},
-  bk_slots:{en:'Available Time Slots',bn:'খালি সময়সমূহ'},
-  bk_loading:{en:'Loading available slots...',bn:'খালি সময় লোড হচ্ছে...'},
-  bk_continue:{en:'Continue — Select Time →',bn:'পরবর্তী — সময় বেছে নিন →'},
-  bk_fullname:{en:'Full Name *',bn:'পূর্ণ নাম *'},
-  bk_fullname_ph:{en:'Your full name',bn:'আপনার পূর্ণ নাম লিখুন'},
-  bk_phone:{en:'Phone Number *',bn:'ফোন নম্বর *'},
-  bk_phone2:{en:'Phone Number',bn:'ফোন নম্বর'},
-  bk_age:{en:'Age',bn:'বয়স'},
-  bk_age_ph:{en:'Age',bn:'বয়স'},
-  bk_gender:{en:'Gender',bn:'লিঙ্গ'},
-  bk_select:{en:'Select',bn:'বেছে নিন'},
-  bk_reason:{en:'Reason for Visit',bn:'কী সমস্যার জন্য দেখাবেন'},
-  bk_reason_ph:{en:'Briefly describe your symptoms or reason for consultation...',bn:'সংক্ষেপে আপনার সমস্যা বা লক্ষণ লিখুন...'},
-  bk_back:{en:'← Back',bn:'← পেছনে'},
-  bk_confirm:{en:'Confirm Appointment →',bn:'অ্যাপয়েন্টমেন্ট নিশ্চিত করুন →'},
-  bi1_t:{en:'Instant Confirmation',bn:'তাৎক্ষণিক নিশ্চিতকরণ'},
-  bi1_d:{en:'Your Patient ID and appointment details appear immediately after booking.',bn:'বুকিং করার সাথে সাথেই আপনার রোগীর আইডি ও অ্যাপয়েন্টমেন্টের তথ্য দেখতে পাবেন।'},
-  bi2_t:{en:'Automatic Reminders',bn:'স্বয়ংক্রিয় স্মরণিকা'},
-  bi2_d:{en:'Receive reminders before your appointment so you never miss a visit.',bn:'অ্যাপয়েন্টমেন্টের আগে মনে করিয়ে দেওয়া হবে, যাতে দেখাতে ভুলে না যান।'},
-  bi3_t:{en:'Digital Records',bn:'ডিজিটাল রেকর্ড'},
-  bi3_d:{en:'Access all your test results and history via your Patient Portal using your Patient ID.',bn:'রোগীর আইডি দিয়ে পোর্টালে ঢুকে আপনার সব টেস্ট রিপোর্ট ও পুরনো তথ্য দেখতে পারবেন।'},
-  bi4_t:{en:'Need Help?',bn:'সাহায্য দরকার?'},
-  bi4_d:{en:'Call or message us on WhatsApp.<br><a id="waHelpLink" href="https://wa.me/880" target="_blank">Chat on WhatsApp →</a>',bn:'ফোন করুন অথবা হোয়াটসঅ্যাপে মেসেজ দিন।<br><a id="waHelpLink" href="https://wa.me/880" target="_blank">হোয়াটসঅ্যাপে কথা বলুন →</a>'},
-  bk_email_note:{en:'Reach us anytime via email for non-urgent queries.',bn:'জরুরি নয় এমন প্রশ্নের জন্য যেকোনো সময় ইমেইল করতে পারেন।'},
-
-  // ── Portal ──
-  portal_lbl:{en:'Patient Portal',bn:'রোগীর পোর্টাল'},
-  portal_ttl:{en:'My <span class="t">Health Records</span>',bn:'আমার <span class="t">স্বাস্থ্য রেকর্ড</span>'},
-  portal_sub:{en:'Log in with your Patient ID and registered phone number.',bn:'রোগীর আইডি ও নিবন্ধিত ফোন নম্বর দিয়ে লগইন করুন।'},
-  login_ttl:{en:'Secure Login',bn:'নিরাপদ লগইন'},
-  login_sub:{en:'Enter your details to access your records.',bn:'রেকর্ড দেখতে আপনার তথ্য দিন।'},
-  login_pid:{en:'Patient ID',bn:'রোগীর আইডি'},
-  login_btn:{en:'Login to My Records →',bn:'আমার রেকর্ডে লগইন করুন →'},
-  login_note:{en:'💡 No Patient ID? <a href="#bk" style="color:var(--rose2);">Book your first appointment</a> — your ID is created automatically.',bn:'💡 রোগীর আইডি নেই? <a href="#bk" style="color:var(--rose2);">প্রথম অ্যাপয়েন্টমেন্ট বুক করুন</a> — আইডি নিজে থেকেই তৈরি হয়ে যাবে।'},
-  logout_btn:{en:'Logout',bn:'লগআউট'},
-  ptab_appts:{en:'📅 Appointments',bn:'📅 অ্যাপয়েন্টমেন্ট'},
-  ptab_tests:{en:'🧪 Test Results',bn:'🧪 টেস্ট রিপোর্ট'},
-  ptab_up:{en:'📎 Upload',bn:'📎 আপলোড'},
-  ptests_note:{en:'Only doctor-approved results shown.',bn:'শুধু ডাক্তার অনুমোদিত রিপোর্টই দেখানো হয়।'},
-  up_type:{en:'Test Type',bn:'টেস্টের ধরন'},
-  up_type_select:{en:'Select test type',bn:'টেস্টের ধরন বেছে নিন'},
-  up_click:{en:'Click to select a PDF or image (max 5MB)',bn:'PDF বা ছবি বেছে নিতে ক্লিক করুন (সর্বোচ্চ ৫MB)'},
-  up_btn:{en:'Upload for Doctor Review →',bn:'ডাক্তারের কাছে পাঠান →'},
-  up_note:{en:'⚠️ Uploads are reviewed by the doctor before appearing in your records.',bn:'⚠️ আপলোড করা ফাইল ডাক্তার দেখার পরই রেকর্ডে যুক্ত হবে।'},
-
-  // ── Footer ──
-  foot_powered:{en:'Powered by <a href="https://www.aumatiq.com" target="_blank">AUMATIQ</a>',bn:'পরিচালনায় <a href="https://www.aumatiq.com" target="_blank">AUMATIQ</a>'},
-  foot_quicklinks:{en:'Quick Links',bn:'দ্রুত লিংক'},
-  foot_patients:{en:'Patients',bn:'রোগীদের জন্য'},
-  foot_testresults:{en:'Test Results',bn:'টেস্ট রিপোর্ট'},
-  foot_commonq:{en:'Common Questions',bn:'সাধারণ প্রশ্ন'},
-  foot_contact:{en:'Contact',bn:'যোগাযোগ'},
-  foot_rights:{en:'All rights reserved.',bn:'সর্বস্বত্ব সংরক্ষিত।'},
-  foot_privacy:{en:'Privacy Policy',bn:'গোপনীয়তা নীতি'},
-  foot_terms:{en:'Terms of Service',bn:'ব্যবহারের শর্তাবলী'},
-
-  // ── Composed / JS-driven dynamic labels (used with T(), not data-i18n) ──
-  drPrefix:{en:'Dr. ',bn:'ডা. '},
-  meetLabel:{en:'Meet',bn:'আপনার ডাক্তার'},
-  specialistSuffix:{en:'Specialist',bn:'বিশেষজ্ঞ'},
-  defaultTagline:{en:'Expert Care. Trusted Results.',bn:'দক্ষ চিকিৎসা। নির্ভরযোগ্য ফলাফল।'},
-  helloLabel:{en:'Hello',bn:'স্বাগতম'},
-  patientFallback:{en:'Patient',bn:'রোগী'},
-  langBtnToBn:{en:'বাংলায় দেখুন',bn:'বাংলায় দেখুন'},
-  langBtnToEn:{en:'View in English',bn:'View in English'}
-};
-
-function T(key){ var e=I18N[key]; return e ? e[CURLANG] : ''; }
-
-function applyLang(lang){
-  CURLANG = (lang === 'bn') ? 'bn' : 'en';
-  sessionStorage.setItem(LANG_KEY, CURLANG);
-  var root = document.getElementById('htmlRoot'); if(root) root.setAttribute('lang', CURLANG);
-
-  document.querySelectorAll('[data-i18n]').forEach(function(el){
-    var v = T(el.getAttribute('data-i18n'));
-    if (v) el.textContent = v;
-  });
-  document.querySelectorAll('[data-i18n-html]').forEach(function(el){
-    var v = T(el.getAttribute('data-i18n-html'));
-    if (v) el.innerHTML = v;
-  });
-  document.querySelectorAll('[data-i18n-ph]').forEach(function(el){
-    var v = T(el.getAttribute('data-i18n-ph'));
-    if (v) el.setAttribute('placeholder', v);
-  });
-
-  var lb = document.getElementById('langToggleBtn');
-  if (lb) lb.textContent = (CURLANG === 'en') ? 'বাং' : 'EN';
-  var mlb = document.getElementById('mobLangBtn');
-  if (mlb) mlb.textContent = (CURLANG === 'en') ? T('langBtnToBn') : T('langBtnToEn');
-
-  // Re-render profile-dependent fields (doctor name, contact links, hours)
-  // so name-embedded labels ("Dr. X" / "ডা. X") and WhatsApp/phone links
-  // reflect the correct language + are not wiped out by the innerHTML resets above.
-  if (APP.profile && APP.profile.DoctorName) renderProfile(APP.profile);
-  if (APP.genderValues) renderGenderOptions();
-  if (APP.testNameValues) renderTestNameOptions();
-}
-function toggleLang(){ applyLang(CURLANG === 'en' ? 'bn' : 'en'); }
-
 var APP={ profile:{}, loggedIn:null, selSlot:'', selFile:null };
 
 // ── v3.3 (Part 17 — Security Hardening): XSS Escape Helper ──
@@ -2072,7 +1817,6 @@ window.addEventListener('DOMContentLoaded',function(){
   document.getElementById('fYear').textContent=new Date().getFullYear();
   var d=document.getElementById('bkDate');
   if(d) d.setAttribute('min',new Date().toISOString().split('T')[0]);
-  applyLang(CURLANG);           // ← Part 24: Bangla/English toggle — apply saved/default language first
   initNav(); initScroll(); initFAQ(); initStatCounters(); initReveal();
   loadProfile(); loadGenders(); loadTestNames();
   loadBlog();                  // ← Part 18
@@ -2154,26 +1898,22 @@ function loadProfile(){
 }
 function applyProfile(r){
   if(!r||!r.success) return;
-  APP.profile=r.profile;
-  renderProfile(APP.profile);
-}
-function renderProfile(p){
-  if(!p) return;
+  var p=r.profile; APP.profile=p;
   var dn=p.DoctorName||'Asma', cn=p.ClinicName||'Clinic', sp=p.Specialty||'';
   // Nav + footer
   function st(id,txt){ var e=document.getElementById(id); if(e) e.innerHTML=txt; }
-  st('navTxt',T('drPrefix')+dn+'<em>.</em>');
-  st('footTxt',T('drPrefix')+dn+'<em>.</em>');
-  st('footTag', sp ? sp+' '+T('specialistSuffix') : T('defaultTagline'));
+  st('navTxt','Dr. '+dn+'<em>.</em>');
+  st('footTxt','Dr. '+dn+'<em>.</em>');
+  st('footTag', sp ? sp+' Specialist' : 'Expert Care. Trusted Results.');
   st('footDesc', p.Bio ? p.Bio.substring(0,130)+(p.Bio.length>130?'...':'') : 'Professional healthcare.');
   st('fClinic',cn);
   // Hero
   st('heroSub',p.Bio?p.Bio.substring(0,180)+'...':document.getElementById('heroSub').textContent);
   var hy=document.getElementById('hsYears'); if(hy&&p.YearsExperience) hy.textContent=p.YearsExperience+'+';
   // About
-  st('aboutTtl',T('meetLabel')+' <span class="r">'+T('drPrefix')+dn+'</span>');
+  st('aboutTtl','Meet <span class="r">Dr. '+dn+'</span>');
   st('aboutBio',p.Bio||'');
-  st('docName',T('drPrefix')+'<span>'+dn+'</span>');
+  st('docName','Dr. <span>'+dn+'</span>');
   st('docSpec',sp||(p.ServicesList||'').split(',')[0]||'General Physician');
   // Photo
   if(p.PhotoURL){ var w=document.getElementById('docPhotoWrap'); if(w) w.innerHTML='<img src="'+p.PhotoURL+'" alt="Dr. '+dn+'" style="width:100%;height:100%;object-fit:cover;">'; }
@@ -2223,55 +1963,37 @@ function buildHours(p){
   var tbl=document.getElementById('hrsTable'); if(!tbl) return;
   var wdays=(p.WorkingDays||'Sat,Sun,Mon,Tue,Wed').split(',').map(function(d){ return d.trim(); });
   var op=p.OpeningTime||'09:00', cl=p.ClosingTime||'20:00';
-  var days=[
-    {k:'Sat',en:'Saturday',bn:'শনিবার'},{k:'Sun',en:'Sunday',bn:'রবিবার'},
-    {k:'Mon',en:'Monday',bn:'সোমবার'},{k:'Tue',en:'Tuesday',bn:'মঙ্গলবার'},
-    {k:'Wed',en:'Wednesday',bn:'বুধবার'},{k:'Thu',en:'Thursday',bn:'বৃহস্পতিবার'},
-    {k:'Fri',en:'Friday',bn:'শুক্রবার'}
-  ];
+  var days=[{k:'Sat',l:'Saturday'},{k:'Sun',l:'Sunday'},{k:'Mon',l:'Monday'},{k:'Tue',l:'Tuesday'},{k:'Wed',l:'Wednesday'},{k:'Thu',l:'Thursday'},{k:'Fri',l:'Friday'}];
   var today=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'][new Date().getDay()];
-  var closedLabel = CURLANG==='bn' ? 'বন্ধ' : 'Closed';
-  var todayLabel = CURLANG==='bn' ? 'আজ' : 'TODAY';
   var h='';
   days.forEach(function(d){
     var on=wdays.indexOf(d.k)!==-1, td=d.k===today;
     var tCls=on?'htime op':'htime cl';
-    var dayLabel = CURLANG==='bn' ? d.bn : d.en;
-    h+='<div class="hrow"><span class="hday">'+dayLabel+(td?'<span class="today-tag">'+todayLabel+'</span>':'')+'</span>'+
-      '<span class="'+tCls+'">'+(on?fmt12(op)+' – '+fmt12(cl):closedLabel)+'</span></div>';
+    h+='<div class="hrow"><span class="hday">'+d.l+(td?'<span class="today-tag">TODAY</span>':'')+'</span>'+
+      '<span class="'+tCls+'">'+(on?fmt12(op)+' – '+fmt12(cl):'Closed')+'</span></div>';
   });
   tbl.innerHTML=h;
 }
 function fmt12(t){
   if(!t) return '';
   var p=t.split(':'),h=parseInt(p[0]),m=p[1]||'00';
-  var hh=(h===0?12:h>12?h-12:h)+':'+m;
-  if (CURLANG==='bn') return hh+(h<12?' সকাল':' বিকাল');
-  return hh+(h<12?' AM':' PM');
+  return (h===0?12:h>12?h-12:h)+':'+m+(h<12?' AM':' PM');
 }
 
 /* ── GENDER + TEST NAMES ── */
 function loadGenders(){
   google.script.run.withSuccessHandler(function(r){
     if(!r||!r.success) return;
-    APP.genderValues = r.values||[];
-    renderGenderOptions();
+    var sel=document.getElementById('bkG');
+    if(sel) sel.innerHTML='<option value="">Select</option>'+(r.values||[]).map(function(v){ return '<option>'+v+'</option>'; }).join('');
   }).withFailureHandler(function(){}).getGenderCategories();
-}
-function renderGenderOptions(){
-  var sel=document.getElementById('bkG');
-  if(sel) sel.innerHTML='<option value="">'+T('bk_select')+'</option>'+(APP.genderValues||[]).map(function(v){ return '<option>'+v+'</option>'; }).join('');
 }
 function loadTestNames(){
   google.script.run.withSuccessHandler(function(r){
     if(!r||!r.success) return;
-    APP.testNameValues = r.values||[];
-    renderTestNameOptions();
+    var sel=document.getElementById('upType');
+    if(sel) sel.innerHTML='<option value="">Select test type</option>'+(r.values||[]).map(function(v){ return '<option>'+v+'</option>'; }).join('');
   }).withFailureHandler(function(){}).getTestNameCategories();
-}
-function renderTestNameOptions(){
-  var sel=document.getElementById('upType');
-  if(sel) sel.innerHTML='<option value="">'+T('up_type_select')+'</option>'+(APP.testNameValues||[]).map(function(v){ return '<option>'+v+'</option>'; }).join('');
 }
 
 /* ── BOOKING STEP 1 ── */
@@ -2302,13 +2024,13 @@ function goS2(){
   document.getElementById('s1').style.display='none';
   document.getElementById('s2').classList.remove('hide');
   document.getElementById('sd1').className='sd d'; document.getElementById('sd2').className='sd a';
-  document.getElementById('sLbl').textContent=T('bk_step2');
+  document.getElementById('sLbl').textContent='Step 2 of 2 — Your Details';
 }
 function goS1(){
   document.getElementById('s2').classList.add('hide');
   document.getElementById('s1').style.display='block';
   document.getElementById('sd1').className='sd a'; document.getElementById('sd2').className='sd';
-  document.getElementById('sLbl').textContent=T('bk_step1');
+  document.getElementById('sLbl').textContent='Step 1 of 2 — Date & Time';
 }
 /* ── BOOKING SUBMIT ── */
 function cnfBook(){
@@ -2356,7 +2078,7 @@ function doLogout(){
 
 /* ── LOAD RECORDS ── */
 function loadRecs(pt){
-  var we=document.getElementById('recWel'); if(we) we.textContent=T('helloLabel')+', '+(pt.fullName||T('patientFallback'));
+  var we=document.getElementById('recWel'); if(we) we.textContent='Hello, '+(pt.fullName||'Patient');
   var pg=document.getElementById('piGrid');
   if(pg) pg.innerHTML=
     '<div class="pi-item"><div class="pi-ico">🪪</div><div><div class="pi-k">Patient ID</div><div class="pi-v">'+escapeHtml(pt.patientId)+'</div></div></div>'+
