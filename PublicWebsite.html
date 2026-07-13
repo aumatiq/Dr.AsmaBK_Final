@@ -118,6 +118,8 @@ body.theme-dark-force {
   color:var(--wht);transition:all .25s ease;
 }
 .lang-toggle-btn:hover{background:rgba(20,184,166,0.2);transform:translateY(-1px);}
+.nav-lang-always{ display:flex; align-items:center; }
+.nav-right-group{ display:flex; align-items:center; gap:10px; flex-shrink:0; }
 .mob-lang-btn{
   margin-top:10px;padding:12px 16px;border-radius:10px;
   background:rgba(20,184,166,0.08);border:1px solid var(--bd-teal);
@@ -1337,14 +1339,18 @@ h1,h2,h3,h4 { font-family: 'Syne', sans-serif; }
         <li><a href="#faq" data-i18n="nav_faq">FAQ</a></li>
       </ul>
       <div class="nav-ctas">
-        <button class="lang-toggle-btn" id="langToggleBtn" onclick="toggleLang()" title="ভাষা পরিবর্তন করুন / Change language" aria-label="Change language">EN</button>
         <button class="theme-toggle-btn" id="themeToggleBtn" onclick="cycleTheme()" title="Theme পরিবর্তন করুন" aria-label="Toggle dark/light theme">🌙</button>
         <button class="nbtn nbtn-out" onclick="scrollTo('#portal')" data-i18n="nav_myrecords">👤 My Records</button>
         <a href="#bk" class="nbtn nbtn-rose" data-i18n="nav_book">📅 Book Appointment</a>
       </div>
-      <button class="ham" id="ham" aria-label="Menu">
-        <span></span><span></span><span></span>
-      </button>
+      <div class="nav-right-group">
+        <div class="nav-lang-always">
+          <button class="lang-toggle-btn" id="langToggleBtn" onclick="toggleLang()" title="ভাষা পরিবর্তন করুন / Change language" aria-label="Change language">EN</button>
+        </div>
+        <button class="ham" id="ham" aria-label="Menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
     </div>
   </div>
   <div class="mob" id="mob">
