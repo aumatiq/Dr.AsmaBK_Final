@@ -324,6 +324,26 @@ function getDoctorProfile() {
         profile[String(data[i][0]).trim()] = data[i][1] !== undefined ? String(data[i][1]) : '';
       }
     }
+
+    // বাগ ফিক্স: WorkingDays/SlotDuration/OpeningTime/ClosingTime সেভ হয়
+    // "Settings" শীটে (saveDoctorProfile()-এর settingsFields অংশ), কিন্তু
+    // এতদিন এই ফাংশন শুধু "DoctorProfile" শীট পড়তো — ফলে Dashboard-এর
+    // Settings ট্যাব সবসময় hardcoded default (20 min, 09:00–20:00,
+    // Sat-Wed) দেখাতো, ডাক্তার আসলে যা সেভ করেছেন তা না। এখন দুটো শীটই
+    // merge করে একটা profile object-এ পাঠানো হচ্ছে, যাতে Settings ফর্ম ও
+    // পাবলিক বুকিং স্লট — দুই জায়গাতেই একই, সঠিক তথ্য দেখা যায়।
+    var settingsSheet = ss.getSheetByName('Settings');
+    if (settingsSheet) {
+      var sData = settingsSheet.getDataRange().getValues();
+      var settingsKeys = ['WorkingDays', 'SlotDuration', 'OpeningTime', 'ClosingTime'];
+      for (var j = 0; j < sData.length; j++) {
+        var key = String(sData[j][0]).trim();
+        if (settingsKeys.indexOf(key) !== -1 && sData[j][1] !== undefined && sData[j][1] !== '') {
+          profile[key] = String(sData[j][1]);
+        }
+      }
+    }
+
     return { success: true, profile: profile };
   } catch (err) {
     return { success: false, error: err.message };

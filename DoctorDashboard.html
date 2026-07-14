@@ -736,6 +736,18 @@ tbody tr:hover td{background:rgba(124,58,237,0.04);}
   .sync-status { padding: 5px 8px; }
 }
 
+/* ── v3.1 (মোবাইল হেডার ওভারল্যাপ ফিক্স): খুব ছোট স্ক্রিনে (≤400px, যেমন
+   iPhone SE/পুরনো ছোট Android) লোগো "AUMATIQ." টেক্সট + ৪টা টপবার আইকন
+   (থিম টগল, সিঙ্ক, নোটিফিকেশন, প্রোফাইল) একসাথে জায়গায় আঁটে না — bounding
+   box টেস্ট করে কনফার্ম করা হয়েছে ৩২০px-এ লোগো টেক্সট থিম টগল বাটনের উপর
+   ~৯px উঠে যাচ্ছিল। ফিক্স: এই সাইজে শুধু আইকন থাকবে, টেক্সট লুকানো থাকবে —
+   ব্র্যান্ড আইকন একাই যথেষ্ট recognizable, আর ওভারল্যাপ সম্পূর্ণ বন্ধ হয়ে যায়
+   (safety margin-সহ, ৩২০px থেকে ৪০০px সব সাইজেই টেস্ট-কনফার্মড)। ── */
+@media (max-width: 400px) {
+  .tb-logo-txt { display: none; }
+  .tb-divider { display: none; }
+}
+
 /* ── ২. Modal Header/Footer — narrow স্ক্রিনে wrap করবে, ক্লিপ হবে না ── */
 @media (max-width: 480px) {
   .modal-hd {
@@ -1826,6 +1838,22 @@ tbody tr:hover td{background:rgba(124,58,237,0.04);}
   </div>
 </div>
 
+<div class="modal-overlay" id="logoutConfirmModal">
+  <div class="modal" style="max-width:380px;">
+    <div class="modal-hd">
+      <h3>লগআউট</h3>
+      <button class="modal-close" onclick="closeModal('logoutConfirmModal')">✕</button>
+    </div>
+    <div class="modal-body">
+      <p style="font-size:14px;color:var(--sil);">আপনি কি লগআউট করতে চান?</p>
+    </div>
+    <div class="modal-foot">
+      <button class="btn btn-ghost" onclick="closeModal('logoutConfirmModal')">বাতিল</button>
+      <button class="btn btn-rose" onclick="confirmLogout()">লগআউট করুন</button>
+    </div>
+  </div>
+</div>
+
 <div class="modal-overlay" id="confirmEntryModal">
   <div class="modal" style="max-width:480px;">
     <div class="modal-hd">
@@ -2195,7 +2223,10 @@ function doLogin() {
 }
 
 function doLogout() {
-  if (!confirm('লগআউট করতে চাও?')) return;
+  openModal('logoutConfirmModal');
+}
+function confirmLogout() {
+  closeModal('logoutConfirmModal');
   google.script.run.logout(_session.token);
   _session = { token: null, role: null };
   clearSessionStorage();       // ← নতুন
@@ -2360,9 +2391,9 @@ function updateDateTimeWidget() {
   var datesEl = document.getElementById('tbDtDates');
   var timeStr = getTimeWithSecondsString(now);
   var datesHtml =
-    '<b>বাংলা:</b> ' + getBanglaDateString(now) +
-    ' &nbsp;·&nbsp; <b>Eng:</b> ' + getEnglishDateString(now) +
-    ' &nbsp;·&nbsp; <b>হিজরি:</b> ' + getHijriDateBangla(now);
+    getBanglaDateString(now) +
+    ' &nbsp;·&nbsp; ' + getEnglishDateString(now) +
+    ' &nbsp;·&nbsp; ' + getHijriDateBangla(now);
   if (timeEl) timeEl.textContent = timeStr;
   if (datesEl) datesEl.innerHTML = datesHtml;
 
@@ -2447,8 +2478,12 @@ function loadProfile() {
     D.profile = r.profile;
     var p = r.profile;
     var dn = 'Dr. ' + (p.DoctorName || 'Asma');
+    // মোবাইলে/টপবারের প্রোফাইল চিপে জায়গা কম, তাই পুরো নাম না দেখিয়ে
+    // শুধু প্রথম অংশ দেখানো হয় (যেমন "Dr. Asma Binte Khair" → "Dr. Asma")
+    var shortName = (p.DoctorName || 'Asma').trim().split(/\s+/)[0];
+    var dnShort = 'Dr. ' + shortName;
     // Topbar
-    setText('tbDrName', dn);
+    setText('tbDrName', dnShort);
     setText('tbClinic', p.ClinicName || 'Doctor Dashboard');
     // Avatar initials
     var av = document.getElementById('tbAvatarLetter');
