@@ -279,8 +279,10 @@ function saveDoctorProfile(token, data) {
   requireDoctor(token);
 
   const profileFields = [
-    "DoctorName", "ClinicName", "Specialty", "Degree", "ContactPhone",
-    "ContactEmail", "ClinicAddress", "Bio", "WebsiteURL", "WhatsAppNumber",
+    "DoctorName", "DoctorNameBn", "ClinicName", "ClinicNameBn",
+    "Specialty", "SpecialtyBn", "Degree", "DegreeBn", "ContactPhone",
+    "ContactEmail", "ClinicAddress", "ClinicAddressBn", "Bio", "BioBn",
+    "ServicesListBn", "WebsiteURL", "WhatsAppNumber",
     "YearsExperience", "PhotoURL"
   ];
   const settingsFields = ["WorkingDays", "SlotDuration", "OpeningTime", "ClosingTime"];

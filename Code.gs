@@ -599,7 +599,7 @@ function getPatientRecords(patientId) {
         if (String(apptData[i][1] || '').trim().toUpperCase() === pid) {
           appointments.push({
             appointmentId: apptData[i][0],
-            date:          apptData[i][2] ? Utilities.formatDate(new Date(apptData[i][2]), tz, 'dd MMM yyyy') : '',
+            date:          apptData[i][2] ? Utilities.formatDate(new Date(apptData[i][2]), tz, 'yyyy-MM-dd') : '',
             timeSlot:      apptData[i][3],
             reason:        apptData[i][4],
             status:        apptData[i][5]
@@ -624,7 +624,7 @@ function getPatientRecords(patientId) {
           testRecords.push({
             recordId:   testData[j][0],
             testName:   testData[j][2],
-            testDate:   testData[j][3] ? Utilities.formatDate(new Date(testData[j][3]), tz, 'dd MMM yyyy') : '',
+            testDate:   testData[j][3] ? Utilities.formatDate(new Date(testData[j][3]), tz, 'yyyy-MM-dd') : '',
             fileLink:   testData[j][4],
             uploadedBy: testData[j][5]
           });

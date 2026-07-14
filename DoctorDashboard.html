@@ -1455,13 +1455,20 @@ tbody tr:hover td{background:rgba(124,58,237,0.04);}
           <div class="sec-body">
             <div class="form-grid">
               <div class="fg"><label class="fl">Doctor Name</label><input class="fi" id="sDrName" placeholder="Dr. Asma Akter"></div>
+              <div class="fg"><label class="fl">ডাক্তারের নাম (বাংলা) <span style="color:var(--sil2);font-weight:400;">— বাংলা ওয়েবসাইটে দেখাবে</span></label><input class="fi" id="sDrNameBn" placeholder="ডা. আসমা আক্তার"></div>
               <div class="fg"><label class="fl">Clinic Name</label><input class="fi" id="sClinicName" placeholder="Dr. Asma Clinic"></div>
+              <div class="fg"><label class="fl">ক্লিনিকের নাম (বাংলা)</label><input class="fi" id="sClinicNameBn" placeholder="ডা. আসমা ক্লিনিক"></div>
               <div class="fg"><label class="fl">Specialty</label><input class="fi" id="sSpecialty" placeholder="Women's Health & General Medicine"></div>
+              <div class="fg"><label class="fl">বিশেষত্ব (বাংলা)</label><input class="fi" id="sSpecialtyBn" placeholder="নারী স্বাস্থ্য ও সাধারণ চিকিৎসা"></div>
               <div class="fg"><label class="fl">Degree</label><input class="fi" id="sDegree" placeholder="MBBS, MCPS, FCPS Part-1"></div>
+              <div class="fg"><label class="fl">ডিগ্রি (বাংলা) <span style="color:var(--sil2);font-weight:400;">— খালি রাখলে ডিগ্রির নাম ইংরেজিতেই থাকবে</span></label><input class="fi" id="sDegreeBn" placeholder="এমবিবিএস, এমসিপিএস, এফসিপিএস পার্ট-১"></div>
               <div class="fg"><label class="fl">Phone</label><input class="fi" id="sPhone" placeholder="01XXXXXXXXX"></div>
-              <div class="fg"><label class="fl">Email</label><input class="fi" id="sEmail" placeholder="clinic.drasma@gmail.com"></div>
+              <div class="fg"><label class="fl">Email <span style="color:var(--sil2);font-weight:400;">— সবসময় ইংরেজিতেই থাকবে</span></label><input class="fi" id="sEmail" placeholder="clinic.drasma@gmail.com"></div>
               <div class="fg" style="grid-column:1/-1;"><label class="fl">Clinic Address</label><input class="fi" id="sAddress" placeholder="House, Road, Area, Dhaka"></div>
+              <div class="fg" style="grid-column:1/-1;"><label class="fl">ক্লিনিকের ঠিকানা (বাংলা)</label><input class="fi" id="sAddressBn" placeholder="বাড়ি, রোড, এলাকা, ঢাকা"></div>
               <div class="fg" style="grid-column:1/-1;"><label class="fl">Bio (shown on public website)</label><textarea class="fta" id="sBio" rows="3" placeholder="Dr. Asma is a dedicated physician..."></textarea></div>
+              <div class="fg" style="grid-column:1/-1;"><label class="fl">Bio (বাংলা)</label><textarea class="fta" id="sBioBn" rows="3" placeholder="ডা. আসমা একজন নিবেদিতপ্রাণ চিকিৎসক..."></textarea></div>
+              <div class="fg" style="grid-column:1/-1;"><label class="fl">সেবাসমূহ (বাংলা, কমা দিয়ে আলাদা করুন) <span style="color:var(--sil2);font-weight:400;">— খালি রাখলে ইংরেজি Services তালিকা দেখাবে</span></label><input class="fi" id="sServicesListBn" placeholder="প্রসূতি সেবা, স্ত্রীরোগ চিকিৎসা, আল্ট্রাসনোগ্রাফি"></div>
             </div>
           </div>
         </div>
@@ -3092,13 +3099,20 @@ function renderFollowups() {
 // ═══════════════════════════════════════
 function fillSettingsForm(p) {
   setVal('sDrName',    p.DoctorName     || '');
+  setVal('sDrNameBn',  p.DoctorNameBn   || '');
   setVal('sClinicName',p.ClinicName     || '');
+  setVal('sClinicNameBn',p.ClinicNameBn || '');
   setVal('sSpecialty', p.Specialty      || '');
+  setVal('sSpecialtyBn',p.SpecialtyBn   || '');
   setVal('sDegree',    p.Degree         || '');
+  setVal('sDegreeBn',  p.DegreeBn       || '');
   setVal('sPhone',     p.ContactPhone   || '');
   setVal('sEmail',     p.ContactEmail   || '');
   setVal('sAddress',   p.ClinicAddress  || '');
+  setVal('sAddressBn', p.ClinicAddressBn|| '');
   setVal('sBio',       p.Bio            || '');
+  setVal('sBioBn',     p.BioBn          || '');
+  setVal('sServicesListBn', p.ServicesListBn || '');
   setVal('sWorkingDays',p.WorkingDays   || 'Sat,Sun,Mon,Tue,Wed');
   setVal('sSlotDur',   p.SlotDuration   || '20');
   setVal('sOpenTime',  p.OpeningTime    || '09:00');
@@ -3708,13 +3722,20 @@ function triggerFollowUpEmails() {
 function saveSettings() {
   var data = {
     DoctorName:     getVal('sDrName'),
+    DoctorNameBn:   getVal('sDrNameBn'),
     ClinicName:     getVal('sClinicName'),
+    ClinicNameBn:   getVal('sClinicNameBn'),
     Specialty:      getVal('sSpecialty'),
+    SpecialtyBn:    getVal('sSpecialtyBn'),
     Degree:         getVal('sDegree'),
+    DegreeBn:       getVal('sDegreeBn'),
     ContactPhone:   getVal('sPhone'),
     ContactEmail:   getVal('sEmail'),
     ClinicAddress:  getVal('sAddress'),
+    ClinicAddressBn:getVal('sAddressBn'),
     Bio:            getVal('sBio'),
+    BioBn:          getVal('sBioBn'),
+    ServicesListBn: getVal('sServicesListBn'),
     WorkingDays:    getVal('sWorkingDays'),
     SlotDuration:   getVal('sSlotDur'),
     OpeningTime:    getVal('sOpenTime'),

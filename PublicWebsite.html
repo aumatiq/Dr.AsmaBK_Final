@@ -1340,7 +1340,7 @@ h1,h2,h3,h4 { font-family: 'Syne', sans-serif; }
       </ul>
       <div class="nav-ctas">
         <button class="theme-toggle-btn" id="themeToggleBtn" onclick="cycleTheme()" title="Theme পরিবর্তন করুন" aria-label="Toggle dark/light theme">🌙</button>
-        <button class="nbtn nbtn-out" onclick="scrollTo('#portal')" data-i18n="nav_myrecords">👤 My Records</button>
+        <button class="nbtn nbtn-out" onclick="goToSection('#portal')" data-i18n="nav_myrecords">👤 My Records</button>
         <a href="#bk" class="nbtn nbtn-rose" data-i18n="nav_book">📅 Book Appointment</a>
       </div>
       <div class="nav-right-group">
@@ -1377,15 +1377,15 @@ h1,h2,h3,h4 { font-family: 'Syne', sans-serif; }
   <div class="wrap">
     <div class="hero-content">
       <div class="hero-badge"><div class="dot"></div> <span data-i18n="hero_badge">Accepting New Patients</span></div>
-      <h1 class="h1">
+      <h1 class="h1" data-i18n-html="hero_h1">
         <span class="hw">Your Health,</span><br>
         <span class="hw" style="color:var(--rose)">Our </span>
         <span class="hw" style="color:var(--teal)">Priority.</span>
       </h1>
-      <p class="hero-sub" id="heroSub">Expert medical care delivered with compassion. Book your appointment in minutes — secure, simple, and online.</p>
+      <p class="hero-sub" id="heroSub" data-i18n="hero_sub">Expert medical care delivered with compassion. Book your appointment in minutes — secure, simple, and online.</p>
       <div class="hero-ctas">
         <a href="#bk" class="btn-rose" data-i18n="nav_book">📅 Book Appointment</a>
-        <button class="btn-ghost" onclick="scrollTo('#portal')" data-i18n="hero_myrecords">My Records →</button>
+        <button class="btn-ghost" onclick="goToSection('#portal')" data-i18n="hero_myrecords">My Records →</button>
       </div>
       <div class="hero-stats">
         <div>
@@ -1393,11 +1393,11 @@ h1,h2,h3,h4 { font-family: 'Syne', sans-serif; }
           <div class="hstat-lbl" data-i18n="hero_years">Years Experience</div>
         </div>
         <div>
-          <div class="hstat-num">5,000+</div>
+          <div class="hstat-num" data-i18n="hero_patients_num">5,000+</div>
           <div class="hstat-lbl" data-i18n="hero_patients">Patients Served</div>
         </div>
         <div>
-          <div class="hstat-num">70%</div>
+          <div class="hstat-num" data-i18n="hero_noshows_num">70%</div>
           <div class="hstat-lbl" data-i18n="hero_noshows">Fewer No-Shows</div>
         </div>
         <div>
@@ -1500,7 +1500,7 @@ h1,h2,h3,h4 { font-family: 'Syne', sans-serif; }
     <div class="hrs-grid">
       <div class="hrs-card rv">
         <h3 data-i18n="hrs_wh">🕐 Working Hours</h3>
-        <div id="hrsTable"><div class="hrow"><span class="hday">Loading...</span></div></div>
+        <div id="hrsTable"><div class="hrow"><span class="hday" data-i18n="msg_loading">Loading...</span></div></div>
         <div style="margin-top:18px;padding:14px 16px;background:rgba(20,184,166,.07);border:1px solid rgba(20,184,166,.2);border-radius:12px;font-size:13px;color:var(--sil);">
           <span data-i18n-html="hrs_note">💡 <strong style="color:var(--wht);">Online booking is open 24/7</strong> — book any time, even outside clinic hours.</span>
         </div>
@@ -1529,9 +1529,9 @@ h1,h2,h3,h4 { font-family: 'Syne', sans-serif; }
       <p class="sub" data-i18n="testi_sub">Real feedback from patients who trust us with their health.</p>
     </div>
     <div class="t-grid">
-      <div class="tc rv"><div class="tqm">"</div><div class="tstars">★★★★★</div><p class="tq">Booking online was so easy. I got my appointment confirmed immediately with a Patient ID. The doctor listened to everything and explained my condition clearly.</p><div class="tdiv"></div><div class="tpc"><div class="tav">RK</div><div><div class="tn">Rashida K.</div><div class="tr">Patient since 2024</div></div></div></div>
-      <div class="tc ft rv"><div class="tqm">"</div><div class="tstars">★★★★★</div><p class="tq">I love accessing my test results online without calling the clinic. The reminders mean I never miss my follow-ups. This system has made my healthcare so much easier to manage.</p><div class="tdiv"></div><div class="tpc"><div class="tav">MA</div><div><div class="tn">Monira A.</div><div class="tr">Regular Patient</div></div></div></div>
-      <div class="tc rv"><div class="tqm">"</div><div class="tstars">★★★★★</div><p class="tq">আমার সব টেস্ট রিপোর্ট এখন অনলাইনে পাই। অ্যাপয়েন্টমেন্ট নেওয়াও অনেক সহজ। ডাক্তার সাহেবার ব্যবহার এবং সেবা দুটোই অসাধারণ।</p><div class="tdiv"></div><div class="tpc"><div class="tav">SB</div><div><div class="tn">Sultana B.</div><div class="tr">Patient, Dhaka</div></div></div></div>
+      <div class="tc rv"><div class="tqm">"</div><div class="tstars">★★★★★</div><p class="tq" data-i18n="testi1_q">Booking online was so easy. I got my appointment confirmed immediately with a Patient ID. The doctor listened to everything and explained my condition clearly.</p><div class="tdiv"></div><div class="tpc"><div class="tav">RK</div><div><div class="tn" data-i18n="testi1_name">Rashida K.</div><div class="tr" data-i18n="testi1_role">Patient since 2024</div></div></div></div>
+      <div class="tc ft rv"><div class="tqm">"</div><div class="tstars">★★★★★</div><p class="tq" data-i18n="testi2_q">I love accessing my test results online without calling the clinic. The reminders mean I never miss my follow-ups. This system has made my healthcare so much easier to manage.</p><div class="tdiv"></div><div class="tpc"><div class="tav">MA</div><div><div class="tn" data-i18n="testi2_name">Monira A.</div><div class="tr" data-i18n="testi2_role">Regular Patient</div></div></div></div>
+      <div class="tc rv"><div class="tqm">"</div><div class="tstars">★★★★★</div><p class="tq" data-i18n="testi3_q">I get all my test reports online now. Booking an appointment is so much easier too. The doctor's care and service are both excellent.</p><div class="tdiv"></div><div class="tpc"><div class="tav">SB</div><div><div class="tn" data-i18n="testi3_name">Sultana B.</div><div class="tr" data-i18n="testi3_role">Patient, Dhaka</div></div></div></div>
     </div>
     <p style="text-align:center;font-size:12px;color:var(--sil2);margin-top:32px;" data-i18n="testi_placeholder">Placeholder reviews — real patient testimonials will be added here.</p>
   </div>
@@ -1557,7 +1557,7 @@ h1,h2,h3,h4 { font-family: 'Syne', sans-serif; }
 <div class="blog-reader" id="blogReader">
   <div class="blog-reader-inner">
     <button class="blog-reader-close" onclick="closeArticleReader()" aria-label="Close">✕</button>
-    <div id="blogReaderContent"><p style="color:var(--sil);">Loading...</p></div>
+    <div id="blogReaderContent"><p style="color:var(--sil);" data-i18n="msg_loading">Loading...</p></div>
   </div>
 </div>
 
@@ -1572,7 +1572,7 @@ h1,h2,h3,h4 { font-family: 'Syne', sans-serif; }
       <p class="sub" data-i18n="rec_sub">Specialists Dr. Asma personally refers her patients to for further care.</p>
     </div>
     <div class="recdoc-grid" id="recDocPubGrid">
-      <p style="text-align:center;color:var(--sil2);font-size:13px;grid-column:1/-1;">Loading...</p>
+      <p style="text-align:center;color:var(--sil2);font-size:13px;grid-column:1/-1;" data-i18n="msg_loading">Loading...</p>
     </div>
   </div>
 </section>
@@ -1833,6 +1833,21 @@ h1,h2,h3,h4 { font-family: 'Syne', sans-serif; }
 var LANG_KEY = 'aumatiq-drasma-lang';
 var CURLANG = sessionStorage.getItem(LANG_KEY) || 'en';
 
+// ── Part 25: Bengali numeral helper ──
+// যেকোনো স্ট্রিং-এর মধ্যে থাকা ০-৯ (Western digits) কে বাংলা ভাষায় (bn mode)
+// বাংলা সংখ্যায় (০১২৩৪৫৬৭৮৯) রূপান্তর করে। ফাংশনাল আইডি/ইনপুট ভ্যালু (Patient ID,
+// ফোন নম্বর, HTML date/tel input-এর value) ইচ্ছাকৃতভাবে এই ফাংশনের বাইরে রাখা
+// হয়েছে, যাতে সিস্টেমের ম্যাচিং/সার্চ লজিক নষ্ট না হয় — শুধু ডিসপ্লে টেক্সটে প্রযোজ্য।
+var BN_DIGITS = ['০','১','২','৩','৪','৫','৬','৭','৮','৯'];
+function bnNum(v){
+  if (v === null || v === undefined) return '';
+  var s = String(v);
+  if (CURLANG !== 'bn') return s;
+  return s.replace(/[0-9]/g, function(d){ return BN_DIGITS[+d]; });
+}
+var BN_MONTHS = ['জানুয়ারি','ফেব্রুয়ারি','মার্চ','এপ্রিল','মে','জুন','জুলাই','আগস্ট','সেপ্টেম্বর','অক্টোবর','নভেম্বর','ডিসেম্বর'];
+var BN_MONTHS_SHORT = ['জানু','ফেব্রু','মার্চ','এপ্রি','মে','জুন','জুলাই','আগস্ট','সেপ্ট','অক্টো','নভে','ডিসে'];
+
 var I18N = {
   // ── Nav ──
   nav_about:{en:'About',bn:'ডাক্তার সম্পর্কে'},
@@ -2018,10 +2033,86 @@ var I18N = {
   meetLabel:{en:'Meet',bn:'আপনার ডাক্তার'},
   specialistSuffix:{en:'Specialist',bn:'বিশেষজ্ঞ'},
   defaultTagline:{en:'Expert Care. Trusted Results.',bn:'দক্ষ চিকিৎসা। নির্ভরযোগ্য ফলাফল।'},
+  defaultBioFallback:{en:'Professional healthcare.',bn:'পেশাদার স্বাস্থ্যসেবা।'},
+  defaultSpecialty:{en:'General Physician',bn:'জেনারেল ফিজিশিয়ান'},
   helloLabel:{en:'Hello',bn:'স্বাগতম'},
   patientFallback:{en:'Patient',bn:'রোগী'},
   langBtnToBn:{en:'বাংলায় দেখুন',bn:'বাংলায় দেখুন'},
-  langBtnToEn:{en:'View in English',bn:'View in English'}
+  langBtnToEn:{en:'View in English',bn:'View in English'},
+
+  // ── Hero (Part 25 — full Bangla hero) ──
+  hero_h1:{en:'<span class="hw">Your Health,</span><br><span class="hw" style="color:var(--rose)">Our </span><span class="hw" style="color:var(--teal)">Priority.</span>',
+           bn:'<span class="hw">আপনার সুস্থতা,</span><br><span class="hw" style="color:var(--rose)">আমাদের </span><span class="hw" style="color:var(--teal)">অগ্রাধিকার।</span>'},
+  hero_sub:{en:'Expert medical care delivered with compassion. Book your appointment in minutes — secure, simple, and online.',
+            bn:'যত্ন ও অভিজ্ঞতার সাথে সেরা চিকিৎসাসেবা। মাত্র কয়েক মিনিটেই বুক করুন আপনার অ্যাপয়েন্টমেন্ট — সহজ, নিরাপদ ও সম্পূর্ণ অনলাইনে।'},
+  hero_patients_num:{en:'5,000+',bn:'৫,০০০+'},
+  hero_noshows_num:{en:'70%',bn:'৭০%'},
+
+  // ── Testimonials (Part 25 — full bilingual) ──
+  testi1_q:{en:'Booking online was so easy. I got my appointment confirmed immediately with a Patient ID. The doctor listened to everything and explained my condition clearly.',
+            bn:'অনলাইনে বুকিং করাটা খুবই সহজ ছিল। সাথে সাথেই একটি রোগীর আইডিসহ আমার অ্যাপয়েন্টমেন্ট নিশ্চিত হয়ে যায়। ডাক্তার আমার সব কথা মনোযোগ দিয়ে শুনেছেন এবং সমস্যাটা স্পষ্টভাবে বুঝিয়ে দিয়েছেন।'},
+  testi1_name:{en:'Rashida K.',bn:'রশিদা কে.'},
+  testi1_role:{en:'Patient since 2024',bn:'২০২৪ সাল থেকে রোগী'},
+  testi2_q:{en:'I love accessing my test results online without calling the clinic. The reminders mean I never miss my follow-ups. This system has made my healthcare so much easier to manage.',
+            bn:'ক্লিনিকে ফোন না করেই এখন অনলাইনে টেস্ট রিপোর্ট দেখতে পারি, যা আমার কাছে দারুণ লাগে। রিমাইন্ডারের কারণে আর কখনো ফলো-আপ মিস হয় না। এই সিস্টেম আমার স্বাস্থ্যসেবা ব্যবস্থাপনা আগের চেয়ে অনেক সহজ করে দিয়েছে।'},
+  testi2_name:{en:'Monira A.',bn:'মনিরা এ.'},
+  testi2_role:{en:'Regular Patient',bn:'নিয়মিত রোগী'},
+  testi3_q:{en:"I get all my test reports online now. Booking an appointment is so much easier too. The doctor's care and service are both excellent.",
+            bn:'আমার সব টেস্ট রিপোর্ট এখন অনলাইনে পাই। অ্যাপয়েন্টমেন্ট নেওয়াও অনেক সহজ। ডাক্তার সাহেবার ব্যবহার এবং সেবা দুটোই অসাধারণ।'},
+  testi3_name:{en:'Sultana B.',bn:'সুলতানা বি.'},
+  testi3_role:{en:'Patient, Dhaka',bn:'রোগী, ঢাকা'},
+
+  // ── Booking flow — dynamic JS messages (Part 25) ──
+  msg_err_loadslots:{en:'Error loading slots.',bn:'সময় লোড করতে সমস্যা হয়েছে।'},
+  msg_no_slots:{en:'No available slots for this date. Please try another day.',bn:'এই তারিখে কোনো খালি সময় নেই। অনুগ্রহ করে অন্য দিন চেষ্টা করুন।'},
+  msg_conn_err_refresh:{en:'Connection error. Refresh and try again.',bn:'সংযোগে সমস্যা হয়েছে। পেজ রিফ্রেশ করে আবার চেষ্টা করুন।'},
+  msg_enter_name_phone:{en:'Please enter your name and phone number.',bn:'অনুগ্রহ করে আপনার নাম ও ফোন নম্বর দিন।'},
+  msg_confirming:{en:'<span class="spin"></span> Confirming...',bn:'<span class="spin"></span> নিশ্চিত করা হচ্ছে...'},
+  bk_confirm_btn2:{en:'Confirm Appointment →',bn:'অ্যাপয়েন্টমেন্ট নিশ্চিত করুন →'},
+  msg_appt_confirmed:{en:'✅ <strong>Appointment Confirmed!</strong><br>🪪 Patient ID: <strong style="color:var(--rose2);">{pid}</strong><br>📋 Appointment ID: <strong>{aid}</strong><br><small style="color:var(--sil);">Save your Patient ID to access records.</small>',
+                      bn:'✅ <strong>অ্যাপয়েন্টমেন্ট নিশ্চিত হয়েছে!</strong><br>🪪 রোগীর আইডি: <strong style="color:var(--rose2);">{pid}</strong><br>📋 অ্যাপয়েন্টমেন্ট আইডি: <strong>{aid}</strong><br><small style="color:var(--sil);">রেকর্ড দেখতে আপনার রোগীর আইডি সংরক্ষণ করুন।</small>'},
+  msg_booking_failed:{en:'Booking failed. Please try again.',bn:'বুকিং সম্পন্ন হয়নি। অনুগ্রহ করে আবার চেষ্টা করুন।'},
+  msg_conn_err:{en:'Connection error.',bn:'সংযোগে সমস্যা হয়েছে।'},
+
+  // ── Login / Portal — dynamic JS messages (Part 25) ──
+  msg_enter_both_fields:{en:'Please enter both fields.',bn:'অনুগ্রহ করে দুটি ঘরই পূরণ করুন।'},
+  msg_verifying:{en:'<span class="spin" style="vertical-align:middle;margin-right:6px;"></span> Verifying...',bn:'<span class="spin" style="vertical-align:middle;margin-right:6px;"></span> যাচাই করা হচ্ছে...'},
+  msg_login_failed:{en:'Login failed. Check your Patient ID and phone.',bn:'লগইন ব্যর্থ হয়েছে। আপনার রোগীর আইডি ও ফোন নম্বর যাচাই করুন।'},
+  msg_error_loadrec:{en:'Error loading records.',bn:'রেকর্ড লোড করতে সমস্যা হয়েছে।'},
+  pi_patientid:{en:'Patient ID',bn:'রোগীর আইডি'},
+  pi_phone:{en:'Phone',bn:'ফোন নম্বর'},
+  pi_gender:{en:'Gender',bn:'লিঙ্গ'},
+  pi_age:{en:'Age',bn:'বয়স'},
+  th_id:{en:'ID',bn:'আইডি'},
+  th_date:{en:'Date',bn:'তারিখ'},
+  th_time:{en:'Time',bn:'সময়'},
+  th_reason:{en:'Reason',bn:'কারণ'},
+  th_status:{en:'Status',bn:'অবস্থা'},
+  th_test:{en:'Test',bn:'টেস্ট'},
+  th_by:{en:'By',bn:'দিয়েছেন'},
+  th_report:{en:'Report',bn:'রিপোর্ট'},
+  th_download:{en:'Download →',bn:'ডাউনলোড →'},
+  msg_no_appts:{en:'No appointments found.',bn:'কোনো অ্যাপয়েন্টমেন্ট পাওয়া যায়নি।'},
+  msg_no_tests:{en:'No approved test results yet.',bn:'এখনো কোনো অনুমোদিত টেস্ট রিপোর্ট নেই।'},
+
+  // ── Upload — dynamic JS messages (Part 25) ──
+  msg_file_size:{en:'File must be under 5MB.',bn:'ফাইলের আকার অবশ্যই ৫MB-এর কম হতে হবে।'},
+  msg_select_file:{en:'Please select a file.',bn:'অনুগ্রহ করে একটি ফাইল বেছে নিন।'},
+  msg_select_testtype:{en:'Please select a test type.',bn:'অনুগ্রহ করে টেস্টের ধরন বেছে নিন।'},
+  msg_uploading:{en:'<span class="spin"></span> Uploading...',bn:'<span class="spin"></span> আপলোড হচ্ছে...'},
+  up_btn2:{en:'Upload for Doctor Review →',bn:'ডাক্তারের কাছে পাঠান →'},
+  msg_upload_failed:{en:'Upload failed.',bn:'আপলোড ব্যর্থ হয়েছে।'},
+
+  // ── Blog / Recommended Doctors — dynamic JS messages (Part 25) ──
+  msg_no_articles:{en:'No articles published yet. Check back soon!',bn:'এখনো কোনো লেখা প্রকাশিত হয়নি। শীঘ্রই আসছে!'},
+  msg_read_article:{en:'Read Article →',bn:'লেখাটি পড়ুন →'},
+  msg_loading:{en:'Loading...',bn:'লোড হচ্ছে...'},
+  msg_article_not_found:{en:'Article not found.',bn:'লেখাটি খুঁজে পাওয়া যায়নি।'},
+  msg_article_load_failed:{en:'Failed to load article.',bn:'লেখাটি লোড করা যায়নি।'},
+  msg_by_author:{en:'By',bn:'লিখেছেন'},
+  msg_no_recdocs:{en:'No recommendations listed yet.',bn:'এখনো কোনো প্রস্তাবিত ডাক্তার যুক্ত করা হয়নি।'},
+  msg_call:{en:'📞 Call',bn:'📞 কল করুন'},
+  msg_whatsapp:{en:'💬 WhatsApp',bn:'💬 হোয়াটসঅ্যাপ'}
 };
 
 function T(key){ var e=I18N[key]; return e ? e[CURLANG] : ''; }
@@ -2055,6 +2146,7 @@ function applyLang(lang){
   if (APP.profile && APP.profile.DoctorName) renderProfile(APP.profile);
   if (APP.genderValues) renderGenderOptions();
   if (APP.testNameValues) renderTestNameOptions();
+  reformatStatNumbers();
 }
 function toggleLang(){ applyLang(CURLANG === 'en' ? 'bn' : 'en'); }
 
@@ -2098,7 +2190,7 @@ function initNav(){
   });
 }
 function cMob(){ document.getElementById('ham').classList.remove('o'); document.getElementById('mob').classList.remove('o'); }
-function scrollTo(id){ document.querySelector(id).scrollIntoView({behavior:'smooth'}); }
+function goToSection(id){ document.querySelector(id).scrollIntoView({behavior:'smooth'}); }
 
 /* ── SCROLL PROGRESS ── */
 function initScroll(){
@@ -2140,8 +2232,8 @@ function initStatCounters(){
         function step(ts){
           if(!st) st=ts;
           var p=Math.min((ts-st)/dur,1), ease=1-Math.pow(1-p,3), cur=t*ease;
-          el.textContent=(Number.isInteger(t)?Math.floor(cur):cur.toFixed(1))+s;
-          if(p<1) requestAnimationFrame(step); else el.textContent=t+s;
+          el.textContent=bnNum((Number.isInteger(t)?Math.floor(cur):cur.toFixed(1))+s);
+          if(p<1) requestAnimationFrame(step); else el.textContent=bnNum(t+s);
         }
         requestAnimationFrame(step);
         o.unobserve(e.target);
@@ -2149,6 +2241,19 @@ function initStatCounters(){
     });
   },{threshold:.2});
   document.querySelectorAll('.stat-card').forEach(function(c){ o.observe(c); });
+}
+// Part 25: already-animated stat numbers (and hero year count) need to
+// re-render their digits when the language is toggled after the count-up
+// animation has already finished — this runs the final value again,
+// no re-animation, just correct digit script for the current language.
+function reformatStatNumbers(){
+  document.querySelectorAll('.snum').forEach(function(el){
+    var t=el.dataset.t, s=el.dataset.s||'';
+    if (t===undefined || el.textContent==='0') return; // not animated yet
+    el.textContent=bnNum(t+s);
+  });
+  var hy=document.getElementById('hsYears');
+  if (hy && APP.profile && APP.profile.YearsExperience) hy.textContent=bnNum(APP.profile.YearsExperience+'+');
 }
 
 /* ── LOAD PROFILE ── */
@@ -2165,29 +2270,37 @@ function applyProfile(r){
 }
 function renderProfile(p){
   if(!p) return;
-  var dn=p.DoctorName||'Asma', cn=p.ClinicName||'Clinic', sp=p.Specialty||'';
+  // Part 25: Bangla-first field resolver — ডাক্তার Settings থেকে Bangla ভার্সন
+  // (যেমন DoctorNameBn, ClinicAddressBn) দিলে bn মোডে সেটাই দেখানো হবে;
+  // না দিলে English ভ্যালুতেই fallback করবে যাতে সাইট কখনো ফাঁকা না দেখায়।
+  function bf(enKey, bnKey){ return (CURLANG==='bn' && p[bnKey]) ? p[bnKey] : (p[enKey]||''); }
+  var dn=bf('DoctorName','DoctorNameBn')||'Asma', cn=bf('ClinicName','ClinicNameBn')||'Clinic', sp=bf('Specialty','SpecialtyBn')||'';
+  var bioTxt = bf('Bio','BioBn');
+  var degTxt = bf('Degree','DegreeBn')||'MBBS';
+  var addrTxt = bf('ClinicAddress','ClinicAddressBn');
+  var svcTxt = bf('ServicesList','ServicesListBn');
   // Nav + footer
   function st(id,txt){ var e=document.getElementById(id); if(e) e.innerHTML=txt; }
   st('navTxt',T('drPrefix')+dn+'<em>.</em>');
   st('footTxt',T('drPrefix')+dn+'<em>.</em>');
   st('footTag', sp ? sp+' '+T('specialistSuffix') : T('defaultTagline'));
-  st('footDesc', p.Bio ? p.Bio.substring(0,130)+(p.Bio.length>130?'...':'') : 'Professional healthcare.');
+  st('footDesc', bioTxt ? bioTxt.substring(0,130)+(bioTxt.length>130?'...':'') : T('defaultBioFallback'));
   st('fClinic',cn);
   // Hero
-  st('heroSub',p.Bio?p.Bio.substring(0,180)+'...':document.getElementById('heroSub').textContent);
-  var hy=document.getElementById('hsYears'); if(hy&&p.YearsExperience) hy.textContent=p.YearsExperience+'+';
+  st('heroSub',bioTxt?bioTxt.substring(0,180)+'...':T('hero_sub'));
+  var hy=document.getElementById('hsYears'); if(hy&&p.YearsExperience) hy.textContent=bnNum(p.YearsExperience+'+');
   // About
   st('aboutTtl',T('meetLabel')+' <span class="r">'+T('drPrefix')+dn+'</span>');
-  st('aboutBio',p.Bio||'');
+  st('aboutBio',bioTxt||'');
   st('docName',T('drPrefix')+'<span>'+dn+'</span>');
-  st('docSpec',sp||(p.ServicesList||'').split(',')[0]||'General Physician');
+  st('docSpec',sp||(svcTxt||'').split(',')[0]||T('defaultSpecialty'));
   // Photo
   if(p.PhotoURL){ var w=document.getElementById('docPhotoWrap'); if(w) w.innerHTML='<img src="'+p.PhotoURL+'" alt="Dr. '+dn+'" style="width:100%;height:100%;object-fit:cover;">'; }
   // Credentials
   var ci=document.getElementById('docCreds');
   if(ci&&sp){
-    var sv=(p.ServicesList||'').split(',').slice(0,2);
-    ci.innerHTML='<span class="ctag r">'+(p.Degree||'MBBS')+'</span>'+
+    var sv=(svcTxt||'').split(',').slice(0,2);
+    ci.innerHTML='<span class="ctag r">'+degTxt+'</span>'+
       (sp?'<span class="ctag t">'+sp+'</span>':'')+
       sv.map(function(s){ return '<span class="ctag i">'+s.trim()+'</span>'; }).join('');
   }
@@ -2195,6 +2308,8 @@ function renderProfile(p){
   // "01716233101" or "1716233101" or already "+8801716233101"; every
   // place we SHOW or LINK the number must consistently use the full
   // "+8801716233101" display format and a correct wa.me deep link.
+  // Note: tel:/wa.me href values always keep Western digits (functional);
+  // only the human-readable label uses bnNum() in bn mode.
   function formatBDPhone(raw){
     if(!raw) return '';
     var d = String(raw).replace(/\D/g,'');
@@ -2205,19 +2320,19 @@ function renderProfile(p){
   }
   function waDigits(raw){ return formatBDPhone(raw).replace(/\D/g,''); } // digits only, for wa.me
 
-  st('ciAddr',p.ClinicAddress||'—');
-  if(p.ContactPhone){ var fullPh=formatBDPhone(p.ContactPhone); st('ciPhone','<a href="tel:'+fullPh+'">'+fullPh+'</a>'); }
-  if(p.ContactEmail){ st('ciEmail','<a href="mailto:'+p.ContactEmail+'">'+p.ContactEmail+'</a>'); }
+  st('ciAddr',addrTxt||'—');
+  if(p.ContactPhone){ var fullPh=formatBDPhone(p.ContactPhone); st('ciPhone','<a href="tel:'+fullPh+'">'+bnNum(fullPh)+'</a>'); }
+  if(p.ContactEmail){ st('ciEmail','<a href="mailto:'+p.ContactEmail+'">'+p.ContactEmail+'</a>'); } // email intentionally stays English-only
   if(p.ContactPhone){
     var fullPhWa=formatBDPhone(p.ContactPhone);
     var wh='https://wa.me/'+waDigits(p.ContactPhone);
-    st('ciWa','<a href="'+wh+'" target="_blank">'+fullPhWa+' →</a>');
+    st('ciWa','<a href="'+wh+'" target="_blank">'+bnNum(fullPhWa)+' →</a>');
     var wl=document.getElementById('waHelpLink'); if(wl) wl.href=wh;
     var fw=document.getElementById('footWa'); if(fw) fw.href=wh;
-    var fl=document.getElementById('fWaLnk'); if(fl){ fl.textContent='WhatsApp: '+fullPhWa; fl.href=wh; }
+    var fl=document.getElementById('fWaLnk'); if(fl){ fl.textContent='WhatsApp: '+bnNum(fullPhWa); fl.href=wh; }
   }
-  if(p.ContactPhone){ var fp=document.getElementById('fPhone'); if(fp){ var fullPhF=formatBDPhone(p.ContactPhone); fp.textContent=fullPhF; fp.href='tel:'+fullPhF; } }
-  if(p.ClinicAddress){ var fa=document.getElementById('fAddr'); if(fa) fa.textContent=p.ClinicAddress; }
+  if(p.ContactPhone){ var fp=document.getElementById('fPhone'); if(fp){ var fullPhF=formatBDPhone(p.ContactPhone); fp.textContent=bnNum(fullPhF); fp.href='tel:'+fullPhF; } }
+  if(addrTxt){ var fa=document.getElementById('fAddr'); if(fa) fa.textContent=addrTxt; }
   // Title
   document.title='Dr. '+dn+' — '+cn;
   // Hours
@@ -2252,7 +2367,7 @@ function fmt12(t){
   if(!t) return '';
   var p=t.split(':'),h=parseInt(p[0]),m=p[1]||'00';
   var hh=(h===0?12:h>12?h-12:h)+':'+m;
-  if (CURLANG==='bn') return hh+(h<12?' সকাল':' বিকাল');
+  if (CURLANG==='bn') return bnNum(hh)+(h<12?' সকাল':' বিকাল');
   return hh+(h<12?' AM':' PM');
 }
 
@@ -2288,12 +2403,12 @@ function loadSlots(){
   google.script.run
     .withSuccessHandler(function(r){
       sl.classList.add('hide'); sa.classList.remove('hide');
-      if(!r||!r.success){ sg.innerHTML='<p style="color:var(--error);font-size:13px;">Error loading slots.</p>'; return; }
+      if(!r||!r.success){ sg.innerHTML='<p style="color:var(--error);font-size:13px;">'+T('msg_err_loadslots')+'</p>'; return; }
       if(r.message&&(!r.slots||!r.slots.length)){ sg.innerHTML='<div class="al al-inf">'+r.message+'</div>'; return; }
-      if(!r.slots||!r.slots.length){ sg.innerHTML='<div class="al" style="background:rgba(245,158,11,.1);border:1px solid rgba(245,158,11,.3);color:#FDE68A;padding:14px 18px;border-radius:12px;">No available slots for this date. Please try another day.</div>'; return; }
-      sg.innerHTML=r.slots.map(function(s){ return '<button class="sc" onclick="pickSlot(this,\''+s+'\')">'+s+'</button>'; }).join('');
+      if(!r.slots||!r.slots.length){ sg.innerHTML='<div class="al" style="background:rgba(245,158,11,.1);border:1px solid rgba(245,158,11,.3);color:#FDE68A;padding:14px 18px;border-radius:12px;">'+T('msg_no_slots')+'</div>'; return; }
+      sg.innerHTML=r.slots.map(function(s){ return '<button class="sc" onclick="pickSlot(this,\''+s+'\')">'+bnNum(s)+'</button>'; }).join('');
     })
-    .withFailureHandler(function(){ sl.classList.add('hide'); sg.innerHTML='<p style="color:var(--error);font-size:13px;">Connection error. Refresh and try again.</p>'; sa.classList.remove('hide'); })
+    .withFailureHandler(function(){ sl.classList.add('hide'); sg.innerHTML='<p style="color:var(--error);font-size:13px;">'+T('msg_conn_err_refresh')+'</p>'; sa.classList.remove('hide'); })
     .getPublicBookingSlots(dv);
 }
 function pickSlot(btn,s){
@@ -2304,7 +2419,7 @@ function pickSlot(btn,s){
 function goS2(){
   if(!APP.selSlot) return;
   var dv=document.getElementById('bkDate').value;
-  document.getElementById('dtSum').innerHTML='📅 <strong>'+fmtD(dv)+'</strong> &nbsp;|&nbsp; ⏰ <strong>'+APP.selSlot+'</strong>';
+  document.getElementById('dtSum').innerHTML='📅 <strong>'+fmtD(dv)+'</strong> &nbsp;|&nbsp; ⏰ <strong>'+bnNum(APP.selSlot)+'</strong>';
   document.getElementById('s1').style.display='none';
   document.getElementById('s2').classList.remove('hide');
   document.getElementById('sd1').className='sd d'; document.getElementById('sd2').className='sd a';
@@ -2319,25 +2434,25 @@ function goS1(){
 /* ── BOOKING SUBMIT ── */
 function cnfBook(){
   var n=document.getElementById('bkN').value.trim(), p=document.getElementById('bkP').value.trim();
-  if(!n||!p){ showAl('bkMsg','err','Please enter your name and phone number.'); return; }
-  var btn=document.getElementById('cnfBtn'); btn.disabled=true; btn.innerHTML='<span class="spin"></span> Confirming...';
+  if(!n||!p){ showAl('bkMsg','err',T('msg_enter_name_phone')); return; }
+  var btn=document.getElementById('cnfBtn'); btn.disabled=true; btn.innerHTML=T('msg_confirming');
   google.script.run
     .withSuccessHandler(function(r){
-      btn.disabled=false; btn.innerHTML='Confirm Appointment →';
+      btn.disabled=false; btn.innerHTML=T('bk_confirm_btn2');
       if(r&&r.success){
         document.getElementById('bkCard').style.display='none';
-        showAl('bkMsg','ok','✅ <strong>Appointment Confirmed!</strong><br>🪪 Patient ID: <strong style="color:var(--rose2);">'+r.patientId+'</strong><br>📋 Appointment ID: <strong>'+r.appointmentId+'</strong><br><small style="color:var(--sil);">Save your Patient ID to access records.</small>');
-      } else { showAl('bkMsg','err',(r&&r.error)||'Booking failed. Please try again.'); }
+        showAl('bkMsg','ok',T('msg_appt_confirmed').replace('{pid}',r.patientId).replace('{aid}',r.appointmentId));
+      } else { showAl('bkMsg','err',(r&&r.error)||T('msg_booking_failed')); }
     })
-    .withFailureHandler(function(){ btn.disabled=false; btn.innerHTML='Confirm Appointment →'; showAl('bkMsg','err','Connection error.'); })
+    .withFailureHandler(function(){ btn.disabled=false; btn.innerHTML=T('bk_confirm_btn2'); showAl('bkMsg','err',T('msg_conn_err')); })
     .submitPublicBooking({ fullName:n, phone:p, age:document.getElementById('bkA').value, gender:document.getElementById('bkG').value, reason:document.getElementById('bkR').value, date:document.getElementById('bkDate').value, timeSlot:APP.selSlot });
 }
 
 /* ── LOGIN / LOGOUT ── */
 function doLogin(){
   var pid=document.getElementById('pidIn').value.trim(), ph=document.getElementById('phpIn').value.trim();
-  if(!pid||!ph){ showAl('loginMsg','err','Please enter both fields.'); return; }
-  showAl('loginMsg','inf','<span class="spin" style="vertical-align:middle;margin-right:6px;"></span> Verifying...');
+  if(!pid||!ph){ showAl('loginMsg','err',T('msg_enter_both_fields')); return; }
+  showAl('loginMsg','inf',T('msg_verifying'));
   google.script.run
     .withSuccessHandler(function(r){
       if(r&&r.success){
@@ -2346,9 +2461,9 @@ function doLogin(){
         document.getElementById('recPanel').classList.remove('hide');
         var pg=document.querySelector('.portal-grid'); if(pg) pg.classList.add('two-col');
         loadRecs(r.patient);
-      } else { showAl('loginMsg','err',(r&&r.error)||'Login failed. Check your Patient ID and phone.'); }
+      } else { showAl('loginMsg','err',(r&&r.error)||T('msg_login_failed')); }
     })
-    .withFailureHandler(function(){ showAl('loginMsg','err','Connection error.'); })
+    .withFailureHandler(function(){ showAl('loginMsg','err',T('msg_conn_err')); })
     .patientPortalLogin(pid,ph);
 }
 function doLogout(){
@@ -2365,32 +2480,32 @@ function loadRecs(pt){
   var we=document.getElementById('recWel'); if(we) we.textContent=T('helloLabel')+', '+(pt.fullName||T('patientFallback'));
   var pg=document.getElementById('piGrid');
   if(pg) pg.innerHTML=
-    '<div class="pi-item"><div class="pi-ico">🪪</div><div><div class="pi-k">Patient ID</div><div class="pi-v">'+escapeHtml(pt.patientId)+'</div></div></div>'+
-    '<div class="pi-item"><div class="pi-ico">📞</div><div><div class="pi-k">Phone</div><div class="pi-v">'+escapeHtml(pt.phone)+'</div></div></div>'+
-    '<div class="pi-item"><div class="pi-ico">👤</div><div><div class="pi-k">Gender</div><div class="pi-v">'+escapeHtml(pt.gender||'—')+'</div></div></div>'+
-    '<div class="pi-item"><div class="pi-ico">🎂</div><div><div class="pi-k">Age</div><div class="pi-v">'+escapeHtml(pt.age||'—')+'</div></div></div>';
+    '<div class="pi-item"><div class="pi-ico">🪪</div><div><div class="pi-k">'+T('pi_patientid')+'</div><div class="pi-v">'+escapeHtml(pt.patientId)+'</div></div></div>'+
+    '<div class="pi-item"><div class="pi-ico">📞</div><div><div class="pi-k">'+T('pi_phone')+'</div><div class="pi-v">'+escapeHtml(pt.phone)+'</div></div></div>'+
+    '<div class="pi-item"><div class="pi-ico">👤</div><div><div class="pi-k">'+T('pi_gender')+'</div><div class="pi-v">'+escapeHtml(pt.gender||'—')+'</div></div></div>'+
+    '<div class="pi-item"><div class="pi-ico">🎂</div><div><div class="pi-k">'+T('pi_age')+'</div><div class="pi-v">'+bnNum(escapeHtml(pt.age||'—'))+'</div></div></div>';
   document.getElementById('apptsTbl').innerHTML='<div style="text-align:center;padding:20px;"><span class="spin" style="width:28px;height:28px;border-width:3px;"></span></div>';
   document.getElementById('testsTbl').innerHTML='<div style="text-align:center;padding:20px;"><span class="spin" style="width:28px;height:28px;border-width:3px;"></span></div>';
   google.script.run
     .withSuccessHandler(function(r){
-      if(!r||!r.success){ document.getElementById('apptsTbl').innerHTML='<p style="color:var(--error);">Error loading records.</p>'; return; }
+      if(!r||!r.success){ document.getElementById('apptsTbl').innerHTML='<p style="color:var(--error);">'+T('msg_error_loadrec')+'</p>'; return; }
       rAppts(r.appointments); rTests(r.testRecords);
     })
-    .withFailureHandler(function(){ document.getElementById('apptsTbl').innerHTML='<p style="color:var(--error);">Connection error.</p>'; })
+    .withFailureHandler(function(){ document.getElementById('apptsTbl').innerHTML='<p style="color:var(--error);">'+T('msg_conn_err')+'</p>'; })
     .getPatientRecords(pt.patientId);
 }
 function rAppts(d){
   var el=document.getElementById('apptsTbl');
-  if(!d||!d.length){ el.innerHTML='<div class="es"><div class="ei">📅</div><p>No appointments found.</p></div>'; return; }
-  el.innerHTML='<div style="overflow-x:auto;"><table class="pt-table"><thead><tr><th>ID</th><th>Date</th><th>Time</th><th>Reason</th><th>Status</th></tr></thead><tbody>'+
-    d.map(function(a){ return '<tr><td>'+escapeHtml(a.appointmentId)+'</td><td>'+escapeHtml(a.date||'—')+'</td><td>'+escapeHtml(a.timeSlot||'—')+'</td><td>'+escapeHtml(a.reason||'—')+'</td><td>'+mkBadge(a.status)+'</td></tr>'; }).join('')+
+  if(!d||!d.length){ el.innerHTML='<div class="es"><div class="ei">📅</div><p>'+T('msg_no_appts')+'</p></div>'; return; }
+  el.innerHTML='<div style="overflow-x:auto;"><table class="pt-table"><thead><tr><th>'+T('th_id')+'</th><th>'+T('th_date')+'</th><th>'+T('th_time')+'</th><th>'+T('th_reason')+'</th><th>'+T('th_status')+'</th></tr></thead><tbody>'+
+    d.map(function(a){ return '<tr><td>'+escapeHtml(a.appointmentId)+'</td><td>'+escapeHtml(fmtD(a.date)||'—')+'</td><td>'+bnNum(escapeHtml(a.timeSlot||'—'))+'</td><td>'+escapeHtml(a.reason||'—')+'</td><td>'+mkBadge(a.status)+'</td></tr>'; }).join('')+
     '</tbody></table></div>';
 }
 function rTests(d){
   var el=document.getElementById('testsTbl');
-  if(!d||!d.length){ el.innerHTML='<div class="es"><div class="ei">🧪</div><p>No approved test results yet.</p></div>'; return; }
-  el.innerHTML='<div style="overflow-x:auto;"><table class="pt-table"><thead><tr><th>Test</th><th>Date</th><th>By</th><th>Report</th></tr></thead><tbody>'+
-    d.map(function(r){ return '<tr><td>'+escapeHtml(r.testName||'—')+'</td><td>'+escapeHtml(r.testDate||'—')+'</td><td style="color:var(--sil);">'+escapeHtml(r.uploadedBy||'—')+'</td><td><a href="'+encodeURI(r.fileLink)+'" target="_blank" style="color:var(--rose2);font-weight:600;text-decoration:none;">Download →</a></td></tr>'; }).join('')+
+  if(!d||!d.length){ el.innerHTML='<div class="es"><div class="ei">🧪</div><p>'+T('msg_no_tests')+'</p></div>'; return; }
+  el.innerHTML='<div style="overflow-x:auto;"><table class="pt-table"><thead><tr><th>'+T('th_test')+'</th><th>'+T('th_date')+'</th><th>'+T('th_by')+'</th><th>'+T('th_report')+'</th></tr></thead><tbody>'+
+    d.map(function(r){ return '<tr><td>'+escapeHtml(r.testName||'—')+'</td><td>'+escapeHtml(fmtD(r.testDate)||'—')+'</td><td style="color:var(--sil);">'+escapeHtml(r.uploadedBy||'—')+'</td><td><a href="'+encodeURI(r.fileLink)+'" target="_blank" style="color:var(--rose2);font-weight:600;text-decoration:none;">'+T('th_download')+'</a></td></tr>'; }).join('')+
     '</tbody></table></div>';
 }
 
@@ -2408,23 +2523,23 @@ function pTab(tab,btn){
 /* ── UPLOAD ── */
 function filePick(inp){
   var f=inp.files[0]; if(!f) return;
-  if(f.size>5*1024*1024){ showAl('upMsg','err','File must be under 5MB.'); inp.value=''; return; }
+  if(f.size>5*1024*1024){ showAl('upMsg','err',T('msg_file_size')); inp.value=''; return; }
   APP.selFile=f; document.getElementById('ufName').textContent='✓ '+f.name;
 }
 function doUpload(){
   if(!APP.loggedIn) return;
-  if(!APP.selFile){ showAl('upMsg','err','Please select a file.'); return; }
-  var tn=document.getElementById('upType').value; if(!tn){ showAl('upMsg','err','Please select a test type.'); return; }
-  var btn=document.getElementById('doUpBtn'); btn.disabled=true; btn.innerHTML='<span class="spin"></span> Uploading...';
+  if(!APP.selFile){ showAl('upMsg','err',T('msg_select_file')); return; }
+  var tn=document.getElementById('upType').value; if(!tn){ showAl('upMsg','err',T('msg_select_testtype')); return; }
+  var btn=document.getElementById('doUpBtn'); btn.disabled=true; btn.innerHTML=T('msg_uploading');
   var reader=new FileReader();
   reader.onload=function(e){
     google.script.run
       .withSuccessHandler(function(r){
-        btn.disabled=false; btn.innerHTML='Upload for Doctor Review →';
+        btn.disabled=false; btn.innerHTML=T('up_btn2');
         if(r&&r.success){ showAl('upMsg','ok','✅ '+r.message); document.getElementById('upFile').value=''; document.getElementById('ufName').textContent=''; APP.selFile=null; }
-        else { showAl('upMsg','err',(r&&r.error)||'Upload failed.'); }
+        else { showAl('upMsg','err',(r&&r.error)||T('msg_upload_failed')); }
       })
-      .withFailureHandler(function(){ btn.disabled=false; btn.innerHTML='Upload for Doctor Review →'; showAl('upMsg','err','Connection error.'); })
+      .withFailureHandler(function(){ btn.disabled=false; btn.innerHTML=T('up_btn2'); showAl('upMsg','err',T('msg_conn_err')); })
       .patientSelfUpload(APP.loggedIn.patientId,e.target.result,APP.selFile.type,APP.selFile.name,tn);
   };
   reader.readAsDataURL(APP.selFile);
@@ -2442,8 +2557,10 @@ function mkBadge(s){
 }
 function fmtD(s){
   if(!s) return '';
-  var d=new Date(s), ms=['January','February','March','April','May','June','July','August','September','October','November','December'];
-  return d.getDate()+' '+ms[d.getMonth()]+' '+d.getFullYear();
+  var d=new Date(s);
+  if (isNaN(d.getTime())) return s; // fallback: already-formatted / unparseable string, show as-is
+  var ms = (CURLANG==='bn') ? BN_MONTHS : ['January','February','March','April','May','June','July','August','September','October','November','December'];
+  return bnNum(d.getDate())+' '+ms[d.getMonth()]+' '+bnNum(d.getFullYear());
 }
 </script>
 <script>
@@ -2467,7 +2584,7 @@ function renderBlogGrid(){
   var el = document.getElementById('blogGrid');
   if(!el) return;
   if(!_pubArticles.length){
-    el.innerHTML = '<p style="text-align:center;color:var(--sil2);font-size:13px;grid-column:1/-1;">No articles published yet. Check back soon!</p>';
+    el.innerHTML = '<p style="text-align:center;color:var(--sil2);font-size:13px;grid-column:1/-1;">'+T('msg_no_articles')+'</p>';
     return;
   }
   el.innerHTML = _pubArticles.map(function(a){
@@ -2478,7 +2595,7 @@ function renderBlogGrid(){
         (tags.length ? '<div class="blog-card-tags">'+tags.map(function(t){ return '<span class="blog-tag">'+escPub_(t)+'</span>'; }).join('')+'</div>' : '') +
         '<div class="blog-card-title">'+escPub_(a.title)+'</div>' +
         '<div class="blog-card-date">'+fmtPubDate_(a.publishedDate)+'</div>' +
-        '<div class="blog-card-read">Read Article →</div>' +
+        '<div class="blog-card-read">'+T('msg_read_article')+'</div>' +
       '</div>' +
     '</div>';
   }).join('');
@@ -2488,21 +2605,21 @@ function renderBlogGrid(){
 function openArticleReader(id){
   var overlay = document.getElementById('blogReader');
   var content = document.getElementById('blogReaderContent');
-  content.innerHTML = '<p style="color:var(--sil);">Loading...</p>';
+  content.innerHTML = '<p style="color:var(--sil);">'+T('msg_loading')+'</p>';
   overlay.classList.add('on');
   document.body.style.overflow = 'hidden';
 
   google.script.run
     .withSuccessHandler(function(r){
-      if(!r||!r.success){ content.innerHTML = '<p style="color:var(--error);">Article not found.</p>'; return; }
+      if(!r||!r.success){ content.innerHTML = '<p style="color:var(--error);">'+T('msg_article_not_found')+'</p>'; return; }
       var a = r.article;
       content.innerHTML =
         (a.coverImageURL ? '<img src="'+a.coverImageURL+'" style="width:100%;border-radius:12px;margin-bottom:20px;">' : '') +
         '<h1>'+escPub_(a.title)+'</h1>' +
-        '<div class="blog-reader-meta">By '+escPub_(a.authorName||'Dr. Asma')+' · '+fmtPubDate_(a.publishedDate)+'</div>' +
+        '<div class="blog-reader-meta">'+T('msg_by_author')+' '+escPub_(a.authorName||'Dr. Asma')+' · '+fmtPubDate_(a.publishedDate)+'</div>' +
         (a.bodyHtml || '');
     })
-    .withFailureHandler(function(){ content.innerHTML = '<p style="color:var(--error);">Failed to load article.</p>'; })
+    .withFailureHandler(function(){ content.innerHTML = '<p style="color:var(--error);">'+T('msg_article_load_failed')+'</p>'; })
     .getPublicArticleById(id);
 }
 
@@ -2528,7 +2645,7 @@ function renderRecDocPubGrid(list){
   var el = document.getElementById('recDocPubGrid');
   if(!el) return;
   if(!list.length){
-    el.innerHTML = '<p style="text-align:center;color:var(--sil2);font-size:13px;grid-column:1/-1;">No recommendations listed yet.</p>';
+    el.innerHTML = '<p style="text-align:center;color:var(--sil2);font-size:13px;grid-column:1/-1;">'+T('msg_no_recdocs')+'</p>';
     return;
   }
   el.innerHTML = list.map(function(d){
@@ -2543,8 +2660,8 @@ function renderRecDocPubGrid(list){
       (d.chamber ? '<div class="recdoc-chamber">📍 '+escPub_(d.chamber)+'</div>' : '') +
       (d.note ? '<div class="recdoc-note">"'+escPub_(d.note)+'"</div>' : '') +
       '<div class="recdoc-actions">' +
-        (telHref ? '<a class="recdoc-btn call" href="'+telHref+'">📞 Call</a>' : '') +
-        (waHref  ? '<a class="recdoc-btn wa" href="'+waHref+'" target="_blank" rel="noopener">💬 WhatsApp</a>' : '') +
+        (telHref ? '<a class="recdoc-btn call" href="'+telHref+'">'+T('msg_call')+'</a>' : '') +
+        (waHref  ? '<a class="recdoc-btn wa" href="'+waHref+'" target="_blank" rel="noopener">'+T('msg_whatsapp')+'</a>' : '') +
       '</div>' +
     '</div>';
   }).join('');
@@ -2561,7 +2678,8 @@ function fmtPubDate_(s){
   if(!s) return '';
   try{
     var d = new Date(s);
-    return d.getDate()+' '+['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][d.getMonth()]+' '+d.getFullYear();
+    var ms = (CURLANG==='bn') ? BN_MONTHS_SHORT : ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+    return bnNum(d.getDate())+' '+ms[d.getMonth()]+' '+bnNum(d.getFullYear());
   }catch(e){ return ''; }
 }
 </script>
