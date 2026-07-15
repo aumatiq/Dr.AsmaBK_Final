@@ -290,6 +290,14 @@ function doGet(e) {
   var page = params.page || params.view || 'home';
 
   if (page === 'dashboard') {
+    // ── Part 20-B: Google Account Access Gate (AccessGate.gs) ──
+    // App password login (Auth.gs) এর *আগেই* এই চেক হয়। Whitelist-এ না
+    // থাকলে DoctorDashboard.html-এর কোনো লাইনও কখনো ব্রাউজারে যাবে না।
+    var access = verifyDashboardAccess_();
+    if (!access.allowed) {
+      return renderAccessDeniedPage_(access);
+    }
+
     return HtmlService.createHtmlOutputFromFile('DoctorDashboard')
       .setTitle('Clinic Dashboard — Sign In')
       .setXFrameOptionsMode(HtmlService.XFrameOptionsMode.ALLOWALL)
